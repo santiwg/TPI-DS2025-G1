@@ -12,4 +12,10 @@ public class TipoDeDato {
         this.nombreUnidadMedida = nombreUnidadMedida;
         this.valorUmbral = valorUmbral;
     }
+
+    public void esTuDenominacion(){}
+
+    public String getDenominacion() {
+        return denominacion;
+    }
 }

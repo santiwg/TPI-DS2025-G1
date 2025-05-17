@@ -5,6 +5,14 @@ import java.util.Objects;
 public class Estado {
     private String ambito;
     private String nombreEstado;
+
+    public Estado() {}
+
+    public Estado(String ambito, String nombreEstado) {
+        this.ambito = ambito;
+        this.nombreEstado = nombreEstado;
+    }
+
     public boolean esAutoDetectado(){
         return this.nombreEstado.equals("AutoDetectado");
     }

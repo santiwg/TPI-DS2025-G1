@@ -22,4 +22,11 @@ public class EstacionSismologica {
         this.nroCertificacionAdquisicion = nroCertificacionAdquisicion;
     }
 
+    public int getCodigoEstacion() {
+        return codigoEstacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

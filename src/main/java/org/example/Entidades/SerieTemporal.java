@@ -21,4 +21,8 @@ public class SerieTemporal {
         this.estado = estado;
         this.muestrasSismicas = muestrasSismicas;
     }
+
+    public ArrayList<MuestraSismica> getMuestrasSismicas() {
+        return muestrasSismicas;
+    }
 }

@@ -12,4 +12,10 @@ public class DetalleMuestraSismica {
         this.valor = valor;
         this.tipoDeDato = tipoDeDato;
     }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void crearDetalleMuestra(){}
 }
