@@ -18,13 +18,13 @@ public class EventoSismico {
     private OrigenDeGeneracion origenGeneracion;
     private AlcanceSismo alcanceSismo;
     private ArrayList<SerieTemporal> serieTemporal;
+
+
     //analistaSUpervisor??
     public boolean esAutoDetectado(){
         return estado.esAutoDetectado();
     }
-    public boolean esPendienteDeRevision(){
-
-    }
+    public boolean esPendienteDeRevision(){}
     public void getDatosPrincipales(){
         //que debería devolver?
         LocalDateTime fechaHoraOcurrencia=this.getFechaHoraOcurrencia();
