@@ -19,6 +19,25 @@ public class EventoSismico {
     private AlcanceSismo alcanceSismo;
     private ArrayList<SerieTemporal> serieTemporal;
 
+    public EventoSismico() {
+    }
+
+    public EventoSismico(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraOcurrencia, float latitudEpicentro, float latitudHipocentro, float longitudEpicentro, float longitudHipocentro, float valorMagnitud, Estado estado, ArrayList<CambioEstado> cambiosDeEstado, ClasificacionSismo clasificacion, MagnitudRitcher magnitud, OrigenDeGeneracion origenGeneracion, AlcanceSismo alcanceSismo, ArrayList<SerieTemporal> serieTemporal) {
+        this.fechaHoraFin = fechaHoraFin;
+        this.fechaHoraOcurrencia = fechaHoraOcurrencia;
+        this.latitudEpicentro = latitudEpicentro;
+        this.latitudHipocentro = latitudHipocentro;
+        this.longitudEpicentro = longitudEpicentro;
+        this.longitudHipocentro = longitudHipocentro;
+        this.valorMagnitud = valorMagnitud;
+        this.estado = estado;
+        this.cambiosDeEstado = cambiosDeEstado;
+        this.clasificacion = clasificacion;
+        this.magnitud = magnitud;
+        this.origenGeneracion = origenGeneracion;
+        this.alcanceSismo = alcanceSismo;
+        this.serieTemporal = serieTemporal;
+    }
 
     //analistaSUpervisor??
     public boolean esAutoDetectado(){
