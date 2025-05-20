@@ -6,4 +6,6 @@ public class Usuario {
     private Empleado empleado;
     //suscripcion?
     //perfil?
+
+    public Empleado getEmpleado() { return this.empleado; }
 }

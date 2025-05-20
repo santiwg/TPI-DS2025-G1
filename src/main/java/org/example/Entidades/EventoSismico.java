@@ -41,9 +41,9 @@ public class EventoSismico {
 
     //analistaSUpervisor??
     public boolean esAutoDetectado(){
-        return estado.esAutoDetectado();
+        return this.estado.esAutoDetectado();
     }
-    public boolean esPendienteDeRevision(){}
+    public boolean esPendienteDeRevision() { return this.estado.esPendienteDeRevision(); }
     public void getDatosPrincipales(){
         //que debería devolver?
         LocalDateTime fechaHoraOcurrencia=this.getFechaHoraOcurrencia();
@@ -79,4 +79,28 @@ public class EventoSismico {
     public float getValorMagnitud() {
         return valorMagnitud;
     }
+
+    public void bloquear() {}
+
+    public void buscarUltimoEstado() {}
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public AlcanceSismo conocerAlcance() {
+        return this.alcanceSismo;
+    }
+
+    public ClasificacionSismo conocerClasificacion() {
+        return this.clasificacion;
+    }
+
+    public OrigenDeGeneracion conocerOrigenGeneracion() {
+        return this.origenGeneracion;
+    }
+
+    public void clasificarDatosPorEstacionSismologica() {}
+
+
 }
