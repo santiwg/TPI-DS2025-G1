@@ -16,4 +16,17 @@ public class CambioEstado {
         this.estado = estado;
         this.empleadoResponsable = empleadoResponsable;
     }
+
+    public CambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoResponsable) {
+        this.fechaHoraInicio = fechaHoraInicio;
+        this.estado = estado;
+        this.empleadoResponsable = empleadoResponsable;
+    }
+
+    public boolean esActual() { return this.fechaHoraFin == null; }
+
+    public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
+        this.fechaHoraFin = fechaHoraFin;
+    }
+
 }
