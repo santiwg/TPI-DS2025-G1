@@ -13,6 +13,10 @@ public class Estado {
         this.nombreEstado = nombreEstado;
     }
 
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
+
     public boolean esAutoDetectado(){
         return this.nombreEstado.equals("AutoDetectado");
     }

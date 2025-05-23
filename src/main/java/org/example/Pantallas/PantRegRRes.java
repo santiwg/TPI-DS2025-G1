@@ -19,4 +19,8 @@ public class PantRegRRes {
     public void tomarSeleccionEs(String evento){
         //gestor.tomarSeleccionES();
     }
+
+    public void mostrarDatosEventoSismico(String datosEventoSismico){
+        //Como mostramos la información????
+    }
 }

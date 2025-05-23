@@ -80,7 +80,9 @@ public class EventoSismico {
         return valorMagnitud;
     }
 
-    public void bloquear() {}
+    public void bloquear() {
+        this.estado.setNombreEstado("Bloquear"); //verificar el nombre del estado
+    }
 
     public void buscarUltimoEstado() {}
 
