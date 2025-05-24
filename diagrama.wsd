@@ -1,0 +1,158 @@
+@startuml realizacionCU23 - PPAI Red Sismica
+
+autonumber
+
+actor "__:Analista en Sismos__" as AeS
+
+create boundary "__:PantRegRRES__" as PRR
+AeS -->> PRR: opcRegResultadoES()
+PRR ->> PRR: abrirPantalla()
+
+create control "__:GestorRegRRES__" as GR
+PRR -->> GR: nuevaRevisionES()
+
+GR ->> GR: buscarESNoRevisados()
+
+entity "__:EventoSismico__" as ES #Red
+entity "__:Estado__" as E
+
+group loop Eventos Sismicos [Mientras existan eventos sismicos]
+    GR ->> ES: esAutoDetectado()
+    ES ->> E: esAutoDetectado()
+
+    GR ->> ES: esPendienteDeRevision()
+    ES ->> E: esPendienteDeRevision()
+
+    GR ->> ES: getDatosPrincipalesES()
+
+    ES ->> ES: getFechaHoraOcurrencia()
+    ES ->> ES: getLatitudEpicentro()
+    ES ->> ES: getLongitudEpicentro()
+    ES ->> ES: getLatitudHipocentro()
+    ES ->> ES: getLongitudHipocentro()
+    ES ->> ES: getValorMagnitud()
+end
+
+GR ->> GR: ordenarEventosSismicosPorFechaYHora()
+
+GR ->> PRR: mostrarESParaSeleccion()
+AeS ->> PRR: tomarSeleccionES()
+PRR ->> GR: tomarSeleccionES()
+
+entity "__selec:EventoSismico__" as SES
+
+GR ->> GR: buscarEstadoBloquearEnRev()
+entity "__:Estado__" as allE #red
+
+group loop Estados para ES[Mientras haya estados]
+    GR ->> allE: esAmbitoEventoSismico()
+    GR ->> allE: esBloqueadoEnRevision()
+end
+
+GR ->> GR: tomarFechaHoraActual()
+GR ->> GR: buscarEmpleadoLogueado()
+entity "__Actual:Sesion__" as SA
+GR ->> SA: obtenerEmpleadoLogueado()
+entity "__Log:Usuario__" as UL
+SA ->> UL: getEmpleado()
+GR ->> GR: bloquearEventoSismico()
+GR ->> SES: revisar()
+entity "__:CambioEstado__" as allCE #red
+SES ->> SES: buscarUltimoEstado()
+SES ->> allCE: ~*esActual()
+entity "__Actual:CambioEstado__" as ACE
+SES ->> ACE: setFechaFin()
+
+SES ->> SES: crearCambioEstado()
+
+create entity "__BloqER:CambioEstado__" as CE
+SES -->> CE: new()
+SES ->> SES: setEstado()
+
+GR ->> GR: buscarDatosEventoSismico()
+GR ->> SES: conocerAlcance()
+
+entity "__seleccES:AlcanceSismo__" as esAS
+
+SES ->> esAS: getNombre()
+
+GR ->> SES: conocerClasificacion()
+
+entity "__seleccES:ClasificacionSismo__" as esCS
+
+SES ->> esCS: getNombre()
+
+GR ->> SES: conocerOrigenGeneracion()
+
+entity "__seleccES:OrigenDeGeneracion__" as esOG
+
+SES ->> esOG: getNombre()
+
+GR->>PRR: mostrarDatosEventoSismico()
+
+GR ->> GR: buscarDatosSeriesTemporales()
+
+GR ->> SES: buscarDatosSeriesTemporales()
+
+entity "__:SerieTemporal__" as ST #red
+
+group loop Series Temporales [Mientras haya series temporales]
+    SES -> ST: getDatos()
+    group loop Muestras Sismicas [Mientras haya muestras]
+        entity "__:MuestraSismica__" as MS #red
+        ST -> MS: getDatos()
+        group loop Detalles Muestra Sismica [Mientras haya detalles de muestras]
+            entity "__:DetalleMuestraSismica__" as DMS #red
+            MS -> DMS: getDatos()
+            entity "__:TipoDeDato__" as TdD
+            ' Antes de esto podría buscar las denominaciones (dependencia) que necesito y luego preguntarle esTuDenominacion()
+            DMS -> TdD: getDenominacion()
+        end
+    end
+    ST ->> ST: obtenerEstacionSismologica
+    group loop Buscar sismografo [Mientras haya sismografos]
+    entity "__:Sismografo__" as S #Red
+    ST -> S: esSismografoDeSerieTemporal()
+    entity "__:EstacionSismologica__" as ETS
+    S -> ETS: getCodigoEstacion()
+    end
+end
+
+SES -> SES: clasificarDatosPorEstacionSismologica()
+
+GR -> GR: llamarCUGenerarSismograma()
+
+control "__CU:GenerarSismograma__" as CUSG
+GR --> CUSG: <<include>>
+
+GR -> PRR: mostrarDatosES()
+GR -> PRR: habilitarOpcVerMapa()
+GR -> PRR: habilitarOpcModificarDatosES()
+' Puede que acá tenga tomarDatos para cada item que no modifica, y que el valor por defecto sea el que estaba. 
+GR -> PRR: pedirSeleccionResultadoEvento()
+AeS -> PRR: tomarSeleccionResultadoEvento()
+PRR -> GR: tomarSeleccionResultadoEvento()
+GR -> GR: validarDatosMinimos()
+GR -> GR: buscarEstadoRechazado()
+
+group loop Eventos sismicos [Mientras haya estados]
+    GR ->> allE: esAmbitoEventoSismico()
+    GR ->> allE: esRechazado()
+end
+
+GR ->> GR: tomarFechaHoraActual()
+GR ->> GR: regActualizacionES()
+GR ->> SES: rechazar()
+SES ->> SES: buscarUltimoEstado()
+SES ->> allCE: ~*esActual()
+SES ->> ACE: setFechaFin()
+
+SES ->> SES: crearCambioEstado()
+
+create entity "__Rechazado:CambioEstado__" as RCE
+SES -->> RCE: new()
+SES ->> SES: setEstado()
+
+GR -> GR: finCU()
+
+@enduml
