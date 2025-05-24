@@ -4,6 +4,8 @@ import org.example.Entidades.Empleado;
 import org.example.Entidades.Estado;
 import org.example.Entidades.EventoSismico;
 import org.example.Entidades.Sesion;
+import org.example.Pantallas.PantRegRRes;
+
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.Comparator;
 
 public class GestorRegRRes {
 
+    private ArrayList<EventoSismico> listaEventosSismicos;
     private ArrayList<EventoSismico> listaEventosSismicosNoRevisados;
     private EventoSismico eventoSismicoSeleccionado;
     private Estado estadoBloqueado;
@@ -21,14 +24,15 @@ public class GestorRegRRes {
     private ArrayList<Estado> listaEstados;
     private int punteroEstadoBloqueadoEnRevision;
     private LocalDateTime fechaHoraActual;
+    private PantRegRRes pantalla;
 
     public void nuevaRevisionES(){
         this.buscarESNoRevisados();
-        this.ordenarEventosSismicosPorFechaYHora();
-        //pantalla.mostrarESParaSeleccion
+        this.ordenarEventosSismicosPorFechaYHora(listaEventosSismicosNoRevisados);
+        this.pantalla.mostrarESParaSeleccion(listaEventosSismicosNoRevisados);
     }
     public void buscarESNoRevisados(){
-        for (EventoSismico evento : eventos) { // ¿Cómo consigue todos los eventos sísmicos?¿Debería tener un atributo de seteo en el main (listaEventosSismicos)?
+        for (EventoSismico evento : listaEventosSismicos) { // ¿Cómo consigue todos los eventos sísmicos?¿Debería tener un atributo de seteo en el main (listaEventosSismicos)?
             if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){
                 listaEventosSismicosNoRevisados.add(evento);
                 listaDatosEventos.add(evento.getDatosPrincipales()); // Habría que unificar ambos en un diccionario.

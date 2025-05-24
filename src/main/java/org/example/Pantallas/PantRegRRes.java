@@ -1,10 +1,12 @@
 package org.example.Pantallas;
 
 import org.example.Entidades.EventoSismico;
+import org.example.Gestores.GestorRegRRes;
 
 import java.util.ArrayList;
 
 public class PantRegRRes {
+    private GestorRegRRes gestor;
 
     public void opcRegResultadoES(){
         this.abrir();

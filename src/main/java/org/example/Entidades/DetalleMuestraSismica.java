@@ -17,5 +17,7 @@ public class DetalleMuestraSismica {
         return valor;
     }
 
-    public void crearDetalleMuestra(){}
+    public void getDatos() { // Ver en qué formato traer los datos
+
+    }
 }

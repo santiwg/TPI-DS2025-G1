@@ -13,4 +13,12 @@ public class MuestraSismica {
         this.fechaHoraMuestra = fechaHoraMuestra;
         this.detalleMuestraSismica = detalleMuestraSismica;
     }
+
+    public void crearDetalleMuestra() { // Ver qué paramétros pasarle
+        new DetalleMuestraSismica();
+    }
+
+    public void getDatos() { // Ver cómo implementar
+
+    }
 }

@@ -2,7 +2,6 @@ package org.example.Entidades;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Sismografo {
     private LocalDateTime fechaAdquisicion;
@@ -10,27 +9,27 @@ public class Sismografo {
     private String nroSerie;
     private ArrayList<SerieTemporal> serieTemporal;
     private EstacionSismologica estacionSismologica;
-    private Estado estado;
+    private Estado estadoActual;
     private ArrayList<CambioEstado> cambiosDeEstado;
 
     public Sismografo(){}
 
-    public Sismografo(LocalDateTime fechaAdquisicion, int idSismografo, String nroSerie, ArrayList<SerieTemporal> serieTemporal, EstacionSismologica estacionSismologica, Estado estado, ArrayList<CambioEstado> cambiosDeEstado) {
+    public Sismografo(LocalDateTime fechaAdquisicion, int idSismografo, String nroSerie, ArrayList<SerieTemporal> serieTemporal, EstacionSismologica estacionSismologica, Estado estadoActual, ArrayList<CambioEstado> cambiosDeEstado) {
         this.fechaAdquisicion = fechaAdquisicion;
         this.identificadorSismografo = idSismografo;
         this.nroSerie = nroSerie;
         this.serieTemporal = serieTemporal;
         this.estacionSismologica = estacionSismologica;
-        this.estado = estado;
+        this.estadoActual = estadoActual;
         this.cambiosDeEstado = cambiosDeEstado;
     }
 
-    public int getIdSismografo() {
+    public int getIdentificadorSismografo() {
         return identificadorSismografo;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setEstadoActual(Estado estadoActual) {
+        this.estadoActual = estadoActual;
     }
 
     public void solicitarCertificacion(){}

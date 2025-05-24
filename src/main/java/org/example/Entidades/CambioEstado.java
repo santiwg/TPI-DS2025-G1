@@ -1,6 +1,5 @@
 package org.example.Entidades;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class CambioEstado {
     private LocalDateTime fechaHoraFin;
@@ -23,7 +22,7 @@ public class CambioEstado {
         this.empleadoResponsable = empleadoResponsable;
     }
 
-    public boolean esActual() { return this.fechaHoraFin == null; }
+    public boolean esEstadoActual() { return this.fechaHoraFin == null; }
 
     public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;

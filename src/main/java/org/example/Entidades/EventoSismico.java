@@ -11,8 +11,8 @@ public class EventoSismico {
     private float longitudEpicentro;
     private float longitudHipocentro;
     private float valorMagnitud; //chequear
-    private Estado estado;
-    private ArrayList<CambioEstado> cambiosDeEstado;
+    private Estado estadoActual;
+    private ArrayList<CambioEstado> cambioEstado;
     private ClasificacionSismo clasificacion;
     private MagnitudRitcher magnitud;
     private OrigenDeGeneracion origenGeneracion;
@@ -22,7 +22,7 @@ public class EventoSismico {
     public EventoSismico() {
     }
 
-    public EventoSismico(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraOcurrencia, float latitudEpicentro, float latitudHipocentro, float longitudEpicentro, float longitudHipocentro, float valorMagnitud, Estado estado, ArrayList<CambioEstado> cambiosDeEstado, ClasificacionSismo clasificacion, MagnitudRitcher magnitud, OrigenDeGeneracion origenGeneracion, AlcanceSismo alcanceSismo, ArrayList<SerieTemporal> serieTemporal) {
+    public EventoSismico(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraOcurrencia, float latitudEpicentro, float latitudHipocentro, float longitudEpicentro, float longitudHipocentro, float valorMagnitud, Estado estadoActual, ArrayList<CambioEstado> cambioEstado, ClasificacionSismo clasificacion, MagnitudRitcher magnitud, OrigenDeGeneracion origenGeneracion, AlcanceSismo alcanceSismo, ArrayList<SerieTemporal> serieTemporal) {
         this.fechaHoraFin = fechaHoraFin;
         this.fechaHoraOcurrencia = fechaHoraOcurrencia;
         this.latitudEpicentro = latitudEpicentro;
@@ -30,8 +30,8 @@ public class EventoSismico {
         this.longitudEpicentro = longitudEpicentro;
         this.longitudHipocentro = longitudHipocentro;
         this.valorMagnitud = valorMagnitud;
-        this.estado = estado;
-        this.cambiosDeEstado = cambiosDeEstado;
+        this.estadoActual = estadoActual;
+        this.cambioEstado = cambioEstado;
         this.clasificacion = clasificacion;
         this.magnitud = magnitud;
         this.origenGeneracion = origenGeneracion;
@@ -41,9 +41,9 @@ public class EventoSismico {
 
     //analistaSUpervisor??
     public boolean esAutoDetectado(){
-        return this.estado.esAutoDetectado();
+        return this.estadoActual.esAutoDetectado();
     }
-    public boolean esPendienteDeRevision() { return this.estado.esPendienteDeRevision(); }
+    public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); }
     public void getDatosPrincipales(){
         //que debería devolver?
         LocalDateTime fechaHoraOcurrencia=this.getFechaHoraOcurrencia();
@@ -81,13 +81,13 @@ public class EventoSismico {
     }
 
     public void bloquear() {
-        this.estado.setNombreEstado("Bloquear"); //verificar el nombre del estado
+        this.estadoActual.setNombreEstado("Bloquear"); //verificar el nombre del estado
     }
 
     public void buscarUltimoEstado() {}
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setEstadoActual(Estado estadoActual) {
+        this.estadoActual = estadoActual;
     }
 
     public AlcanceSismo conocerAlcance() {
