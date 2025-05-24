@@ -10,10 +10,10 @@ public class PantRegRRes {
 
     public void opcRegResultadoES(){
         this.abrir();
-        //gestor.nuevaRevisionEs()
+        gestor.nuevaRevisionES();
     }
     public void abrir(){
-
+        //implementar
     }
     public void mostrarESParaSeleccion(ArrayList<String> eventoSismicos){
         //le paso un array de string?
