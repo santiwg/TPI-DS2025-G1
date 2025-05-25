@@ -85,13 +85,14 @@ public class EventoSismico {
     }
 
     public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
-        buscarUltimoEstado();
-        crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        setEstadoActual(estado);
+        this.buscarUltimoEstado();
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.setEstadoActual(estado);
     }
 
     public void crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
         CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.cambioEstado.add(nuevoCambio);
     }
 
     public void buscarUltimoEstado() {

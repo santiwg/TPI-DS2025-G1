@@ -90,12 +90,10 @@ public class GestorRegRRes {
 
     public void tomarSeleccionRechazo(){
         //validarDatosMinimos();
-        buscarEstadoRechazado();
-        tomarFechaHoraActual();
-        rechazarEventoSismico();
+        this.buscarEstadoRechazado();
+        this.tomarFechaHoraActual();
+        this.rechazarEventoSismico();
     }
-
-
 
     public void rechazarEventoSismico(){
         this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado);
