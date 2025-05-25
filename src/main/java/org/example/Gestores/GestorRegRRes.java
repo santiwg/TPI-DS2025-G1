@@ -47,7 +47,7 @@ public class GestorRegRRes {
 
     }
 
-    public void buscarEstadoBloquearEnRev(){
+    public void buscarEstadoBloqueadoEnRev(){
         for(Estado estado: listaEstados){
             if(estado.esAmbitoEventoSismico() & estado.esBloqueadoEnRevision()){
                 this.estadoBloqueadoEnRevision = estado;
@@ -57,7 +57,7 @@ public class GestorRegRRes {
         //Se supone que si o si el estado va a estar (entra al if) o se puede dar el caso que no exista el estado?
     }
 
-    public void setFechaHoraActual(){
+    public void tomarFechaHoraActual(){
         this.fechaHoraActual = LocalDateTime.now();
     }
 

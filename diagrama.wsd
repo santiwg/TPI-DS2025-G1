@@ -41,7 +41,7 @@ PRR ->> GR: tomarSeleccionES()
 
 entity "__selec:EventoSismico__" as SES
 
-GR ->> GR: buscarEstadoBloquearEnRev()
+GR ->> GR: buscarEstadoBloqueadoEnRev()
 entity "__:Estado__" as allE #red
 
 group loop Estados para ES[Mientras haya estados]
