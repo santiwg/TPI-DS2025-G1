@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class PantRegRRes extends JFrame {
     private GestorRegRRes gestor;
     private JButton opcRegRRevision;
-    private JList list1;
+    private JList listaDatosEventos;
     private JComboBox eventosComboBox;
     private JTextField origentxt;
     private JTextField Alcancetxt;
@@ -35,7 +35,7 @@ public class PantRegRRes extends JFrame {
         setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
 
 // Ocultar componentes acá
-        list1.setVisible(false);
+        listaDatosEventos.setVisible(false);
         eventosComboBox.setVisible(false);
         origentxt.setVisible(false);
         Alcancetxt.setVisible(false);
@@ -69,7 +69,7 @@ public class PantRegRRes extends JFrame {
         gestor.nuevaRevisionES();
     }
     public void abrir(){
-        list1.setVisible(true);
+        listaDatosEventos.setVisible(true);
         eventosComboBox.setVisible(true);
         origentxt.setVisible(true);
         Alcancetxt.setVisible(true);
