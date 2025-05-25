@@ -66,7 +66,7 @@ public class GestorRegRRes {
     }
 
     public void bloquearEventoSismico(){
-        this.eventoSismicoSeleccionado.bloquear();
+        this.eventoSismicoSeleccionado.revisar();
     }
 
     public String buscarDatosEventoSismico(){
@@ -76,6 +76,12 @@ public class GestorRegRRes {
         String datos = alcance + clasificacion + origenGeneracion; //Ver la forma en que se retornaran los datos
         return datos;
     }
+
+    public void tomarSeleccionRechazo(){
+        //agregar parametros
+        //implementar;
+    }
+
     public void cancelarCU(){
         //implementar
     }

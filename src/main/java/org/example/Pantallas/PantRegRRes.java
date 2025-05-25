@@ -89,4 +89,9 @@ public class PantRegRRes extends JFrame {
     public void mostrarDatosEventoSismico(String datosEventoSismico){
         //Como mostramos la información????
     }
+
+    public void tomarSeleccionRechazo(){
+        //agregar parametros
+        //implementar;
+    }
 }
