@@ -28,13 +28,13 @@ public class GestorRegRRes {
     public void nuevaRevisionES(){
         this.buscarESNoRevisados();
         this.ordenarEventosSismicosPorFechaYHora(listaEventosSismicosNoRevisados);
-        this.pantalla.mostrarESParaSeleccion(listaEventosSismicosNoRevisados);
+        //this.pantalla.mostrarESParaSeleccion(listaEventosSismicosNoRevisados);
     }
     public void buscarESNoRevisados(){
         for (EventoSismico evento : listaEventosSismicos) {
             if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){
                 listaEventosSismicosNoRevisados.add(evento);
-                listaDatosEventos.add(evento.getDatosPrincipales()); // Habría que unificar ambos en un diccionario.
+                //listaDatosEventos.add(evento.getDatosPrincipales()); // Habría que unificar ambos en un diccionario.
             }
         }
     }
@@ -75,5 +75,8 @@ public class GestorRegRRes {
         String origenGeneracion = this.eventoSismicoSeleccionado.conocerOrigenGeneracion().getNombre();
         String datos = alcance + clasificacion + origenGeneracion; //Ver la forma en que se retornaran los datos
         return datos;
+    }
+    public void cancelarCU(){
+        //implementar
     }
 }

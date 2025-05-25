@@ -1,19 +1,83 @@
 package org.example.Pantallas;
 
-import org.example.Entidades.EventoSismico;
 import org.example.Gestores.GestorRegRRes;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class PantRegRRes {
+public class PantRegRRes extends JFrame {
     private GestorRegRRes gestor;
+    private JButton opcRegRRevision;
+    private JList list1;
+    private JComboBox eventosComboBox;
+    private JTextField origentxt;
+    private JTextField Alcancetxt;
+    private JTextField clasificaciontxt;
+    private JButton seleccionarButton;
+    private JLabel AlcanceLabel;
+    private JLabel ClasificacionLabel;
+    private JLabel OrigenDeGeneracionLabel;
+    private JButton rechazarButton;
+    private JButton confirmarButton;
+    private JButton delegarAExpertoButton;
+    private JButton verMapaButton;
+    private JButton modificarDatosButton;
+    private JLabel seleccioneResultadoLabel;
+    private JPanel panelPrincipal;
+
+    public PantRegRRes(GestorRegRRes gestor) {
+        this.gestor = gestor;
+        setContentPane(panelPrincipal); //este linea va si o si, sino no podemos trabajar con el panel armado
+        setTitle("Registrar Resultado de Revisión");  //configurar el título de la ventana
+        setSize(600,600); //configurar el tamaño de la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //define el comportamiento de cierre (lo que hace cuando se toca la cruz)
+        setLocationRelativeTo(null); //indicamos respecto a que se centre, al poner null es respecto al centro.
+        setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
+
+// Ocultar componentes acá
+        list1.setVisible(false);
+        eventosComboBox.setVisible(false);
+        origentxt.setVisible(false);
+        Alcancetxt.setVisible(false);
+        clasificaciontxt.setVisible(false);
+        seleccionarButton.setVisible(false);
+        AlcanceLabel.setVisible(false);
+        ClasificacionLabel.setVisible(false);
+        OrigenDeGeneracionLabel.setVisible(false);
+        rechazarButton.setVisible(false);
+        confirmarButton.setVisible(false);
+        delegarAExpertoButton.setVisible(false);
+        verMapaButton.setVisible(false);
+        modificarDatosButton.setVisible(false);
+        seleccioneResultadoLabel.setVisible(false);
+
+        // Agregar WindowListener para el cierre
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                gestor.cancelarCU();
+                dispose();
+            }});
+        opcRegRRevision.addActionListener(e -> {
+            opcRegRRevision.setVisible(false);
+            opcRegResultadoES();
+        });
+    }
 
     public void opcRegResultadoES(){
         this.abrir();
         gestor.nuevaRevisionES();
     }
     public void abrir(){
-        //implementar
+        list1.setVisible(true);
+        eventosComboBox.setVisible(true);
+        origentxt.setVisible(true);
+        Alcancetxt.setVisible(true);
+        clasificaciontxt.setVisible(true);
+        seleccionarButton.setVisible(true);
+        AlcanceLabel.setVisible(true);
+        ClasificacionLabel.setVisible(true);
+        OrigenDeGeneracionLabel.setVisible(true);
     }
     public void mostrarESParaSeleccion(ArrayList<String> eventoSismicos){
         //le paso un array de string?
