@@ -43,7 +43,9 @@ public class EventoSismico {
     public boolean esAutoDetectado(){
         return this.estadoActual.esAutoDetectado();
     }
+
     public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); }
+
     public void getDatosPrincipales(){
         //que debería devolver?
         LocalDateTime fechaHoraOcurrencia=this.getFechaHoraOcurrencia();
@@ -52,8 +54,6 @@ public class EventoSismico {
         float longitudEpicentro=this.getLongitudEpicentro();
         float longitudHipocentro=this.getLongitudHipocentro();
         float valorMagnitud=this.getValorMagnitud();
-
-
     }
 
     public LocalDateTime getFechaHoraOcurrencia() {
@@ -84,7 +84,23 @@ public class EventoSismico {
         this.estadoActual.setNombreEstado("Bloquear"); //verificar el nombre del estado
     }
 
-    public void buscarUltimoEstado() {}
+    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+        buscarUltimoEstado();
+        crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        setEstadoActual(estado);
+    }
+
+    public void crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+    }
+
+    public void buscarUltimoEstado() {
+        for(CambioEstado cambioEstado: cambioEstado){
+            if(cambioEstado.esActual()){
+                cambioEstado.setFechaHoraFin(fechaHoraFin);
+            }
+        }
+    }
 
     public void setEstadoActual(Estado estadoActual) {
         this.estadoActual = estadoActual;
@@ -103,6 +119,5 @@ public class EventoSismico {
     }
 
     public void clasificarDatosPorEstacionSismologica() {}
-
 
 }

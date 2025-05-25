@@ -69,6 +69,8 @@ public class GestorRegRRes {
         this.eventoSismicoSeleccionado.revisar();
     }
 
+    public void validarDatosMinimos(){}
+
     public String buscarDatosEventoSismico(){
         String alcance = this.eventoSismicoSeleccionado.conocerAlcance().getNombre();
         String clasificacion = this.eventoSismicoSeleccionado.conocerClasificacion().getNombre();
@@ -77,9 +79,26 @@ public class GestorRegRRes {
         return datos;
     }
 
+    public void buscarEstadoRechazado(){
+        for(Estado estado: listaEstados){
+            if(estado.esAmbitoEventoSismico() & estado.esRechazado()){
+                this.estadoRechazado = estado;
+                break;
+            }
+        }
+    }
+
     public void tomarSeleccionRechazo(){
-        //agregar parametros
-        //implementar;
+        //validarDatosMinimos();
+        buscarEstadoRechazado();
+        tomarFechaHoraActual();
+        rechazarEventoSismico();
+    }
+
+
+
+    public void rechazarEventoSismico(){
+        this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado);
     }
 
     public void cancelarCU(){

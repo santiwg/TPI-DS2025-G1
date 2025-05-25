@@ -22,7 +22,7 @@ public class CambioEstado {
         this.empleadoResponsable = empleadoResponsable;
     }
 
-    public boolean esEstadoActual() { return this.fechaHoraFin == null; }
+    public boolean esActual() { return this.fechaHoraFin == null; }
 
     public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;

@@ -29,4 +29,7 @@ public class Estado {
     public boolean esBloqueadoEnRevision(){
         return this.nombreEstado.equals("BloqueadoEnRevision");
     }
+    public boolean esRechazado(){
+        return this.nombreEstado.equals("Rechazado");
+    }
 }
