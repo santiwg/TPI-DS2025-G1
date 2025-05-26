@@ -113,4 +113,5 @@ public class PantRegRRes extends JFrame {
     public void tomarSeleccionRechazo(){
         gestor.tomarSeleccionRechazo();
     }
+
 }
