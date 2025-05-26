@@ -97,7 +97,10 @@ public class GestorRegRRes {
                 break;
             }
         }
-        //Se supone que si o si el estado va a estar (entra al if) o se puede dar el caso que no exista el estado?
+    }
+
+    public void bloquearEventoSismico(){
+        this.eventoSismicoSeleccionado.revisar(fechaHoraActual, estadoBloqueadoEnRevision, empleadoLogueado);
     }
 
     public void tomarFechaHoraActual(){
