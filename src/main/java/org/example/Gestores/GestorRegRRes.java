@@ -86,8 +86,10 @@ public class GestorRegRRes {
 
 
     public void tomarSeleccionES(String eventoSelecc){
-        //implementar
-        //habria que comparar los datos de cada evento con lo que pasa el parametro, formatenadolo
+            this.buscarEstadoBloqueadoEnRev();
+            this.tomarFechaHoraActual();
+            this.buscarEmpleadoLogueado();
+            this.bloquearEventoSismico();
     }
 
     public void buscarEstadoBloqueadoEnRev(){
