@@ -70,19 +70,19 @@ SES -->> CE: new()
 SES ->> SES: setEstadoActual()
 
 GR ->> GR: buscarDatosEventoSismico()
-GR ->> SES: conocerAlcance()
+GR ->> SES: mostrarAlcance()
 
 entity "__seleccES:AlcanceSismo__" as esAS
 
 SES ->> esAS: getNombre()
 
-GR ->> SES: conocerClasificacion()
+GR ->> SES: mostrarClasificacion()
 
 entity "__seleccES:ClasificacionSismo__" as esCS
 
 SES ->> esCS: getNombre()
 
-GR ->> SES: conocerOrigenGeneracion()
+GR ->> SES: mostrarOrigenGeneracion()
 
 entity "__seleccES:OrigenDeGeneracion__" as esOG
 

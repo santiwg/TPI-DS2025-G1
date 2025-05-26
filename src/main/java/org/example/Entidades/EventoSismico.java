@@ -120,15 +120,15 @@ public class EventoSismico {
         this.estadoActual = estadoActual;
     }
 
-    public String conocerAlcance() {
+    public String mostrarAlcance() {
         return this.alcanceSismo.getNombre();
     }
 
-    public String conocerClasificacion() {
+    public String mostrarClasificacion() {
         return this.clasificacion.getNombre();
     }
 
-    public String conocerOrigenGeneracion() {
+    public String mostrarOrigenGeneracion() {
         return this.origenGeneracion.getNombre();
     }
 

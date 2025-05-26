@@ -119,9 +119,9 @@ public class GestorRegRRes {
 
 
     public void buscarDatosEventoSismico(){
-        this.nombreAlcance = this.eventoSismicoSeleccionado.conocerAlcance();
-        this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.conocerClasificacion();
-        this.nombreClasificacion= this.eventoSismicoSeleccionado.conocerOrigenGeneracion();
+        this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
+        this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.mostrarClasificacion();
+        this.nombreClasificacion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
         pantalla.mostrarDatosEventoSismico(nombreAlcance,nombreOrigenGeneracion,nombreClasificacion);
 
     }
