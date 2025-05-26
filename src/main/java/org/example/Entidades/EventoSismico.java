@@ -2,6 +2,8 @@ package org.example.Entidades;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventoSismico {
     private LocalDateTime fechaHoraFin;
@@ -46,14 +48,23 @@ public class EventoSismico {
 
     public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); }
 
-    public void getDatosPrincipales(){
-        //que debería devolver?
-        LocalDateTime fechaHoraOcurrencia=this.getFechaHoraOcurrencia();
-        float latitudEpicentro=this.getLatitudEpicentro();
-        float latitudHipocentro=this.getLatitudHipocentro();
-        float longitudEpicentro=this.getLongitudEpicentro();
-        float longitudHipocentro=this.getLongitudHipocentro();
-        float valorMagnitud=this.getValorMagnitud();
+    public Map<String, Object> getDatosPrincipales() {
+        LocalDateTime fechaHoraOcurrencia = this.getFechaHoraOcurrencia();
+        float latitudEpicentro = this.getLatitudEpicentro();
+        float latitudHipocentro = this.getLatitudHipocentro();
+        float longitudEpicentro = this.getLongitudEpicentro();
+        float longitudHipocentro = this.getLongitudHipocentro();
+        float valorMagnitud = this.getValorMagnitud();
+
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("fechaHoraOcurrencia", fechaHoraOcurrencia);
+        datos.put("latitudEpicentro", latitudEpicentro);
+        datos.put("latitudHipocentro", latitudHipocentro);
+        datos.put("longitudEpicentro", longitudEpicentro);
+        datos.put("longitudHipocentro", longitudHipocentro);
+        datos.put("valorMagnitud", valorMagnitud);
+
+        return datos;
     }
 
     public LocalDateTime getFechaHoraOcurrencia() {
@@ -81,11 +92,11 @@ public class EventoSismico {
     }
 
     public void revisar() {
-        this.estadoActual.setNombreEstado("Bloquear"); //verificar el nombre del estado
+        this.estadoActual.setNombreEstado("Bloquear"); //HACER DE VUELTA
     }
 
     public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
-        this.buscarUltimoEstado();
+        this.buscarUltimoEstado(fechaHoraInicio);
         this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.setEstadoActual(estado);
     }
@@ -95,10 +106,10 @@ public class EventoSismico {
         this.cambioEstado.add(nuevoCambio);
     }
 
-    public void buscarUltimoEstado() {
+    public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) {
         for(CambioEstado cambioEstado: cambioEstado){
             if(cambioEstado.esActual()){
-                cambioEstado.setFechaHoraFin(fechaHoraFin);
+                cambioEstado.setFechaHoraFin(fechaHoraDeFin);
             }
         }
     }
@@ -107,16 +118,16 @@ public class EventoSismico {
         this.estadoActual = estadoActual;
     }
 
-    public AlcanceSismo conocerAlcance() {
-        return this.alcanceSismo;
+    public String conocerAlcance() {
+        return this.alcanceSismo.getNombre();
     }
 
-    public ClasificacionSismo conocerClasificacion() {
-        return this.clasificacion;
+    public String conocerClasificacion() {
+        return this.clasificacion.getNombre();
     }
 
-    public OrigenDeGeneracion conocerOrigenGeneracion() {
-        return this.origenGeneracion;
+    public String conocerOrigenGeneracion() {
+        return this.origenGeneracion.getNombre();
     }
 
     public void clasificarDatosPorEstacionSismologica() {}

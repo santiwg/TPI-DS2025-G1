@@ -3,6 +3,8 @@ package org.example.Pantallas;
 import org.example.Gestores.GestorRegRRes;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PantRegRRes extends JFrame {
@@ -59,8 +61,16 @@ public class PantRegRRes extends JFrame {
                 dispose();
             }});
         opcRegRRevision.addActionListener(e -> {
-            opcRegRRevision.setVisible(false);
+
             opcRegResultadoES();
+        });
+        seleccionarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String seleccionado = (String) eventosComboBox.getSelectedItem();
+                tomarSeleccionES(seleccionado);
+                //agregar control para errores, es decir por si no seleccionaron nada
+            }
         });
     }
 
@@ -69,6 +79,7 @@ public class PantRegRRes extends JFrame {
         gestor.nuevaRevisionES();
     }
     public void abrir(){
+        opcRegRRevision.setVisible(false);
         listaDatosEventos.setVisible(true);
         eventosComboBox.setVisible(true);
         origentxt.setVisible(true);
@@ -79,19 +90,27 @@ public class PantRegRRes extends JFrame {
         ClasificacionLabel.setVisible(true);
         OrigenDeGeneracionLabel.setVisible(true);
     }
-    public void mostrarESParaSeleccion(ArrayList<String> eventoSismicos){
+    public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
         //le paso un array de string?
+        DefaultComboBoxModel <String> eventos = new DefaultComboBoxModel<>();
+        for (String evento: eventosSismicos) {
+            eventos.addElement(evento);
+        }
+        eventosComboBox.setModel(eventos);
+
+        //chequear
     }
-    public void tomarSeleccionEs(String evento){
-        //gestor.tomarSeleccionES();
+    public void tomarSeleccionES(String evento){
+        gestor.tomarSeleccionES(evento);
     }
 
-    public void mostrarDatosEventoSismico(String datosEventoSismico){
-        //Como mostramos la información????
+    public void mostrarDatosEventoSismico(String nombreAlcance, String nombreOrigenGeneracion, String nombreClasificacion){
+        this.Alcancetxt.setText(nombreAlcance);
+        this.origentxt.setText(nombreOrigenGeneracion);
+        this.clasificaciontxt.setText(nombreClasificacion);
     }
 
     public void tomarSeleccionRechazo(){
-        //agregar parametros
-        //implementar;
+        gestor.tomarSeleccionRechazo();
     }
 }
