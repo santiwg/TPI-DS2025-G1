@@ -82,11 +82,13 @@ public class GestorRegRRes {
         });
     }
 
-
-
-
     public void tomarSeleccionES(String eventoSelecc){
-        //implementar
+        if (validarDatosMinimos()){
+            this.buscarEstadoBloqueadoEnRev();
+            this.tomarFechaHoraActual();
+            this.buscarEmpleadoLogueado();
+            this.bloquearEventoSismico();
+        }
     }
 
     public void buscarEstadoBloqueadoEnRev(){
@@ -96,7 +98,10 @@ public class GestorRegRRes {
                 break;
             }
         }
-        //Se supone que si o si el estado va a estar (entra al if) o se puede dar el caso que no exista el estado?
+    }
+
+    public void bloquearEventoSismico(){
+        this.eventoSismicoSeleccionado.revisar(fechaHoraActual, estadoBloqueadoEnRevision, empleadoLogueado);
     }
 
     public void tomarFechaHoraActual(){
@@ -105,10 +110,6 @@ public class GestorRegRRes {
 
     public void buscarEmpleadoLogueado() {
         this.empleadoLogueado = this.sesion.getEmpleadoLogueado();
-    }
-
-    public void bloquearEventoSismico(){
-        this.eventoSismicoSeleccionado.revisar();
     }
 
 
@@ -135,7 +136,6 @@ public class GestorRegRRes {
             this.tomarFechaHoraActual();
             this.rechazarEventoSismico();
         }
-
     }
 
     public void rechazarEventoSismico(){
