@@ -87,6 +87,7 @@ public class GestorRegRRes {
 
     public void tomarSeleccionES(String eventoSelecc){
         //implementar
+        //habria que comparar los datos de cada evento con lo que pasa el parametro, formatenadolo
     }
 
     public void buscarEstadoBloqueadoEnRev(){
