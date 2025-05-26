@@ -91,8 +91,10 @@ public class EventoSismico {
         return valorMagnitud;
     }
 
-    public void revisar() {
-        this.estadoActual.setNombreEstado("Bloquear"); //HACER DE VUELTA
+    public void revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+        this.buscarUltimoEstado(fechaHoraInicio);
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.setEstadoActual(estado);
     }
 
     public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
