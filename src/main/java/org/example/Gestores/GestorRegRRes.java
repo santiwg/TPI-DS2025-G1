@@ -113,11 +113,6 @@ public class GestorRegRRes {
         this.empleadoLogueado = this.sesion.getEmpleadoLogueado();
     }
 
-    public void bloquearEventoSismico(){
-        this.eventoSismicoSeleccionado.revisar();
-    }
-
-
     public void buscarDatosEventoSismico(){
         this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
         this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.mostrarClasificacion();
