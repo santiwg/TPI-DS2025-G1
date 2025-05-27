@@ -68,7 +68,10 @@ public class PantRegRRes extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String seleccionado = (String) eventosComboBox.getSelectedItem();
-                tomarSeleccionES(seleccionado);
+                if (seleccionado != null) {
+                    tomarSeleccionES(seleccionado);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un evento antes de continuar.");}
                 //agregar control para errores, es decir por si no seleccionaron nada
             }
         });

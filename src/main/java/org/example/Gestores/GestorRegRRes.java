@@ -86,6 +86,22 @@ public class GestorRegRRes {
 
 
     public void tomarSeleccionES(String eventoSelecc){
+        for (Map<String, Object> diccEvento : listaESNoRevisados) {
+            Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
+            String datosStr = String.format(
+                    "fechaHoraOcurrencia=%s, latitudEpicentro=%.2f, latitudHipocentro=%.2f, longitudEpicentro=%.2f, longitudHipocentro=%.2f, valorMagnitud=%.1f",
+                    datos.get("fechaHoraOcurrencia"),
+                    datos.get("latitudEpicentro"),
+                    datos.get("latitudHipocentro"),
+                    datos.get("longitudEpicentro"),
+                    datos.get("longitudHipocentro"),
+                    datos.get("valorMagnitud")
+            );
+            if (datosStr.equals(eventoSelecc)) {
+                this.eventoSismicoSeleccionado = (EventoSismico) diccEvento.get("evento");
+                break;
+            }
+        }
             this.buscarEstadoBloqueadoEnRev();
             this.tomarFechaHoraActual();
             this.buscarEmpleadoLogueado();
