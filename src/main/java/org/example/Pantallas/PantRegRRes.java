@@ -75,6 +75,13 @@ public class PantRegRRes extends JFrame {
                 //agregar control para errores, es decir por si no seleccionaron nada
             }
         });
+
+        rechazarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSeleccionRechazo();
+            }
+        });
     }
 
     public void opcRegResultadoES(){
@@ -113,8 +120,26 @@ public class PantRegRRes extends JFrame {
         this.clasificaciontxt.setText(nombreClasificacion);
     }
 
+    public void mostrarDatosSeriesTemporales(ArrayList<String> datosSeries){
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+        for (String dato : datosSeries) {
+            modelo.addElement(dato);
+        }
+        listaDatosEventos.setModel(modelo);
+    }
+    public void habilitarOpcVerMapa(){
+        this.verMapaButton.setVisible(true);
+    }
+    public void habilitarOpcModificarDatosES(){
+        this.modificarDatosButton.setVisible(true);
+    }
+    public void pedirSeleccionResultadoEvento(){
+        this.confirmarButton.setVisible(true);
+        this.rechazarButton.setVisible(true);
+        this.delegarAExpertoButton.setVisible(true);
+        this.seleccioneResultadoLabel.setVisible(true);
+    }
     public void tomarSeleccionRechazo(){
         gestor.tomarSeleccionRechazo();
     }
-
 }

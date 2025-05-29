@@ -21,7 +21,7 @@ public class GestorRegRRes {
     //la lista de eventos será un array de diccionarios, cada uno de los cuales tendrá evento y datos
     private EventoSismico eventoSismicoSeleccionado;
     private Estado estadoRechazado;
-    private ArrayList<Object> listaDatosEventos=new ArrayList<>(); //revisar el tipo
+    private ArrayList<String> listaDatosSeriesTemporales=new ArrayList<>(); //revisar el tipo
     private Sesion sesion;
     private Empleado empleadoLogueado;
     private ArrayList<Estado> listaEstados;
@@ -106,6 +106,10 @@ public class GestorRegRRes {
             this.tomarFechaHoraActual();
             this.buscarEmpleadoLogueado();
             this.bloquearEventoSismico();
+            this.buscarDatosEventoSismico();
+            pantalla.mostrarDatosEventoSismico(this.nombreAlcance,this.nombreOrigenGeneracion,this.nombreClasificacion);
+            this.buscarDatosSeriesTemporales();
+            this.llamarCUGenerarSismograma();
     }
 
     public void buscarEstadoBloqueadoEnRev(){
@@ -133,8 +137,6 @@ public class GestorRegRRes {
         this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
         this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.mostrarClasificacion();
         this.nombreClasificacion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
-        pantalla.mostrarDatosEventoSismico(nombreAlcance,nombreOrigenGeneracion,nombreClasificacion);
-
     }
 
     public void buscarEstadoRechazado(){
@@ -165,5 +167,11 @@ public class GestorRegRRes {
     public boolean validarDatosMinimos(){
         //implementar
         return true;
+    }
+    public void buscarDatosSeriesTemporales(){
+
+    }
+    public void llamarCUGenerarSismograma(){
+        //no se implementa
     }
 }
