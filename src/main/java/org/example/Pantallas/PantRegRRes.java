@@ -101,14 +101,14 @@ public class PantRegRRes extends JFrame {
         OrigenDeGeneracionLabel.setVisible(true);
     }
     public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
-        //le paso un array de string?
+
         DefaultComboBoxModel <String> eventos = new DefaultComboBoxModel<>();
         for (String evento: eventosSismicos) {
             eventos.addElement(evento);
         }
         eventosComboBox.setModel(eventos);
 
-        //chequear
+        //Agregar lógica para que de error si no hay eventos
     }
     public void tomarSeleccionES(String evento){
         gestor.tomarSeleccionES(evento);
@@ -120,13 +120,13 @@ public class PantRegRRes extends JFrame {
         this.clasificaciontxt.setText(nombreClasificacion);
     }
 
-    public void mostrarDatosSeriesTemporales(ArrayList<String> datosSeries){
+    /*public void mostrarDatosSeriesTemporales(ArrayList<String> datosSeries){
         DefaultListModel<String> modelo = new DefaultListModel<>();
         for (String dato : datosSeries) {
             modelo.addElement(dato);
         }
         listaDatosEventos.setModel(modelo);
-    }
+    }*/
     public void habilitarOpcVerMapa(){
         this.verMapaButton.setVisible(true);
     }
