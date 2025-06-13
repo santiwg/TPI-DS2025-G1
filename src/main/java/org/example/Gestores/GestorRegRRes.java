@@ -1,9 +1,6 @@
 package org.example.Gestores;
 
-import org.example.Entidades.Empleado;
-import org.example.Entidades.Estado;
-import org.example.Entidades.EventoSismico;
-import org.example.Entidades.Sesion;
+import org.example.Entidades.*;
 import org.example.Pantallas.PantRegRRes;
 
 import java.time.LocalDateTime;
@@ -31,6 +28,8 @@ public class GestorRegRRes {
     private String nombreAlcance;
     private String nombreOrigenGeneracion;
     private String nombreClasificacion;
+    private CambioEstado ultimoCambioDeEstado;
+    private ArrayList<Sismografo> sismografos;
 
     public void nuevaRevisionES(){
         this.buscarESNoRevisados();
@@ -153,7 +152,9 @@ public class GestorRegRRes {
             this.buscarEstadoRechazado();
             this.tomarFechaHoraActual();
             this.rechazarEventoSismico();
+            this.finCU();
         }
+        //podriamos hacer la alternativa en que no se validan los datos mínimos.
 
     }
 
@@ -162,16 +163,59 @@ public class GestorRegRRes {
     }
 
     public void cancelarCU(){
-        //implementar
+        //chequear si está bien lo siguiente
+        this.listaEventosSismicos=null;
+        this.listaESNoRevisados=null;
+        this.eventoSismicoSeleccionado=null;
+        this.estadoRechazado=null;
+        this.listaDatosSeriesTemporales=null;
+        this.sesion=null;
+        this.empleadoLogueado=null;
+        this.listaEstados=null;
+        this.estadoBloqueadoEnRevision=null;
+        this.fechaHoraActual=null;
+        this.pantalla=null;
+        this.nombreAlcance=null;
+        this.nombreOrigenGeneracion=null;
+        this.nombreClasificacion=null;
+        this.ultimoCambioDeEstado=null;
+        this.sismografos=null;
     }
     public boolean validarDatosMinimos(){
-        //implementar
-        return true;
+        float magnitud = 0;
+        for (Map<String, Object> diccEvento : listaESNoRevisados) {
+            EventoSismico evento = (EventoSismico) diccEvento.get("evento");
+            if (evento.equals(eventoSismicoSeleccionado)) {
+                Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
+                // Suponiendo que el valor es un float, lo casteamos
+                magnitud = (float) datos.get("valorMagnitud");
+                break;
+            }
+        }
+        return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion == null);
     }
     public void buscarDatosSeriesTemporales(){
 
     }
     public void llamarCUGenerarSismograma(){
         //no se implementa
+    }
+    public void finCU(){
+        this.listaEventosSismicos=null;
+        this.listaESNoRevisados=null;
+        this.eventoSismicoSeleccionado=null;
+        this.estadoRechazado=null;
+        this.listaDatosSeriesTemporales=null;
+        this.sesion=null;
+        this.empleadoLogueado=null;
+        this.listaEstados=null;
+        this.estadoBloqueadoEnRevision=null;
+        this.fechaHoraActual=null;
+        this.pantalla=null;
+        this.nombreAlcance=null;
+        this.nombreOrigenGeneracion=null;
+        this.nombreClasificacion=null;
+        this.ultimoCambioDeEstado=null;
+        this.sismografos=null;
     }
 }

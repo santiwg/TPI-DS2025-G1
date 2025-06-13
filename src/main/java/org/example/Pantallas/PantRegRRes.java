@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class PantRegRRes extends JFrame {
     private GestorRegRRes gestor;
     private JButton opcRegRRevision;
-    private JList listaDatosEventos;
     private JComboBox eventosComboBox;
     private JTextField origentxt;
     private JTextField Alcancetxt;
@@ -37,7 +36,7 @@ public class PantRegRRes extends JFrame {
         setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
 
 // Ocultar componentes acá
-        listaDatosEventos.setVisible(false);
+
         eventosComboBox.setVisible(false);
         origentxt.setVisible(false);
         Alcancetxt.setVisible(false);
@@ -90,7 +89,6 @@ public class PantRegRRes extends JFrame {
     }
     public void abrir(){
         opcRegRRevision.setVisible(false);
-        listaDatosEventos.setVisible(true);
         eventosComboBox.setVisible(true);
         origentxt.setVisible(true);
         Alcancetxt.setVisible(true);
@@ -120,13 +118,6 @@ public class PantRegRRes extends JFrame {
         this.clasificaciontxt.setText(nombreClasificacion);
     }
 
-    /*public void mostrarDatosSeriesTemporales(ArrayList<String> datosSeries){
-        DefaultListModel<String> modelo = new DefaultListModel<>();
-        for (String dato : datosSeries) {
-            modelo.addElement(dato);
-        }
-        listaDatosEventos.setModel(modelo);
-    }*/
     public void habilitarOpcVerMapa(){
         this.verMapaButton.setVisible(true);
     }
