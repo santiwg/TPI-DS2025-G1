@@ -125,7 +125,6 @@ GR -> GR: llamarCUGenerarSismograma()
 control "__CU:GenerarSismograma__" as CUSG
 GR --> CUSG: <<include>>
 
-GR -> PRR: mostrarDatosSeriesTemporales()
 GR -> PRR: habilitarOpcVerMapa()
 GR -> PRR: habilitarOpcModificarDatosES()
 ' Puede que acá tenga tomarDatos para cada item que no modifica, y que el valor por defecto sea el que estaba. 
