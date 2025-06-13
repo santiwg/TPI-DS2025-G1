@@ -18,7 +18,11 @@ public class MuestraSismica {
         new DetalleMuestraSismica();
     }
 
-    public void getDatos() { // Ver cómo implementar
-
+    public String getDatos() { // Ver cómo implementar
+        String datos="Fecha/Hora muestra: "+fechaHoraMuestra;
+        for (DetalleMuestraSismica detalle:detalleMuestraSismica){
+            datos=datos+","+detalle.getDatos();
+        }
+        return datos;
     }
 }

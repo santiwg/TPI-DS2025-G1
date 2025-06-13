@@ -17,7 +17,8 @@ public class DetalleMuestraSismica {
         return valor;
     }
 
-    public void getDatos() { // Ver en qué formato traer los datos
+    public String getDatos() {
+        return this.tipoDeDato.getDenominacion()+":"+valor;
 
     }
 }

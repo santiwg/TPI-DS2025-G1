@@ -113,6 +113,7 @@ group loop Series Temporales [Mientras haya series temporales]
     group loop Buscar sismografo [Mientras haya sismografos]
     entity "__:Sismografo__" as S #Red
     ST -> S: esSismografoDeSerieTemporal()
+    ST -> S: getCodigoEstacion()
     entity "__:EstacionSismologica__" as ETS
     S -> ETS: getCodigoEstacion()
     end

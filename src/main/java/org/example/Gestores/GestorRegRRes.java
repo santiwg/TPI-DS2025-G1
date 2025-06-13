@@ -195,7 +195,7 @@ public class GestorRegRRes {
         return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion == null);
     }
     public void buscarDatosSeriesTemporales(){
-
+        this.listaDatosSeriesTemporales=eventoSismicoSeleccionado.buscarDatosSeriesTemporales(sismografos);
     }
     public void llamarCUGenerarSismograma(){
         //no se implementa

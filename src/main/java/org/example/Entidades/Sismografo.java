@@ -7,7 +7,7 @@ public class Sismografo {
     private LocalDateTime fechaAdquisicion;
     private int identificadorSismografo;
     private String nroSerie;
-    private ArrayList<SerieTemporal> serieTemporal;
+    private ArrayList<SerieTemporal> seriesTemporales;
     private EstacionSismologica estacionSismologica;
     private Estado estadoActual;
     private ArrayList<CambioEstado> cambiosDeEstado;
@@ -18,10 +18,16 @@ public class Sismografo {
         this.fechaAdquisicion = fechaAdquisicion;
         this.identificadorSismografo = idSismografo;
         this.nroSerie = nroSerie;
-        this.serieTemporal = serieTemporal;
+        this.seriesTemporales = serieTemporal;
         this.estacionSismologica = estacionSismologica;
         this.estadoActual = estadoActual;
         this.cambiosDeEstado = cambiosDeEstado;
+    }
+    public boolean esSismografoDeSerieTemporal(SerieTemporal serie){
+        return this.seriesTemporales.contains(serie);
+    }
+    public String getCodigoEstacion(){
+        return this.estacionSismologica.getCodigoEstacion();
     }
 
     public int getIdentificadorSismografo() {

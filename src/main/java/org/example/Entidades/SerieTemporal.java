@@ -21,6 +21,22 @@ public class SerieTemporal {
         this.estado = estado;
         this.muestrasSismicas = muestrasSismicas;
     }
+    public String getDatos(ArrayList<Sismografo> sismografos){
+        String datos="Fecha/Hora inicio: "+fechaHoraInicioRegistroMuestras;
+        for (MuestraSismica muestra: muestrasSismicas){
+            datos=datos+"-"+muestra.getDatos();
+        }
+        String codigoEstacion="Estacion Sismologica:"+this.obtenerEstacionSismologica(sismografos);
+        return codigoEstacion+"-"+datos;
+    }
+    public String obtenerEstacionSismologica(ArrayList<Sismografo> sismografos){
+        for(Sismografo sismografo:sismografos){
+            if (sismografo.esSismografoDeSerieTemporal(this)){
+                return sismografo.getCodigoEstacion();
+            }
+        }
+        return null;
+    }
 
     public ArrayList<MuestraSismica> getMuestrasSismicas() {
         return muestrasSismicas;

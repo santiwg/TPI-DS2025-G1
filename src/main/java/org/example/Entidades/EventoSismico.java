@@ -2,6 +2,7 @@ package org.example.Entidades;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class EventoSismico {
     private MagnitudRitcher magnitud;
     private OrigenDeGeneracion origenGeneracion;
     private AlcanceSismo alcanceSismo;
-    private ArrayList<SerieTemporal> serieTemporal;
+    private ArrayList<SerieTemporal> seriesTemporales;
 
     public EventoSismico() {
     }
@@ -38,7 +39,7 @@ public class EventoSismico {
         this.magnitud = magnitud;
         this.origenGeneracion = origenGeneracion;
         this.alcanceSismo = alcanceSismo;
-        this.serieTemporal = serieTemporal;
+        this.seriesTemporales = serieTemporal;
     }
 
     //analistaSUpervisor??
@@ -102,7 +103,14 @@ public class EventoSismico {
         this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.setEstadoActual(estado);
     }
-
+    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){
+        ArrayList<String> datosSeries=new ArrayList<>();
+        for (SerieTemporal serie:seriesTemporales){
+            datosSeries.add(serie.getDatos(sismografos));
+        }
+        this.clasificarDatosPorEstacionSismologica(datosSeries);
+        return datosSeries;
+    }
     public void crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
         CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.cambioEstado.add(nuevoCambio);
@@ -132,6 +140,16 @@ public class EventoSismico {
         return this.origenGeneracion.getNombre();
     }
 
-    public void clasificarDatosPorEstacionSismologica() {}
+    public void clasificarDatosPorEstacionSismologica(ArrayList<String> datosSeries) {
+        datosSeries.sort(Comparator.comparing(dato -> {
+            // Extraer el código de estación
+            /*Hacerlo de esta forma evitará la necesidad de modificar el código si la
+            estación sismológica ya no se pone al frente*/
+            int inicio = dato.indexOf("Estacion Sismologica:") + "Estacion Sismologica:".length();
+            int fin = dato.indexOf("-", inicio);
+            return dato.substring(inicio, fin);
+        }));
+
+    }
 
 }
