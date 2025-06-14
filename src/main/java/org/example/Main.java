@@ -45,21 +45,21 @@ public class Main {
                 muestrasSismicas);
         SerieTemporal serie2=new SerieTemporal(
                 false,
-                LocalDateTime.of(2025, 6,14,12,28,54),
+                LocalDateTime.of(2025, 6,14,12,21,54),
                 LocalDateTime.of(2025, 6,14,12,21,54),
                 "50 hz",
                 completada,
                 muestrasSismicas);
         SerieTemporal serie3=new SerieTemporal(
                 false,
-                LocalDateTime.of(2025, 6,14,12,28,54),
+                LocalDateTime.of(2025, 6,14,12,23,54),
                 LocalDateTime.of(2025, 6,14,12,23,54),
                 "50 hz",
                 completada,
                 muestrasSismicas);
         SerieTemporal serie4=new SerieTemporal(
                 false,
-                LocalDateTime.of(2025, 6,14,12,28,54),
+                LocalDateTime.of(2025, 6,14,12,29,54),
                 LocalDateTime.of(2025, 6,14,12,29,54),
                 "50 hz",
                 completada,
@@ -73,8 +73,8 @@ public class Main {
         seriesSismografo1.add(serie2);
         seriesSismografo1.add(serie4);
         ArrayList<SerieTemporal> seriesSismografo2=new ArrayList<>();
-        seriesSismografo1.add(serie1);
-        seriesSismografo1.add(serie3);
+        seriesSismografo2.add(serie1);
+        seriesSismografo2.add(serie3);
 
         //Creo estaciones sismologicas
         EstacionSismologica estacion1=new EstacionSismologica("AAA",-32.56f,-94.56f,"Estacion Uno");
@@ -83,6 +83,11 @@ public class Main {
         //Creo sismografos
         Sismografo sismografo1=new Sismografo(1,seriesSismografo1,estacion1);
         Sismografo sismografo2=new Sismografo(2,seriesSismografo2,estacion2);
+        ArrayList<Sismografo> sismografos=new ArrayList<>();
+        sismografos.add(sismografo1);
+        sismografos.add(sismografo2);
+
+        
 
 
 

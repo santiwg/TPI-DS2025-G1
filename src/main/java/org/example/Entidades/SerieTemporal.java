@@ -24,10 +24,10 @@ public class SerieTemporal {
     public String getDatos(ArrayList<Sismografo> sismografos){
         String datos="Fecha/Hora inicio: "+fechaHoraInicioRegistroMuestras;
         for (MuestraSismica muestra: muestrasSismicas){
-            datos=datos+"-"+muestra.getDatos();
+            datos=datos+" -- ["+muestra.getDatos()+"]";
         }
         String codigoEstacion="Estacion Sismologica:"+this.obtenerEstacionSismologica(sismografos);
-        return codigoEstacion+"-"+datos;
+        return codigoEstacion+","+datos;
     }
     public String obtenerEstacionSismologica(ArrayList<Sismografo> sismografos){
         for(Sismografo sismografo:sismografos){
