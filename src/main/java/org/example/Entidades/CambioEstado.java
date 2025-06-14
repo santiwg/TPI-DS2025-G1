@@ -9,12 +9,6 @@ public class CambioEstado {
 
     public CambioEstado() {}
 
-    public CambioEstado(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoResponsable) {
-        this.fechaHoraFin = fechaHoraFin;
-        this.fechaHoraInicio = fechaHoraInicio;
-        this.estado = estado;
-        this.empleadoResponsable = empleadoResponsable;
-    }
 
     public CambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoResponsable) {
         this.fechaHoraInicio = fechaHoraInicio;

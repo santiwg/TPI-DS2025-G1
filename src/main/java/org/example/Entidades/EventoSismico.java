@@ -25,8 +25,7 @@ public class EventoSismico {
     public EventoSismico() {
     }
 
-    public EventoSismico(LocalDateTime fechaHoraFin, LocalDateTime fechaHoraOcurrencia, float latitudEpicentro, float latitudHipocentro, float longitudEpicentro, float longitudHipocentro, float valorMagnitud, Estado estadoActual, ArrayList<CambioEstado> cambioEstado, ClasificacionSismo clasificacion, MagnitudRitcher magnitud, OrigenDeGeneracion origenGeneracion, AlcanceSismo alcanceSismo, ArrayList<SerieTemporal> serieTemporal) {
-        this.fechaHoraFin = fechaHoraFin;
+    public EventoSismico(LocalDateTime fechaHoraOcurrencia, float latitudEpicentro, float latitudHipocentro, float longitudEpicentro, float longitudHipocentro, float valorMagnitud, Estado estadoActual, ArrayList<CambioEstado> cambioEstado, ClasificacionSismo clasificacion, OrigenDeGeneracion origenGeneracion, AlcanceSismo alcanceSismo, ArrayList<SerieTemporal> serieTemporal) {
         this.fechaHoraOcurrencia = fechaHoraOcurrencia;
         this.latitudEpicentro = latitudEpicentro;
         this.latitudHipocentro = latitudHipocentro;
@@ -36,7 +35,6 @@ public class EventoSismico {
         this.estadoActual = estadoActual;
         this.cambioEstado = cambioEstado;
         this.clasificacion = clasificacion;
-        this.magnitud = magnitud;
         this.origenGeneracion = origenGeneracion;
         this.alcanceSismo = alcanceSismo;
         this.seriesTemporales = serieTemporal;
