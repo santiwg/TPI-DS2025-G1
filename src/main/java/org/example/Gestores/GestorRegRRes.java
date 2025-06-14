@@ -57,9 +57,9 @@ public class GestorRegRRes {
         pantalla.mostrarESParaSeleccion(datosEventos);
     }
     public void buscarESNoRevisados(){
-        for (EventoSismico evento : listaEventosSismicos) {
-            if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){
-                Map<String, Object> diccionarioEvento = new HashMap<>();
+        for (EventoSismico evento : listaEventosSismicos) { // Recorro todos los eventos sísmicos registrados
+            if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){ // Chequeo el estado del evento
+                Map<String, Object> diccionarioEvento = new HashMap<>(); // Nuevo diccionario que va a tener los eventos y sus datos
                 diccionarioEvento.put("evento", evento);
                 diccionarioEvento.put("datos", evento.getDatosPrincipales()); // se espera que esto devuelva un Map
                 listaESNoRevisados.add(diccionarioEvento);
@@ -86,9 +86,9 @@ public class GestorRegRRes {
 
 
     public void tomarSeleccionES(String eventoSelecc){
-        for (Map<String, Object> diccEvento : listaESNoRevisados) {
+        for (Map<String, Object> diccEvento : listaESNoRevisados) {// Busco el evento correspondiente en la lista de eventos no revisados
             Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
-            String datosStr = String.format(
+            String datosStr = String.format(// Armo el texto del evento tal como se mostró en pantalla
                     "fechaHoraOcurrencia=%s, latitudEpicentro=%.2f, latitudHipocentro=%.2f, longitudEpicentro=%.2f, longitudHipocentro=%.2f, valorMagnitud=%.1f",
                     datos.get("fechaHoraOcurrencia"),
                     datos.get("latitudEpicentro"),
@@ -97,23 +97,33 @@ public class GestorRegRRes {
                     datos.get("longitudHipocentro"),
                     datos.get("valorMagnitud")
             );
-            if (datosStr.equals(eventoSelecc)) {
+            if (datosStr.equals(eventoSelecc)) {// Comparo el texto armado con el que me pasó la pantalla
+                // Si coinciden, guardo este evento como el seleccionado para revisar
                 this.eventoSismicoSeleccionado = (EventoSismico) diccEvento.get("evento");
                 break;
             }
         }
-            this.buscarEstadoBloqueadoEnRev();
-            this.tomarFechaHoraActual();
-            this.buscarEmpleadoLogueado();
-            this.bloquearEventoSismico();
-            this.buscarDatosEventoSismico();
-            pantalla.mostrarDatosEventoSismico(this.nombreAlcance,this.nombreOrigenGeneracion,this.nombreClasificacion);
-            this.buscarDatosSeriesTemporales();
-            this.llamarCUGenerarSismograma();
+            this.buscarEstadoBloqueadoEnRev();// Busco el estado correspondiente a "bloqueadoEnRevisión"
+
+            this.tomarFechaHoraActual();// Guardo la fecha y hora actual para registrar el cambio de estado
+
+            this.buscarEmpleadoLogueado();// Obtengo el empleado que está usando el sistema en este momento
+
+            this.bloquearEventoSismico();// Marco el evento como bloqueado para que nadie más lo modifique mientras se revisa
+
+            this.buscarDatosEventoSismico();// Extraigo los datos del evento que necesito mostrar en pantalla
+
+            // Muestro en la pantalla los datos principales del evento
+            pantalla.mostrarDatosEventoSismico(this.nombreAlcance, this.nombreOrigenGeneracion, this.nombreClasificacion);
+
+            this.buscarDatosSeriesTemporales();// Busco los datos necesarios para generar la gráfica del sismograma
+
+            this.llamarCUGenerarSismograma();// Llamo al caso de uso que genera el sismograma
     }
 
     public void buscarEstadoBloqueadoEnRev(){
-        for(Estado estado: listaEstados){
+        for(Estado estado: listaEstados){//Recorro todos los estados de la listaEstados
+            // Verifico que el estado pertenezca al ámbito de eventos sísmicos y que su tipo sea "bloqueadoEnRevision"
             if(estado.esAmbitoEventoSismico() & estado.esBloqueadoEnRevision()){
                 this.estadoBloqueadoEnRevision = estado;
                 break;
