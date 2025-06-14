@@ -3,17 +3,17 @@ package org.example.Entidades;
 import java.util.Timer;
 
 public class DetalleMuestraSismica {
-    private String valor;
+    private double valor;
     private TipoDeDato tipoDeDato;
 
     public DetalleMuestraSismica(){}
 
-    public DetalleMuestraSismica(String valor, TipoDeDato tipoDeDato) {
+    public DetalleMuestraSismica(double valor, TipoDeDato tipoDeDato) {
         this.valor = valor;
         this.tipoDeDato = tipoDeDato;
     }
 
-    public String getValor() {
+    public double getValor() {
         return valor;
     }
 

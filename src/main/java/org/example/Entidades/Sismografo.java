@@ -14,6 +14,12 @@ public class Sismografo {
 
     public Sismografo(){}
 
+    public Sismografo(int identificadorSismografo, ArrayList<SerieTemporal> seriesTemporales, EstacionSismologica estacionSismologica) {
+        this.identificadorSismografo = identificadorSismografo;
+        this.seriesTemporales = seriesTemporales;
+        this.estacionSismologica = estacionSismologica;
+    }
+
     public Sismografo(LocalDateTime fechaAdquisicion, int idSismografo, String nroSerie, ArrayList<SerieTemporal> serieTemporal, EstacionSismologica estacionSismologica, Estado estadoActual, ArrayList<CambioEstado> cambiosDeEstado) {
         this.fechaAdquisicion = fechaAdquisicion;
         this.identificadorSismografo = idSismografo;

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class SerieTemporal {
-    private String condicionAlarma;
+    private boolean condicionAlarma;
     private LocalDateTime fechaHoraInicioRegistroMuestras;
     private LocalDateTime fechaHoraRegistro;
     private String frecuenciaMuestreo; // Ver el tipo de dato
@@ -13,7 +13,7 @@ public class SerieTemporal {
 
     public SerieTemporal(){}
 
-    public SerieTemporal(String condicionAlarma, LocalDateTime fechaHoraInicioRegistroMuestras, LocalDateTime fechaHoraRegistro, String frecuenciaMuestreo, Estado estado, ArrayList<MuestraSismica> muestrasSismicas) {
+    public SerieTemporal(boolean condicionAlarma, LocalDateTime fechaHoraInicioRegistroMuestras, LocalDateTime fechaHoraRegistro, String frecuenciaMuestreo, Estado estado, ArrayList<MuestraSismica> muestrasSismicas) {
         this.condicionAlarma = condicionAlarma;
         this.fechaHoraInicioRegistroMuestras = fechaHoraInicioRegistroMuestras;
         this.fechaHoraRegistro = fechaHoraRegistro;
