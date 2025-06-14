@@ -4,8 +4,12 @@ public class Usuario {
     private String contrasenia;
     private String nombreUsuario;
     private Empleado empleado;
-    //suscripcion?
-    //perfil?
+
+    public Usuario(String contrasenia, String nombreUsuario, Empleado empleado) {
+        this.contrasenia = contrasenia;
+        this.nombreUsuario = nombreUsuario;
+        this.empleado = empleado;
+    }
 
     public Empleado getEmpleado() { return this.empleado; }
 }

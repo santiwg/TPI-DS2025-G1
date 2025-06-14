@@ -84,10 +84,10 @@ public class PantRegRRes extends JFrame {
     }
 
     public void opcRegResultadoES(){
-        this.abrir();
+        this.abrirPantalla();
         gestor.nuevaRevisionES();
     }
-    public void abrir(){
+    public void abrirPantalla(){
         opcRegRRevision.setVisible(false);
         eventosComboBox.setVisible(true);
         origentxt.setVisible(true);

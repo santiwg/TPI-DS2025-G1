@@ -7,6 +7,11 @@ public class Sesion {
     private LocalDateTime fechaHoraCierre;
     private Usuario usuario;
 
+    public Sesion(LocalDateTime fechaHoraInicio, Usuario usuario) {
+        this.fechaHoraInicio = fechaHoraInicio;
+        this.usuario = usuario;
+    }
+
     public Empleado getEmpleadoLogueado() {
         return this.usuario.getEmpleado();
     }

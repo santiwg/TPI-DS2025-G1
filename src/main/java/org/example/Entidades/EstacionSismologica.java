@@ -12,6 +12,14 @@ public class EstacionSismologica {
     private int nroCertificacionAdquisicion;
 
     public EstacionSismologica(){}
+
+    public EstacionSismologica(String codigoEstacion, float latitud, float longitud, String nombre) {
+        this.codigoEstacion = codigoEstacion;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.nombre = nombre;
+    }
+
     public EstacionSismologica(String codigoEstacion, String documentoCerficacionAdq, LocalDateTime fechaSolicitudCertificacion, float latitud, float longitud, String nombre, int nroCertificacionAdquisicion) {
         this.codigoEstacion = codigoEstacion;
         this.documentoCerficacionAdq = documentoCerficacionAdq;

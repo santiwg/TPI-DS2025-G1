@@ -92,14 +92,17 @@ public class EventoSismico {
         return valorMagnitud;
     }
 
-    public void revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+    public CambioEstado revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
         this.buscarUltimoEstado(fechaHoraInicio);
-        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        CambioEstado nuevoEstado=this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.setEstadoActual(estado);
+
+        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
+        return nuevoEstado;
     }
 
-    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
-        this.buscarUltimoEstado(fechaHoraInicio);
+    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) {
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado);
         this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.setEstadoActual(estado);
     }
@@ -111,9 +114,11 @@ public class EventoSismico {
         this.clasificarDatosPorEstacionSismologica(datosSeries);
         return datosSeries;
     }
-    public void crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
         CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.cambioEstado.add(nuevoCambio);
+        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
+        return nuevoCambio;
     }
 
     public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) {
@@ -122,6 +127,9 @@ public class EventoSismico {
                 cambioEstado.setFechaHoraFin(fechaHoraDeFin);
             }
         }
+    }
+    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) {
+        ultimoEstado.setFechaHoraFin(fechaHoraDeFin);
     }
 
     public void setEstadoActual(Estado estadoActual) {

@@ -109,6 +109,9 @@ public class GestorRegRRes {
             pantalla.mostrarDatosEventoSismico(this.nombreAlcance,this.nombreOrigenGeneracion,this.nombreClasificacion);
             this.buscarDatosSeriesTemporales();
             this.llamarCUGenerarSismograma();
+            pantalla.habilitarOpcVerMapa();
+            pantalla.habilitarOpcModificarDatosES();
+            pantalla.pedirSeleccionResultadoEvento();
     }
 
     public void buscarEstadoBloqueadoEnRev(){
@@ -121,7 +124,8 @@ public class GestorRegRRes {
     }
 
     public void bloquearEventoSismico(){
-        this.eventoSismicoSeleccionado.revisar(fechaHoraActual, estadoBloqueadoEnRevision, empleadoLogueado);
+        //Invoca el método para cambiar el estado del evento y almacena el cambio de estado que se crea
+        this.ultimoCambioDeEstado=this.eventoSismicoSeleccionado.revisar(fechaHoraActual, estadoBloqueadoEnRevision, empleadoLogueado);
     }
 
     public void tomarFechaHoraActual(){
@@ -148,7 +152,7 @@ public class GestorRegRRes {
     }
 
     public void tomarSeleccionRechazo(){
-        if (validarDatosMinimos()){
+        if (this.validarDatosMinimos()){
             this.buscarEstadoRechazado();
             this.tomarFechaHoraActual();
             this.rechazarEventoSismico();
@@ -159,7 +163,7 @@ public class GestorRegRRes {
     }
 
     public void rechazarEventoSismico(){
-        this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado);
+        this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado,ultimoCambioDeEstado);
     }
 
     public void cancelarCU(){
@@ -192,7 +196,7 @@ public class GestorRegRRes {
                 break;
             }
         }
-        return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion == null);
+        return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion != null);
     }
     public void buscarDatosSeriesTemporales(){
         this.listaDatosSeriesTemporales=eventoSismicoSeleccionado.buscarDatosSeriesTemporales(sismografos);

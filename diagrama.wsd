@@ -143,8 +143,7 @@ end
 GR ->> GR: tomarFechaHoraActual()
 GR ->> GR: rechazarEventoSismico()
 GR ->> SES: rechazar()
-SES ->> SES: buscarUltimoEstado()
-SES ->> allCE: ~*esActual()
+SES ->> SES: actualizarUltimoEstado()
 SES ->> ACE: setFechaHoraFin()
 
 SES ->> SES: crearCambioEstado()
