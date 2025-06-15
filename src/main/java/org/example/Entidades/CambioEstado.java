@@ -22,4 +22,13 @@ public class CambioEstado {
         this.fechaHoraFin = fechaHoraFin;
     }
 
+    @Override
+    public String toString() {
+        return "CambioEstado{" +
+                "fechaHoraFin=" + fechaHoraFin +
+                ", fechaHoraInicio=" + fechaHoraInicio +
+                ", estado=" + estado +
+                ", empleadoResponsable=" + empleadoResponsable +
+                '}';
+    }
 }

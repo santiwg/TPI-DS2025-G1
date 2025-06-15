@@ -16,4 +16,12 @@ public class Empleado {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        //BORRAR
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                '}';
+    }
 }

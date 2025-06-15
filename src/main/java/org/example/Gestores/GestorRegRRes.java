@@ -31,7 +31,15 @@ public class GestorRegRRes {
     private CambioEstado ultimoCambioDeEstado;
     private ArrayList<Sismografo> sismografos;
 
-    public void nuevaRevisionES(){
+    public GestorRegRRes(ArrayList<EventoSismico> listaEventosSismicos, Sesion sesion, ArrayList<Estado> listaEstados, ArrayList<Sismografo> sismografos) {
+        this.listaEventosSismicos = listaEventosSismicos;
+        this.sesion = sesion;
+        this.listaEstados = listaEstados;
+        this.sismografos = sismografos;
+    }
+
+    public void nuevaRevisionES(PantRegRRes pantalla){
+        this.pantalla=pantalla;
         this.buscarESNoRevisados();
         this.ordenarEventosSismicosPorFechaYHora();
 
@@ -113,7 +121,7 @@ public class GestorRegRRes {
             this.buscarDatosEventoSismico();// Extraigo los datos del evento que necesito mostrar en pantalla
 
             // Muestro en la pantalla los datos principales del evento
-            pantalla.mostrarDatosEventoSismico(this.nombreAlcance, this.nombreOrigenGeneracion, this.nombreClasificacion);
+            pantalla.mostrarDatosEventoSismico(this.nombreAlcance,this.nombreOrigenGeneracion,this.nombreClasificacion);
 
             this.buscarDatosSeriesTemporales();// Busco los datos necesarios para generar la gráfica del sismograma
 
@@ -122,6 +130,7 @@ public class GestorRegRRes {
             pantalla.habilitarOpcVerMapa();
             pantalla.habilitarOpcModificarDatosES();
             pantalla.pedirSeleccionResultadoEvento();
+
     }
 
     public void buscarEstadoBloqueadoEnRev(){
@@ -149,8 +158,8 @@ public class GestorRegRRes {
 
     public void buscarDatosEventoSismico(){
         this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
-        this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.mostrarClasificacion();
-        this.nombreClasificacion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
+        this.nombreClasificacion = this.eventoSismicoSeleccionado.mostrarClasificacion();
+        this.nombreOrigenGeneracion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
     }
 
     public void buscarEstadoRechazado(){
@@ -167,7 +176,9 @@ public class GestorRegRRes {
             this.buscarEstadoRechazado();
             this.tomarFechaHoraActual();
             this.rechazarEventoSismico();
+            System.out.println(eventoSismicoSeleccionado);//BORRAR
             this.finCU();
+            System.out.println(this);//BORRAR
         }
         //podriamos hacer la alternativa en que no se validan los datos mínimos.
 
@@ -207,6 +218,7 @@ public class GestorRegRRes {
                 break;
             }
         }
+        System.out.println("Magnitud:"+magnitud);//BORRAR
         return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion != null);
     }
     public void buscarDatosSeriesTemporales(){
@@ -232,5 +244,28 @@ public class GestorRegRRes {
         this.nombreClasificacion=null;
         this.ultimoCambioDeEstado=null;
         this.sismografos=null;
+    }
+
+    @Override
+    public String toString() {
+        //BORRAR
+        return "GestorRegRRes{" +
+                "listaEventosSismicos=" + listaEventosSismicos +
+                ", listaESNoRevisados=" + listaESNoRevisados +
+                ", eventoSismicoSeleccionado=" + eventoSismicoSeleccionado +
+                ", estadoRechazado=" + estadoRechazado +
+                ", listaDatosSeriesTemporales=" + listaDatosSeriesTemporales +
+                ", sesion=" + sesion +
+                ", empleadoLogueado=" + empleadoLogueado +
+                ", listaEstados=" + listaEstados +
+                ", estadoBloqueadoEnRevision=" + estadoBloqueadoEnRevision +
+                ", fechaHoraActual=" + fechaHoraActual +
+                ", pantalla=" + pantalla +
+                ", nombreAlcance='" + nombreAlcance + '\'' +
+                ", nombreOrigenGeneracion='" + nombreOrigenGeneracion + '\'' +
+                ", nombreClasificacion='" + nombreClasificacion + '\'' +
+                ", ultimoCambioDeEstado=" + ultimoCambioDeEstado +
+                ", sismografos=" + sismografos +
+                '}';
     }
 }

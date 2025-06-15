@@ -158,4 +158,13 @@ public class EventoSismico {
 
     }
 
+    @Override
+    public String toString() {
+        return "EventoSismico{" +
+                "fechaHoraFin=" + fechaHoraFin +
+                ", fechaHoraOcurrencia=" + fechaHoraOcurrencia +
+                ", estadoActual=" + estadoActual +
+                ", cambioEstado=" + cambioEstado +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.Entidades.*;
+import org.example.Gestores.GestorRegRRes;
+import org.example.Pantallas.PantRegRRes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -102,19 +104,20 @@ public class Main {
 
         //Creo estados
         Estado autoDetectado=new Estado("EventoSismico","AutoDetectado");
-        Estado pendienteDeRevision=new Estado("EventoSismico","AutoDetectado");
+        Estado pendienteDeRevision=new Estado("EventoSismico","PendienteDeRevision");
         Estado bloqueadoEnRevision=new Estado("EventoSismico","BloqueadoEnRevision");
         Estado rechazado=new Estado("EventoSismico","Rechazado");
         Estado confirmado=new Estado("EventoSismico","Confirmado");
-        Estado autoDetectadoAmbitoIncorrecto=new Estado("Evento","AutoDetectado");
+        Estado rechazadoAmbitoIncorrecto=new Estado("Evento","Rechazado");
 
         ArrayList<Estado> listaEstados=new ArrayList<>();
         listaEstados.add(autoDetectado);
         listaEstados.add(pendienteDeRevision);
         listaEstados.add(bloqueadoEnRevision);
+        listaEstados.add(rechazadoAmbitoIncorrecto);
         listaEstados.add(rechazado);
         listaEstados.add(confirmado);
-        listaEstados.add(autoDetectadoAmbitoIncorrecto);
+
 
         //Creo cambios de estado
         CambioEstado cambioAutoDetectado=new CambioEstado(LocalDateTime.now(),autoDetectado,responsable);
@@ -137,34 +140,33 @@ public class Main {
         ArrayList<CambioEstado> listaCambioConfirmado = new ArrayList<>();
         listaCambioConfirmado.add(cambioConfirmado);
 
-        CambioEstado cambioAutoDetectadoAmbitoIncorrecto = new CambioEstado(LocalDateTime.now(), autoDetectadoAmbitoIncorrecto, responsable);
-        ArrayList<CambioEstado> listaCambioAutoDetectadoAmbitoIncorrecto = new ArrayList<>();
-        listaCambioAutoDetectadoAmbitoIncorrecto.add(cambioAutoDetectadoAmbitoIncorrecto);
+        CambioEstado cambioRechazadoIncorrecto = new CambioEstado(LocalDateTime.now(), rechazadoAmbitoIncorrecto, responsable);
+        ArrayList<CambioEstado> listaCambioRechazadoAmbitoIncorrecto = new ArrayList<>();
+        listaCambioRechazadoAmbitoIncorrecto.add(cambioRechazadoIncorrecto);
 
-
+        //Creo eventos sismicos
         EventoSismico evento1=new EventoSismico(
-                LocalDateTime.of(2025,6,14,15,58,20),
-                -21.5f,-34.5f,-21.7f,-34.6f,7,
-                autoDetectado,listaCambioAutoDetectado,
-                intermedio,explosionesMinas,regional,
-                seriesTemporales);
-        EventoSismico evento2=new EventoSismico(
-                LocalDateTime.of(2025,6,15,15,58,20),
-                -21.5f,-34.5f,-21.7f,-34.6f,7,
-                pendienteDeRevision,listaCambioPendienteDeRevision,
-                intermedio,explosionesMinas,regional,
-                seriesTemporales);
-
-        EventoSismico evento3=new EventoSismico(
                 LocalDateTime.of(2025,6,16,15,58,20),
                 -21.5f,-34.5f,-21.7f,-34.6f,7,
                 bloqueadoEnRevision,listaCambioBloqueadoEnRevision,
                 intermedio,explosionesMinas,regional,
                 seriesTemporales);
-        EventoSismico evento4=new EventoSismico(
+        EventoSismico evento2=new EventoSismico(
                 LocalDateTime.of(2025,6,17,15,58,20),
                 -21.5f,-34.5f,-21.7f,-34.6f,7,
                 rechazado,listaCambioRechazado,
+                intermedio,explosionesMinas,regional,
+                seriesTemporales);
+        EventoSismico evento3=new EventoSismico(
+                LocalDateTime.of(2025,6,16,15,58,20),
+                -21.5f,-34.5f,-21.7f,-34.6f,7,
+                autoDetectado,listaCambioAutoDetectado,
+                intermedio,explosionesMinas,regional,
+                seriesTemporales);
+        EventoSismico evento4=new EventoSismico(
+                LocalDateTime.of(2025,6,15,15,58,20),
+                -21.5f,-34.5f,-21.7f,-34.6f,7,
+                pendienteDeRevision,listaCambioPendienteDeRevision,
                 intermedio,explosionesMinas,regional,
                 seriesTemporales);
         EventoSismico evento5=new EventoSismico(
@@ -176,13 +178,25 @@ public class Main {
         EventoSismico evento6=new EventoSismico(
                 LocalDateTime.of(2025,6,19,15,58,20),
                 -21.5f,-34.5f,-21.7f,-34.6f,7,
-                autoDetectadoAmbitoIncorrecto,listaCambioAutoDetectadoAmbitoIncorrecto,
+                rechazadoAmbitoIncorrecto,listaCambioRechazadoAmbitoIncorrecto,
                 intermedio,explosionesMinas,regional,
                 seriesTemporales);
 
-        
-        
+        ArrayList<EventoSismico> eventosSismicos=new ArrayList<>();
+        eventosSismicos.add(evento1);
+        eventosSismicos.add(evento2);
+        eventosSismicos.add(evento3);
+        eventosSismicos.add(evento4);
+        eventosSismicos.add(evento5);
+        eventosSismicos.add(evento6);
 
+        //Creo gestor y pantalla
+        GestorRegRRes gestor1=new GestorRegRRes(eventosSismicos,sesionActual,listaEstados,sismografos);
+        PantRegRRes pantalla=new PantRegRRes(gestor1);
+
+
+        GestorRegRRes gestor2=new GestorRegRRes(eventosSismicos,sesionActual,listaEstados,sismografos);
+        PantRegRRes pantalla2=new PantRegRRes(gestor2);
 
 
     }
