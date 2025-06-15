@@ -18,7 +18,6 @@ public class DetalleMuestraSismica {
     }
 
     public String getDatos() {
-        return this.tipoDeDato.getDenominacion()+":"+valor;
-
+        return this.tipoDeDato.getDenominacion()+":"+valor; // Ejemplo de salida 'Longitud:20
     }
 }

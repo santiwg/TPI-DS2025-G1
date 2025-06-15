@@ -17,6 +17,10 @@ public class Estado {
         this.nombreEstado = nombreEstado;
     }
 
+
+    /*
+    Los siguentes metodos hacen una comparacion de strings, para informar los valores de la clase
+     */
     public boolean esAutoDetectado(){
         return this.nombreEstado.equals("AutoDetectado");
     }

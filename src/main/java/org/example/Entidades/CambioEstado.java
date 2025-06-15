@@ -16,7 +16,7 @@ public class CambioEstado {
         this.empleadoResponsable = empleadoResponsable;
     }
 
-    public boolean esActual() { return this.fechaHoraFin == null; }
+    public boolean esActual() { return this.fechaHoraFin == null; } //Metodo que nos comunica si el cambio de estado esActual comprobando que nunca termino
 
     public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;

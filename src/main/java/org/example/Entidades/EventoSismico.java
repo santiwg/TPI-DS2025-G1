@@ -47,7 +47,7 @@ public class EventoSismico {
 
     public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); }
 
-    public Map<String, Object> getDatosPrincipales() {
+    public Map<String, Object> getDatosPrincipales() { // Traigo los datos principales acomodados dentro de un HashMap
         LocalDateTime fechaHoraOcurrencia = this.getFechaHoraOcurrencia();
         float latitudEpicentro = this.getLatitudEpicentro();
         float latitudHipocentro = this.getLatitudHipocentro();
@@ -90,21 +90,29 @@ public class EventoSismico {
         return valorMagnitud;
     }
 
-    public CambioEstado revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
+    public CambioEstado revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { //Pongo fin al ultimo cambio de estado y creo uno nuevo
         this.buscarUltimoEstado(fechaHoraInicio);
         CambioEstado nuevoEstado=this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.setEstadoActual(estado);
+        this.setEstadoActual(estado); //Asigno el nuevo estado acutal
 
         //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
         return nuevoEstado;
     }
 
-    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) {
-        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado);
-        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.setEstadoActual(estado);
+    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) { //Pongo fin al ultimo cambio de estado y creo uno nuevo
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado); //Set fechaFin ultimoEstado
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado); //Creo un nuevo cambio de estado
+        this.setEstadoActual(estado); //Asigno el nuevo estado acutal
     }
-    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){
+
+    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Creo un nuevo cambio de estado
+        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.cambioEstado.add(nuevoCambio);
+        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
+        return nuevoCambio;
+    }
+
+    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ //Obtengo los datos de todas las series temporales de una lista de sismografos
         ArrayList<String> datosSeries=new ArrayList<>();
         for (SerieTemporal serie:seriesTemporales){
             datosSeries.add(serie.getDatos(sismografos));
@@ -112,21 +120,15 @@ public class EventoSismico {
         this.clasificarDatosPorEstacionSismologica(datosSeries);
         return datosSeries;
     }
-    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) {
-        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.cambioEstado.add(nuevoCambio);
-        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
-        return nuevoCambio;
-    }
 
-    public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) {
+    public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) { // Busca el ultimo estado y le asigna una fechaHoraFin
         for(CambioEstado cambioEstado: cambioEstado){
             if(cambioEstado.esActual()){
                 cambioEstado.setFechaHoraFin(fechaHoraDeFin);
             }
         }
     }
-    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) {
+    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) { //Pone fecha fin a un cambio de estado
         ultimoEstado.setFechaHoraFin(fechaHoraDeFin);
     }
 
