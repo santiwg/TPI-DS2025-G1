@@ -12,7 +12,7 @@ public class Sesion {
         this.usuario = usuario;
     }
 
-    public Empleado getEmpleadoLogueado() {
+    public Empleado obtenerEmpleadoLogueado() {
         return this.usuario.getEmpleado();
     }
 }

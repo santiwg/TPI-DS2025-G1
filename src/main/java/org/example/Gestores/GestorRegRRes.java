@@ -6,7 +6,6 @@ import org.example.Pantallas.PantRegRRes;
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -160,7 +159,7 @@ public class GestorRegRRes {
     }
 
     public void buscarEmpleadoLogueado() {
-        this.empleadoLogueado = this.sesion.getEmpleadoLogueado();
+        this.empleadoLogueado = this.sesion.obtenerEmpleadoLogueado();
     }
 
     public void buscarDatosEventoSismico(){

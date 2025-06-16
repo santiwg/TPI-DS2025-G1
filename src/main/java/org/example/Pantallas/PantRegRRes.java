@@ -138,6 +138,11 @@ public class PantRegRRes extends JFrame {
     public void tomarSeleccionRechazo(){
         gestor.tomarSeleccionRechazo();
     }
+
+    /*
+    Metodos para las alternativas de flujo
+     */
+
     public void tomarSeleccionConfirmacion(){
         gestor.tomarSeleccionConfirmacion();
     }
