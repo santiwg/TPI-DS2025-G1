@@ -104,6 +104,11 @@ public class EventoSismico {
         this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
         this.setEstadoActual(estado);
     }
+    public void confirmar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) {
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado);
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.setEstadoActual(estado);
+    }
     public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){
         ArrayList<String> datosSeries=new ArrayList<>();
         for (SerieTemporal serie:seriesTemporales){

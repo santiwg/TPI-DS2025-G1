@@ -165,7 +165,7 @@ public class Main {
                 seriesTemporales);
         EventoSismico evento4=new EventoSismico(
                 LocalDateTime.of(2025,6,15,15,58,20),
-                -21.5f,-34.5f,-21.7f,-34.6f,7,
+                -23.6f,-37.8f,-21.9f,-30.6f,8,
                 pendienteDeRevision,listaCambioPendienteDeRevision,
                 intermedio,explosionesMinas,regional,
                 seriesTemporales);
@@ -194,10 +194,11 @@ public class Main {
         GestorRegRRes gestor1=new GestorRegRRes(eventosSismicos,sesionActual,listaEstados,sismografos);
         PantRegRRes pantalla=new PantRegRRes(gestor1);
 
-
         GestorRegRRes gestor2=new GestorRegRRes(eventosSismicos,sesionActual,listaEstados,sismografos);
         PantRegRRes pantalla2=new PantRegRRes(gestor2);
 
+        GestorRegRRes gestor3=new GestorRegRRes(eventosSismicos,sesionActual,listaEstados,sismografos);
+        PantRegRRes pantalla3=new PantRegRRes(gestor3);
 
     }
 }

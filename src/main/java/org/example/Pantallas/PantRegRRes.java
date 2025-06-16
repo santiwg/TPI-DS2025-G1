@@ -56,8 +56,7 @@ public class PantRegRRes extends JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                gestor.cancelarCU();
-                dispose();
+                tomarCancelacion();
             }});
         opcRegRRevision.addActionListener(e -> {
 
@@ -79,6 +78,12 @@ public class PantRegRRes extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tomarSeleccionRechazo();
+            }
+        });
+        confirmarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSeleccionConfirmacion();
             }
         });
     }
@@ -132,5 +137,16 @@ public class PantRegRRes extends JFrame {
     }
     public void tomarSeleccionRechazo(){
         gestor.tomarSeleccionRechazo();
+    }
+    public void tomarSeleccionConfirmacion(){
+        gestor.tomarSeleccionConfirmacion();
+    }
+    public void tomarCancelacion(){
+        dispose();
+        gestor.cancelarCU();
+    }
+    public void informarNoHayESNoRevisados(){
+        JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados");
+        this.dispose();
     }
 }

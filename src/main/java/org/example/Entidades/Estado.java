@@ -32,6 +32,9 @@ public class Estado {
     public boolean esRechazado(){
         return this.nombreEstado.equals("Rechazado");
     }
+    public boolean esConfirmado(){
+        return this.nombreEstado.equals("Confirmado");
+    }
 
     @Override
     public String toString() {

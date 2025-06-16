@@ -85,7 +85,7 @@
           <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Rechazar"/>
+          <text value="Rechazar Evento"/>
         </properties>
       </component>
       <component id="78b59" class="javax.swing.JButton" binding="confirmarButton" default-binding="true">
@@ -93,7 +93,7 @@
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Confirmar"/>
+          <text value="Confirmar Evento"/>
         </properties>
       </component>
       <component id="9bbbb" class="javax.swing.JButton" binding="delegarAExpertoButton" default-binding="true">
@@ -101,7 +101,7 @@
           <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Delegar a Experto"/>
+          <text value="Solicitar Revision a Experto"/>
         </properties>
       </component>
       <component id="94c3c" class="javax.swing.JButton" binding="verMapaButton">
