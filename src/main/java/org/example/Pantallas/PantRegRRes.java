@@ -31,7 +31,7 @@ public class PantRegRRes extends JFrame {
         setContentPane(panelPrincipal); //este linea va si o si, sino no podemos trabajar con el panel armado
         setTitle("Registrar Resultado de Revisión");  //configurar el título de la ventana
         setSize(600,600); //configurar el tamaño de la ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //define el comportamiento de cierre (lo que hace cuando se toca la cruz)
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //define el comportamiento de cierre (lo que hace cuando se toca la cruz)
         setLocationRelativeTo(null); //indicamos respecto a que se centre, al poner null es respecto al centro.
         setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
 
@@ -56,8 +56,7 @@ public class PantRegRRes extends JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                gestor.cancelarCU();
-                dispose();
+                tomarCancelacion();
             }});
         opcRegRRevision.addActionListener(e -> {
 
@@ -81,11 +80,17 @@ public class PantRegRRes extends JFrame {
                 tomarSeleccionRechazo();
             }
         });
+        confirmarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSeleccionConfirmacion();
+            }
+        });
     }
 
     public void opcRegResultadoES(){
         this.abrirPantalla();
-        gestor.nuevaRevisionES();
+        gestor.nuevaRevisionES(this);
     }
     public void abrirPantalla(){
         opcRegRRevision.setVisible(false);
@@ -132,5 +137,16 @@ public class PantRegRRes extends JFrame {
     }
     public void tomarSeleccionRechazo(){
         gestor.tomarSeleccionRechazo();
+    }
+    public void tomarSeleccionConfirmacion(){
+        gestor.tomarSeleccionConfirmacion();
+    }
+    public void tomarCancelacion(){
+        dispose();
+        gestor.cancelarCU();
+    }
+    public void informarNoHayESNoRevisados(){
+        JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados");
+        this.dispose();
     }
 }

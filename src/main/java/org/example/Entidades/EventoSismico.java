@@ -105,11 +105,10 @@ public class EventoSismico {
         this.setEstadoActual(estado); //Asigno el nuevo estado acutal
     }
 
-    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Creo un nuevo cambio de estado
-        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.cambioEstado.add(nuevoCambio);
-        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
-        return nuevoCambio;
+    public void confirmar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) {
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado);
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.setEstadoActual(estado);
     }
 
     public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ //Obtengo los datos de todas las series temporales de una lista de sismografos
@@ -119,6 +118,12 @@ public class EventoSismico {
         }
         this.clasificarDatosPorEstacionSismologica(datosSeries);
         return datosSeries;
+    }
+    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Creo un nuevo cambio de estado
+        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
+        this.cambioEstado.add(nuevoCambio);
+        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
+        return nuevoCambio;
     }
 
     public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) { // Busca el ultimo estado y le asigna una fechaHoraFin
@@ -160,4 +165,13 @@ public class EventoSismico {
 
     }
 
+    @Override
+    public String toString() {
+        return "EventoSismico{" +
+                "fechaHoraFin=" + fechaHoraFin +
+                ", fechaHoraOcurrencia=" + fechaHoraOcurrencia +
+                ", estadoActual=" + estadoActual +
+                ", cambioEstado=" + cambioEstado +
+                '}';
+    }
 }

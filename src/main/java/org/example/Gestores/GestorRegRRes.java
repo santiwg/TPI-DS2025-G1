@@ -18,6 +18,7 @@ public class GestorRegRRes {
     //la lista de eventos será un array de diccionarios, cada uno de los cuales tendrá evento y datos
     private EventoSismico eventoSismicoSeleccionado;
     private Estado estadoRechazado;
+    private Estado estadoConfirmado;
     private ArrayList<String> listaDatosSeriesTemporales=new ArrayList<>(); //revisar el tipo
     private Sesion sesion;
     private Empleado empleadoLogueado;
@@ -31,29 +32,43 @@ public class GestorRegRRes {
     private CambioEstado ultimoCambioDeEstado;
     private ArrayList<Sismografo> sismografos;
 
-    public void nuevaRevisionES(){
+    public GestorRegRRes(ArrayList<EventoSismico> listaEventosSismicos, Sesion sesion, ArrayList<Estado> listaEstados, ArrayList<Sismografo> sismografos) {
+        this.listaEventosSismicos = listaEventosSismicos;
+        this.sesion = sesion;
+        this.listaEstados = listaEstados;
+        this.sismografos = sismografos;
+    }
+
+    public void nuevaRevisionES(PantRegRRes pantalla){
+        this.pantalla=pantalla;
         this.buscarESNoRevisados();
-        this.ordenarEventosSismicosPorFechaYHora();
+        if (!listaESNoRevisados.isEmpty()){
 
-        //armo un array con los datos de los eventos formateados para pasarlo a la pantalla
-        ArrayList<String> datosEventos = listaESNoRevisados.stream()
-                .map(diccEvento -> {
-                    //obtengo el diccionario de datos del evento y le hago un toString
-                    Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
-                    String datosStr = String.format(
-                            "fechaHoraOcurrencia=%s, latitudEpicentro=%.2f, latitudHipocentro=%.2f, longitudEpicentro=%.2f, longitudHipocentro=%.2f, valorMagnitud=%.1f",
-                            datos.get("fechaHoraOcurrencia"),
-                            datos.get("latitudEpicentro"),
-                            datos.get("latitudHipocentro"),
-                            datos.get("longitudEpicentro"),
-                            datos.get("longitudHipocentro"),
-                            datos.get("valorMagnitud")
-                    );
-                    return datosStr;
-                })
-                .collect(Collectors.toCollection(ArrayList::new));
+            this.ordenarEventosSismicosPorFechaYHora();
+            //armo un array con los datos de los eventos formateados para pasarlo a la pantalla
+            ArrayList<String> datosEventos = listaESNoRevisados.stream()
+                    .map(diccEvento -> {
+                        //obtengo el diccionario de datos del evento y le hago un toString
+                        Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
+                        String datosStr = String.format(
+                                "fechaHoraOcurrencia=%s, latitudEpicentro=%.2f, latitudHipocentro=%.2f, longitudEpicentro=%.2f, longitudHipocentro=%.2f, valorMagnitud=%.1f",
+                                datos.get("fechaHoraOcurrencia"),
+                                datos.get("latitudEpicentro"),
+                                datos.get("latitudHipocentro"),
+                                datos.get("longitudEpicentro"),
+                                datos.get("longitudHipocentro"),
+                                datos.get("valorMagnitud")
+                        );
+                        return datosStr;
+                    })
+                    .collect(Collectors.toCollection(ArrayList::new));
 
-        pantalla.mostrarESParaSeleccion(datosEventos);
+            pantalla.mostrarESParaSeleccion(datosEventos);
+        }else {
+            pantalla.informarNoHayESNoRevisados();
+            this.cancelarCU();
+        }
+
     }
     public void buscarESNoRevisados(){
         for (EventoSismico evento : listaEventosSismicos) { // Recorro todos los eventos sísmicos registrados
@@ -113,7 +128,7 @@ public class GestorRegRRes {
             this.buscarDatosEventoSismico();// Extraigo los datos del evento que necesito mostrar en pantalla
 
             // Muestro en la pantalla los datos principales del evento
-            pantalla.mostrarDatosEventoSismico(this.nombreAlcance, this.nombreOrigenGeneracion, this.nombreClasificacion);
+            pantalla.mostrarDatosEventoSismico(this.nombreAlcance,this.nombreOrigenGeneracion,this.nombreClasificacion);
 
             this.buscarDatosSeriesTemporales();// Busco los datos necesarios para generar la gráfica del sismograma
 
@@ -122,6 +137,7 @@ public class GestorRegRRes {
             pantalla.habilitarOpcVerMapa();
             pantalla.habilitarOpcModificarDatosES();
             pantalla.pedirSeleccionResultadoEvento();
+
     }
 
     public void buscarEstadoBloqueadoEnRev(){
@@ -149,14 +165,22 @@ public class GestorRegRRes {
 
     public void buscarDatosEventoSismico(){
         this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
-        this.nombreOrigenGeneracion = this.eventoSismicoSeleccionado.mostrarClasificacion();
-        this.nombreClasificacion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
+        this.nombreClasificacion = this.eventoSismicoSeleccionado.mostrarClasificacion();
+        this.nombreOrigenGeneracion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
     }
 
     public void buscarEstadoRechazado(){
         for(Estado estado: listaEstados){
             if(estado.esAmbitoEventoSismico() & estado.esRechazado()){
                 this.estadoRechazado = estado;
+                break;
+            }
+        }
+    }
+    public void buscarEstadoConfirmado(){
+        for(Estado estado: listaEstados){
+            if(estado.esAmbitoEventoSismico() & estado.esConfirmado()){
+                this.estadoConfirmado = estado;
                 break;
             }
         }
@@ -172,9 +196,22 @@ public class GestorRegRRes {
         //podriamos hacer la alternativa en que no se validan los datos mínimos.
 
     }
+    public void tomarSeleccionConfirmacion(){
+        if (this.validarDatosMinimos()){
+            this.buscarEstadoConfirmado();
+            this.tomarFechaHoraActual();
+            this.confirmarEventoSismico();
+            this.finCU();
+        }
+        //podriamos hacer la alternativa en que no se validan los datos mínimos.
+
+    }
 
     public void rechazarEventoSismico(){
         this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado,ultimoCambioDeEstado);
+    }
+    public void confirmarEventoSismico(){
+        this.eventoSismicoSeleccionado.confirmar(fechaHoraActual, estadoConfirmado, empleadoLogueado,ultimoCambioDeEstado);
     }
 
     public void cancelarCU(){
@@ -232,5 +269,28 @@ public class GestorRegRRes {
         this.nombreClasificacion=null;
         this.ultimoCambioDeEstado=null;
         this.sismografos=null;
+    }
+
+    @Override
+    public String toString() {
+        //BORRAR
+        return "GestorRegRRes{" +
+                "listaEventosSismicos=" + listaEventosSismicos +
+                ", listaESNoRevisados=" + listaESNoRevisados +
+                ", eventoSismicoSeleccionado=" + eventoSismicoSeleccionado +
+                ", estadoRechazado=" + estadoRechazado +
+                ", listaDatosSeriesTemporales=" + listaDatosSeriesTemporales +
+                ", sesion=" + sesion +
+                ", empleadoLogueado=" + empleadoLogueado +
+                ", listaEstados=" + listaEstados +
+                ", estadoBloqueadoEnRevision=" + estadoBloqueadoEnRevision +
+                ", fechaHoraActual=" + fechaHoraActual +
+                ", pantalla=" + pantalla +
+                ", nombreAlcance='" + nombreAlcance + '\'' +
+                ", nombreOrigenGeneracion='" + nombreOrigenGeneracion + '\'' +
+                ", nombreClasificacion='" + nombreClasificacion + '\'' +
+                ", ultimoCambioDeEstado=" + ultimoCambioDeEstado +
+                ", sismografos=" + sismografos +
+                '}';
     }
 }
