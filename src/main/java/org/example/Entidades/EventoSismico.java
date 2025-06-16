@@ -40,7 +40,6 @@ public class EventoSismico {
         this.seriesTemporales = serieTemporal;
     }
 
-    //analistaSUpervisor??
     public boolean esAutoDetectado(){
         return this.estadoActual.esAutoDetectado();
     }

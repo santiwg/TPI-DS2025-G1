@@ -52,7 +52,7 @@ public class PantRegRRes extends JFrame {
         modificarDatosButton.setVisible(false);
         seleccioneResultadoLabel.setVisible(false);
 
-        // Agregar WindowListener para el cierre
+
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -70,7 +70,6 @@ public class PantRegRRes extends JFrame {
                     tomarSeleccionES(seleccionado);
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar un evento antes de continuar.");}
-                //agregar control para errores, es decir por si no seleccionaron nada
             }
         });
 
@@ -110,8 +109,6 @@ public class PantRegRRes extends JFrame {
             eventos.addElement(evento);
         }
         eventosComboBox.setModel(eventos);
-
-        //Agregar lógica para que de error si no hay eventos
     }
     public void tomarSeleccionES(String evento){
         gestor.tomarSeleccionES(evento);

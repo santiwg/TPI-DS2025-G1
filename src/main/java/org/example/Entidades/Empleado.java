@@ -5,7 +5,6 @@ public class Empleado {
     private String mail;
     private String nombre;
     private String telefono;
-    //le ponemos el rol?
 
     public Empleado() {}
 
