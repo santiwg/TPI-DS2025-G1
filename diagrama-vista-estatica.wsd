@@ -1,0 +1,250 @@
+@startuml vista-estatica
+
+class GestorRegRRes{
+    -listaEventosSismicos
+    -listaESNoRevisados
+    -eventoSismicoSeleccionado
+    -estadoRechazado
+    -estadoConfirmado
+    -listaDatosSeriesTemporales
+    -sesion
+    -empleadoLogueado
+    -listaEstados
+    -estadoBloqueadoEnRevision
+    -fechaHoraActual
+    -pantalla
+    -nombreAlcance
+    -nombreOrigenGeneracion
+    -nombreClasificacion
+    -ultimoCambioDeEstado
+    -sismografos
+
+    +nuevaRevisionES()
+    +buscarESNoRevisados()
+    +ordenarEventosSismicosPorFechaYHora()
+    +tomarSeleccionES()
+    +buscarEstadoBloqueadoEnRev()
+    +bloquearEventoSismico()
+    +tomarFechaHoraActual()
+    +buscarEmpleadoLogueado()
+    +buscarDatosEventoSismico()
+    +buscarEstadoRechazado()
+    +buscarEstadoConfirmado()
+    +tomarSeleccionRechazo()
+    +tomarSeleccionConfirmacion()
+    +rechazarEventoSismico()
+    +confirmarEventoSismico()
+    +validarDatosMinimos()
+    +buscarDatosSeriesTemporales()
+    +llamarCUGenerarSismograma()
+    +finCU()
+}
+
+class PanRegRRes{
+    -gestor
+    -opcRegRRevision
+    -eventosComboBox
+    -origentxt
+    -Alcancetxt
+    -clasificaciontxt
+    -seleccionarButton
+    -AlcanceLabel
+    -ClasificacionLabel
+    -OrigenDeGeneracionLabel
+    -rechazarButton
+    -confirmarButton
+    -delegarAExpertoButton
+    -verMapaButton
+    -modificarDatosButton
+    -seleccioneResultadoLabel
+    -panelPrincipal
+
+    +opcRegResultadoES()
+    +abrirPantalla()
+    +mostrarESParaSeleccion()
+    +tomarSeleccionES()
+    +mostrarDatosEventoSismico()
+    +habilitarOpcVerMapa()
+    +habilitarOpcModificarDatosES()
+    +pedirSeleccionResultadoEvento()
+    +tomarSeleccionRechazo()
+    +tomarSeleccionConfirmacion()
+    +tomarCancelacion()
+    +informarNoHayESNoRevisados()
+}
+
+class AlcanceSismo{
+    -descripcion
+    -nombre
+
+    +getNombre()
+}
+
+class CambioEstado{
+    -fechaHoraFin
+    -fechaHoraInicio
+    -estado
+    -empleadoResponsable
+
+    +esActual()
+    +setFechaHoraFin()
+    +new()
+}
+
+class ClasificacionSismo{
+    -kmProfundidadDesde
+    -kmProfundidadHasta
+    -nombre
+
+    +getNombre()
+}
+
+class DetalleMuestra{
+    -valor
+    -tipoDeDato
+
+    +getValor()
+    +getDatos()
+}
+
+class Empleado{
+    -apellido
+    -mail
+    -nombre
+    -telefono
+}
+
+class EstacionSismologica{
+    -codigoEstacion
+    -documentacionCertificacionAdq
+    -fechaSolicitudCertificacion
+    -latitud
+    -longitud
+    -nombre
+    -nroCertificacionAdquisicion
+    
+    +getCodigoEstacion()
+    +getNombre()
+}
+
+class Estado{
+    -ambito
+    -nombreEstado
+
+    +setNombreEstado()
+    +esAutoDetectado()
+    +esPendienteDeRevision()
+    +esAmbitoEventoSismico()
+    +esBloqueadoEnRevision()
+    +esRechazado()
+    +esConfirmado()
+}
+
+class EventoSismico{
+    -fechaHoraFin
+    -fechaHoraOcurrencia
+    -latitudEpicentro
+    -latitudHipocentro
+    -longitudEpicentro
+    -longitudHipocentro
+    -valorMagnitud
+    -estadoActual
+    -cambioEstado
+    -clasificacion
+    -magnitud
+    -origenGeneracion
+    -alcanceSismo
+    -seriesTemporales
+
+    +esAutoDetectado()
+    +esPendienteDeRevision()
+    +getDatosPrincipales()
+    +getFechaHoraOcurrencia()
+    +getLatitudEpicentro()
+    +getLatitudHipocentro()
+    +getLongitudEpicentro()
+    +getLongitudHipocentro()
+    +getValorMagnitud()
+    +rechazar()
+    +confirmar()
+    +buscarDatosSeriesTemporales()
+    +crearCambioEstado()
+    +buscarUltimoEstado()
+    +actualizarUltimoEstado()
+    +setEstadoActual()
+    +mostrarAlcance()
+    +mostrarClasificacion()
+    +mostrarOrigenGeneracion()
+    +clasificarDatosPorEstacionSismologica()
+}
+
+class MagnitudRitcher{
+    -descripcionMagnitud
+    -numero
+}
+
+class MuestraSismica{
+    -fechaHoraMuestra
+    -detalleMuestraSismica
+
+    +getDatos()
+}
+
+class OrigenDeGeneracion{
+    -nombre
+    -descripcion
+
+    -getNombre()
+}
+
+class SerieTemporal{
+    -condicionAlarma
+    -fechaHoraInicioRegistroMuestras
+    -fechaHoraRegistro
+    -frecuenciaMuestreo
+    -estado
+    -muestrasSismicas
+
+    +getDatos()
+    +obtenerEstacionSismologica()
+    +getMuestrasSismicas()
+}
+
+class Sesion{
+    -fechaHoraInicio
+    -fechaHoraCierre
+    -usuario
+
+    +obtenerEmpleadoLogueado()
+}
+
+class Sismografo{
+    -fechaAdquisicion
+    -identificadorSismografo
+    -nroSerie
+    -seriesTemporales
+    -estacionSismologica
+    -estadoActual
+    -cambiosDeEstado
+
+    +esSismografoDeSerieTemporal()
+    +getCodigoEstacion()
+}
+
+class TipoDeDato{
+    -denominacion
+    -nombreUnidadMedida
+    -valorUmbral
+
+    +getDenominacion()
+}
+
+class Usuario{
+    -contrasenia
+    -nombreUsuario
+    -empleado
+
+    +getEmpleado()
+}
+
+@enduml
