@@ -28,15 +28,12 @@ class GestorRegRRes{
     +tomarFechaHoraActual()
     +buscarEmpleadoLogueado()
     +buscarDatosEventoSismico()
-    +buscarEstadoRechazado()
-    +buscarEstadoConfirmado()
-    +tomarSeleccionRechazo()
-    +tomarSeleccionConfirmacion()
-    +rechazarEventoSismico()
-    +confirmarEventoSismico()
-    +validarDatosMinimos()
     +buscarDatosSeriesTemporales()
     +llamarCUGenerarSismograma()
+    +tomarSeleccionRechazo()
+    +validarDatosMinimos()
+    +buscarEstadoRechazado()
+    +rechazarEventoSismico()
     +finCU()
 }
 
@@ -68,9 +65,6 @@ class PanRegRRes{
     +habilitarOpcModificarDatosES()
     +pedirSeleccionResultadoEvento()
     +tomarSeleccionRechazo()
-    +tomarSeleccionConfirmacion()
-    +tomarCancelacion()
-    +informarNoHayESNoRevisados()
 }
 
 class AlcanceSismo{
@@ -131,13 +125,11 @@ class Estado{
     -ambito
     -nombreEstado
 
-    +setNombreEstado()
     +esAutoDetectado()
     +esPendienteDeRevision()
     +esAmbitoEventoSismico()
     +esBloqueadoEnRevision()
     +esRechazado()
-    +esConfirmado()
 }
 
 class EventoSismico{
@@ -165,17 +157,17 @@ class EventoSismico{
     +getLongitudEpicentro()
     +getLongitudHipocentro()
     +getValorMagnitud()
-    +rechazar()
-    +confirmar()
-    +buscarDatosSeriesTemporales()
-    +crearCambioEstado()
+    +revisar()
     +buscarUltimoEstado()
-    +actualizarUltimoEstado()
+    +crearCambioEstado()
     +setEstadoActual()
     +mostrarAlcance()
     +mostrarClasificacion()
     +mostrarOrigenGeneracion()
+    +buscarDatosSeriesTemporales()
     +clasificarDatosPorEstacionSismologica()
+    +rechazar()
+    +actualizarUltimoEstado()
 }
 
 class MagnitudRitcher{
