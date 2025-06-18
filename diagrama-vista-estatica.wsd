@@ -186,7 +186,7 @@ class OrigenDeGeneracion{
     -nombre
     -descripcion
 
-    -getNombre()
+    +getNombre()
 }
 
 class SerieTemporal{
@@ -239,4 +239,43 @@ class Usuario{
     +getEmpleado()
 }
 
+PanRegRRes ..> GestorRegRRes
+
+GestorRegRRes ..> PanRegRRes
+
+GestorRegRRes ..> EventoSismico
+
+GestorRegRRes ..> Estado
+
+GestorRegRRes ..> Sesion
+
+EventoSismico --> Estado
+
+Sesion --> Usuario
+
+Usuario --> Empleado
+
+CambioEstado --> Estado
+
+CambioEstado --> Empleado
+
+EventoSismico --> AlcanceSismo
+
+EventoSismico --> ClasificacionSismo
+
+EventoSismico --> OrigenDeGeneracion
+
+EventoSismico --> SerieTemporal
+
+SerieTemporal --> MuestraSismica
+
+MuestraSismica --> DetalleMuestra
+
+DetalleMuestra --> TipoDeDato
+
+SerieTemporal --> Sismografo
+
+Sismografo --> EstacionSismologica
+
+EventoSismico --> MagnitudRitcher
 @enduml
