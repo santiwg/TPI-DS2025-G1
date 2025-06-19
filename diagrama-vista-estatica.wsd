@@ -97,7 +97,6 @@ class DetalleMuestra{
     -valor
     -tipoDeDato
 
-    +getValor()
     +getDatos()
 }
 
@@ -118,7 +117,6 @@ class EstacionSismologica{
     -nroCertificacionAdquisicion
     
     +getCodigoEstacion()
-    +getNombre()
 }
 
 class Estado{
@@ -199,7 +197,6 @@ class SerieTemporal{
 
     +getDatos()
     +obtenerEstacionSismologica()
-    +getMuestrasSismicas()
 }
 
 class Sesion{
@@ -249,7 +246,7 @@ GestorRegRRes ..> Estado
 
 GestorRegRRes ..> Sesion
 
-EventoSismico --> Estado
+EventoSismico -->"1" Estado:estado
 
 Sesion --> Usuario
 
