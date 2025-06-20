@@ -18,6 +18,7 @@ class GestorRegRRes{
     -nombreClasificacion
     -ultimoCambioDeEstado :CambioEstado
     -sismografos :Sismografo
+    -seleccion
 
     +nuevaRevisionES()
     +buscarESNoRevisados()
@@ -30,7 +31,7 @@ class GestorRegRRes{
     +buscarDatosEventoSismico()
     +buscarDatosSeriesTemporales()
     +llamarCUGenerarSismograma()
-    +tomarSeleccionRechazo()
+    +tomarSeleccion()
     +validarDatosMinimos()
     +buscarEstadoRechazado()
     +rechazarEventoSismico()
@@ -64,7 +65,7 @@ class PanRegRRes{
     +habilitarOpcVerMapa()
     +habilitarOpcModificarDatosES()
     +pedirSeleccionResultadoEvento()
-    +tomarSeleccionRechazo()
+    +tomarSeleccion()
 }
 
 class AlcanceSismo{
@@ -270,9 +271,9 @@ Sismografo -->"1" Estado
 
 Sismografo -->"0..*" CambioEstado
 
-DetalleMuestraSismica --> TipoDeDato
+DetalleMuestraSismica -->"1" TipoDeDato
 
-Sismografo --> SerieTemporal
+Sismografo -->"0..*" SerieTemporal
 
-Sismografo --> EstacionSismologica
+Sismografo -->"1" EstacionSismologica
 @enduml
