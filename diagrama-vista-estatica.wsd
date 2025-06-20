@@ -1,23 +1,23 @@
 @startuml vista-estatica
 
 class GestorRegRRes{
-    -listaEventosSismicos
+    -listaEventosSismicos :EventoSismico
     -listaESNoRevisados
-    -eventoSismicoSeleccionado
-    -estadoRechazado
-    -estadoConfirmado
-    -listaDatosSeriesTemporales
-    -sesion
-    -empleadoLogueado
-    -listaEstados
-    -estadoBloqueadoEnRevision
+    -eventoSismicoSeleccionado :EventoSismico
+    -estadoRechazado :Estado
+    -estadoConfirmado :Estado
+    -listaDatosSeriesTemporales :NO SE SABE
+    -sesion :Sesion
+    -empleadoLogueado :Empleado
+    -listaEstados :Estado
+    -estadoBloqueadoEnRevision :Estado
     -fechaHoraActual
-    -pantalla
+    -pantalla :PanRegRRes
     -nombreAlcance
     -nombreOrigenGeneracion
     -nombreClasificacion
-    -ultimoCambioDeEstado
-    -sismografos
+    -ultimoCambioDeEstado :CambioEstado
+    -sismografos :Sismografo
 
     +nuevaRevisionES()
     +buscarESNoRevisados()
@@ -38,7 +38,7 @@ class GestorRegRRes{
 }
 
 class PanRegRRes{
-    -gestor
+    -gestor :GestorRegRRes
     -opcRegRRevision
     -eventosComboBox
     -origentxt
@@ -77,8 +77,8 @@ class AlcanceSismo{
 class CambioEstado{
     -fechaHoraFin
     -fechaHoraInicio
-    -estado
-    -empleadoResponsable
+    -estado :Estado
+    -empleadoResponsable: Empleado
 
     +esActual()
     +setFechaHoraFin()
@@ -93,7 +93,7 @@ class ClasificacionSismo{
     +getNombre()
 }
 
-class DetalleMuestra{
+class DetalleMuestraSismica{
     -valor
     -tipoDeDato
 
@@ -138,13 +138,12 @@ class EventoSismico{
     -longitudEpicentro
     -longitudHipocentro
     -valorMagnitud
-    -estadoActual
-    -cambioEstado
-    -clasificacion
-    -magnitud
-    -origenGeneracion
-    -alcanceSismo
-    -seriesTemporales
+    -estadoActual :Estado
+    -cambioEstado :CambioEstado
+    -clasificacion :ClasificacionSismo
+    -origenGeneracion :OrigenDeGeneracion
+    -alcanceSismo :AlcanceSismo
+    -seriesTemporales :SerieTemporal
 
     +esAutoDetectado()
     +esPendienteDeRevision()
@@ -168,14 +167,9 @@ class EventoSismico{
     +actualizarUltimoEstado()
 }
 
-class MagnitudRitcher{
-    -descripcionMagnitud
-    -numero
-}
-
 class MuestraSismica{
     -fechaHoraMuestra
-    -detalleMuestraSismica
+    -detalleMuestraSismica :DetalleMuestraSismica
 
     +getDatos()
 }
@@ -192,8 +186,8 @@ class SerieTemporal{
     -fechaHoraInicioRegistroMuestras
     -fechaHoraRegistro
     -frecuenciaMuestreo
-    -estado
-    -muestrasSismicas
+    -estado :Estado
+    -muestrasSismicas :MuestraSismica
 
     +getDatos()
     +obtenerEstacionSismologica()
@@ -211,10 +205,10 @@ class Sismografo{
     -fechaAdquisicion
     -identificadorSismografo
     -nroSerie
-    -seriesTemporales
-    -estacionSismologica
-    -estadoActual
-    -cambiosDeEstado
+    -seriesTemporales :SerieTemporal
+    -estacionSismologica :EstacionSismologica
+    -estadoActual :Estado
+    -cambiosDeEstado :CambioEstado
 
     +esSismografoDeSerieTemporal()
     +getCodigoEstacion()
@@ -231,7 +225,7 @@ class TipoDeDato{
 class Usuario{
     -contrasenia
     -nombreUsuario
-    -empleado
+    -empleado :Empleado
 
     +getEmpleado()
 }
@@ -273,6 +267,4 @@ DetalleMuestra --> TipoDeDato
 SerieTemporal --> Sismografo
 
 Sismografo --> EstacionSismologica
-
-EventoSismico --> MagnitudRitcher
 @enduml
