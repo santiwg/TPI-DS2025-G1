@@ -95,7 +95,7 @@ class ClasificacionSismo{
 
 class DetalleMuestraSismica{
     -valor
-    -tipoDeDato
+    -tipoDeDato :TipoDeDato
 
     +getDatos()
 }
@@ -240,31 +240,39 @@ GestorRegRRes ..> Estado
 
 GestorRegRRes ..> Sesion
 
-EventoSismico -->"1" Estado:estado
+EventoSismico -->"1" Estado
 
-Sesion --> Usuario
+Sesion -->"1" Usuario
 
-Usuario --> Empleado
+Usuario -->"1" Empleado
 
-CambioEstado --> Estado
+CambioEstado -->"1" Estado
 
-CambioEstado --> Empleado
+CambioEstado -->"1" Empleado
 
-EventoSismico --> AlcanceSismo
+EventoSismico -->"1" AlcanceSismo
 
-EventoSismico --> ClasificacionSismo
+EventoSismico -->"1" ClasificacionSismo
 
-EventoSismico --> OrigenDeGeneracion
+EventoSismico -->"1" OrigenDeGeneracion
 
-EventoSismico --> SerieTemporal
+EventoSismico -->"0..*" SerieTemporal
 
-SerieTemporal --> MuestraSismica
+EventoSismico -->"0..*"CambioEstado
 
-MuestraSismica --> DetalleMuestra
+SerieTemporal -->"0..*" MuestraSismica
 
-DetalleMuestra --> TipoDeDato
+SerieTemporal -->"1"Estado
 
-SerieTemporal --> Sismografo
+MuestraSismica -->"0..*" DetalleMuestraSismica
+
+Sismografo -->"1" Estado
+
+Sismografo -->"0..*" CambioEstado
+
+DetalleMuestraSismica --> TipoDeDato
+
+Sismografo --> SerieTemporal
 
 Sismografo --> EstacionSismologica
 @enduml
