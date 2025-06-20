@@ -30,6 +30,7 @@ public class GestorRegRRes {
     private String nombreClasificacion;
     private CambioEstado ultimoCambioDeEstado;
     private ArrayList<Sismografo> sismografos;
+    private String seleccionResultado;
 
     public GestorRegRRes(ArrayList<EventoSismico> listaEventosSismicos, Sesion sesion, ArrayList<Estado> listaEstados, ArrayList<Sismografo> sismografos) {
         this.listaEventosSismicos = listaEventosSismicos;
@@ -185,25 +186,30 @@ public class GestorRegRRes {
         }
     }
 
-    public void tomarSeleccionRechazo(){
+    public void tomarSeleccionResultado(String seleccion){
+        this.seleccionResultado=seleccion;
         if (this.validarDatosMinimos()){
-            this.buscarEstadoRechazado();
             this.tomarFechaHoraActual();
-            this.rechazarEventoSismico();
+            switch (seleccionResultado) {
+                case "Rechazado":
+                    this.buscarEstadoRechazado();
+                    this.rechazarEventoSismico();
+                    break;
+                case "Confirmado":
+                    this.buscarEstadoConfirmado();
+                    this.confirmarEventoSismico();
+                    break;
+                case "Derivado a Experto":
+                    //no se implementa
+                    break;
+                default:
+                    throw new IllegalArgumentException("Resultado inválido: " + seleccionResultado);
+            }
             this.finCU();
-        }
-        //podriamos hacer la alternativa en que no se validan los datos mínimos.
 
-    }
-    public void tomarSeleccionConfirmacion(){
-        if (this.validarDatosMinimos()){
-            this.buscarEstadoConfirmado();
-            this.tomarFechaHoraActual();
-            this.confirmarEventoSismico();
-            this.finCU();
+        }else{
+            //no se implementa
         }
-        //podriamos hacer la alternativa en que no se validan los datos mínimos.
-
     }
 
     public void rechazarEventoSismico(){
@@ -211,10 +217,13 @@ public class GestorRegRRes {
     }
     public void confirmarEventoSismico(){
         this.eventoSismicoSeleccionado.confirmar(fechaHoraActual, estadoConfirmado, empleadoLogueado,ultimoCambioDeEstado);
+        this.notificarAInteresados();
+    }
+    public void notificarAInteresados(){
+        //no se implementa
     }
 
     public void cancelarCU(){
-        //chequear si está bien lo siguiente
         this.listaEventosSismicos=null;
         this.listaESNoRevisados=null;
         this.eventoSismicoSeleccionado=null;
@@ -243,7 +252,7 @@ public class GestorRegRRes {
                 break;
             }
         }
-        return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion != null);
+        return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion != null & this.seleccionResultado != null);
     }
     public void buscarDatosSeriesTemporales(){
         this.listaDatosSeriesTemporales=eventoSismicoSeleccionado.buscarDatosSeriesTemporales(sismografos);

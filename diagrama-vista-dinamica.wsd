@@ -130,9 +130,10 @@ GR -> PRR: habilitarOpcVerMapa()
 GR -> PRR: habilitarOpcModificarDatosES()
 ' Puede que acá tenga tomarDatos para cada item que no modifica, y que el valor por defecto sea el que estaba. 
 GR -> PRR: pedirSeleccionResultadoEvento()
-AeS -> PRR: tomarSeleccionRechazo()
-PRR -> GR: tomarSeleccionRechazo()
+AeS -> PRR: tomarSeleccionResultado()
+PRR -> GR: tomarSeleccionResultado()
 GR -> GR: validarDatosMinimos()
+GR ->> GR: tomarFechaHoraActual()
 GR -> GR: buscarEstadoRechazado()
 
 group loop Eventos sismicos [Mientras haya estados]
@@ -140,7 +141,6 @@ group loop Eventos sismicos [Mientras haya estados]
     GR ->> allE: esRechazado()
 end
 
-GR ->> GR: tomarFechaHoraActual()
 GR ->> GR: rechazarEventoSismico()
 GR ->> SES: rechazar()
 SES ->> SES: actualizarUltimoEstado()

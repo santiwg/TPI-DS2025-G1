@@ -31,7 +31,7 @@ class GestorRegRRes{
     +buscarDatosEventoSismico()
     +buscarDatosSeriesTemporales()
     +llamarCUGenerarSismograma()
-    +tomarSeleccion()
+    +tomarSeleccionResultado()
     +validarDatosMinimos()
     +buscarEstadoRechazado()
     +rechazarEventoSismico()
@@ -65,7 +65,7 @@ class PanRegRRes{
     +habilitarOpcVerMapa()
     +habilitarOpcModificarDatosES()
     +pedirSeleccionResultadoEvento()
-    +tomarSeleccion()
+    +tomarSeleccionResultado()
 }
 
 class AlcanceSismo{

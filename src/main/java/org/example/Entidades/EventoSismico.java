@@ -17,7 +17,7 @@ public class EventoSismico {
     private Estado estadoActual;
     private ArrayList<CambioEstado> cambioEstado;
     private ClasificacionSismo clasificacion;
-    private MagnitudRitcher magnitud;
+    //private MagnitudRitcher magnitud; no se tiene la clase en el modelo
     private OrigenDeGeneracion origenGeneracion;
     private AlcanceSismo alcanceSismo;
     private ArrayList<SerieTemporal> seriesTemporales;

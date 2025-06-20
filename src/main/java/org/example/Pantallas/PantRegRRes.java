@@ -76,13 +76,31 @@ public class PantRegRRes extends JFrame {
         rechazarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tomarSeleccionRechazo();
+                tomarSeleccionResultado("Rechazado");
             }
         });
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tomarSeleccionConfirmacion();
+                tomarSeleccionResultado("Confirmado");
+            }
+        });
+        delegarAExpertoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSeleccionResultado("Derivado a Experto");
+            }
+        });
+        modificarDatosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSolicitudModificacionDatos();
+            }
+        });
+        verMapaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tomarSolicitudVerMapa();
             }
         });
     }
@@ -132,17 +150,6 @@ public class PantRegRRes extends JFrame {
         this.delegarAExpertoButton.setVisible(true);
         this.seleccioneResultadoLabel.setVisible(true);
     }
-    public void tomarSeleccionRechazo(){
-        gestor.tomarSeleccionRechazo();
-    }
-
-    /*
-    Metodos para las alternativas de flujo
-     */
-
-    public void tomarSeleccionConfirmacion(){
-        gestor.tomarSeleccionConfirmacion();
-    }
     public void tomarCancelacion(){
         dispose();
         gestor.cancelarCU();
@@ -150,5 +157,16 @@ public class PantRegRRes extends JFrame {
     public void informarNoHayESNoRevisados(){
         JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados");
         this.dispose();
+    }
+    public void tomarSeleccionResultado(String seleccion){
+        JOptionPane.showMessageDialog(this,"Resultado Registrado!");
+        dispose();
+        gestor.tomarSeleccionResultado(seleccion);
+    }
+    public void tomarSolicitudModificacionDatos(){
+        JOptionPane.showMessageDialog(this,"Cargando...");
+    }
+    public void tomarSolicitudVerMapa(){
+        JOptionPane.showMessageDialog(this,"Cargando mapa...");
     }
 }
