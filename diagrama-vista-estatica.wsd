@@ -6,7 +6,7 @@ class GestorRegRRes{
     -eventoSismicoSeleccionado :EventoSismico
     -estadoRechazado :Estado
     -estadoConfirmado :Estado
-    -listaDatosSeriesTemporales :NO SE SABE
+    -listaDatosSeriesTemporales
     -sesion :Sesion
     -empleadoLogueado :Empleado
     -listaEstados :Estado
@@ -18,7 +18,7 @@ class GestorRegRRes{
     -nombreClasificacion
     -ultimoCambioDeEstado :CambioEstado
     -sismografos :Sismografo
-    -seleccion
+    -seleccionResultado
 
     +nuevaRevisionES()
     +buscarESNoRevisados()
@@ -257,23 +257,23 @@ EventoSismico -->"1" ClasificacionSismo
 
 EventoSismico -->"1" OrigenDeGeneracion
 
-EventoSismico -->"0..*" SerieTemporal
+EventoSismico -->"1..*" SerieTemporal
 
-EventoSismico -->"0..*"CambioEstado
+EventoSismico -->"1..*"CambioEstado
 
-SerieTemporal -->"0..*" MuestraSismica
+SerieTemporal *-->"1..*" MuestraSismica
 
 SerieTemporal -->"1"Estado
 
-MuestraSismica -->"0..*" DetalleMuestraSismica
+MuestraSismica *-->"1..*" DetalleMuestraSismica
 
 Sismografo -->"1" Estado
 
-Sismografo -->"0..*" CambioEstado
+Sismografo -->"1..*" CambioEstado
 
 DetalleMuestraSismica -->"1" TipoDeDato
 
-Sismografo -->"0..*" SerieTemporal
+Sismografo -->"1..*" SerieTemporal
 
 Sismografo -->"1" EstacionSismologica
 @enduml
