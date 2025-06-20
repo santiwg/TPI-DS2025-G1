@@ -144,7 +144,7 @@ class EventoSismico{
     -clasificacion :ClasificacionSismo
     -origenGeneracion :OrigenDeGeneracion
     -alcanceSismo :AlcanceSismo
-    -seriesTemporales :SerieTemporal
+    -serieTemporal :SerieTemporal
 
     +esAutoDetectado()
     +esPendienteDeRevision()
@@ -188,7 +188,7 @@ class SerieTemporal{
     -fechaHoraRegistro
     -frecuenciaMuestreo
     -estado :Estado
-    -muestrasSismicas :MuestraSismica
+    -muestraSismica :MuestraSismica
 
     +getDatos()
     +obtenerEstacionSismologica()
@@ -206,10 +206,10 @@ class Sismografo{
     -fechaAdquisicion
     -identificadorSismografo
     -nroSerie
-    -seriesTemporales :SerieTemporal
+    -serieTemporal :SerieTemporal
     -estacionSismologica :EstacionSismologica
     -estadoActual :Estado
-    -cambiosDeEstado :CambioEstado
+    -cambioEstado :CambioEstado
 
     +esSismografoDeSerieTemporal()
     +getCodigoEstacion()
