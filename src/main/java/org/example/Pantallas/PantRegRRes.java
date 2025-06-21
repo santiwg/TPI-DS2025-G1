@@ -30,7 +30,7 @@ public class PantRegRRes extends JFrame {
         this.gestor = gestor;
         setContentPane(panelPrincipal); //este linea va si o si, sino no podemos trabajar con el panel armado
         setTitle("Registrar Resultado de Revisión");  //configurar el título de la ventana
-        setSize(600,600); //configurar el tamaño de la ventana
+        setSize(1000,600); //configurar el tamaño de la ventana
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //define el comportamiento de cierre (lo que hace cuando se toca la cruz)
         setLocationRelativeTo(null); //indicamos respecto a que se centre, al poner null es respecto al centro.
         setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
