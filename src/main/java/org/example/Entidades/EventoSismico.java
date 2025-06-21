@@ -20,7 +20,7 @@ public class EventoSismico {
     //private MagnitudRitcher magnitud; no se tiene la clase en el modelo
     private OrigenDeGeneracion origenGeneracion;
     private AlcanceSismo alcanceSismo;
-    private ArrayList<SerieTemporal> seriesTemporales;
+    private ArrayList<SerieTemporal> serieTemporal;
 
     public EventoSismico() {
     }
@@ -37,7 +37,7 @@ public class EventoSismico {
         this.clasificacion = clasificacion;
         this.origenGeneracion = origenGeneracion;
         this.alcanceSismo = alcanceSismo;
-        this.seriesTemporales = serieTemporal;
+        this.serieTemporal = serieTemporal;
     }
 
     public boolean esAutoDetectado(){
@@ -112,7 +112,7 @@ public class EventoSismico {
 
     public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ //Obtengo los datos de todas las series temporales de una lista de sismografos
         ArrayList<String> datosSeries=new ArrayList<>();
-        for (SerieTemporal serie:seriesTemporales){
+        for (SerieTemporal serie: serieTemporal){
             datosSeries.add(serie.getDatos(sismografos));
         }
         this.clasificarDatosPorEstacionSismologica(datosSeries);

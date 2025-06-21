@@ -9,7 +9,7 @@ public class SerieTemporal {
     private LocalDateTime fechaHoraRegistro;
     private String frecuenciaMuestreo; // Ver el tipo de dato
     private Estado estado;
-    private ArrayList<MuestraSismica> muestrasSismicas;
+    private ArrayList<MuestraSismica> muestraSismica;
 
     public SerieTemporal(){}
 
@@ -19,11 +19,11 @@ public class SerieTemporal {
         this.fechaHoraRegistro = fechaHoraRegistro;
         this.frecuenciaMuestreo = frecuenciaMuestreo;
         this.estado = estado;
-        this.muestrasSismicas = muestrasSismicas;
+        this.muestraSismica = muestrasSismicas;
     }
     public String getDatos(ArrayList<Sismografo> sismografos){
         String datos="Fecha/Hora inicio: "+fechaHoraInicioRegistroMuestras;
-        for (MuestraSismica muestra: muestrasSismicas){
+        for (MuestraSismica muestra: muestraSismica){
             datos=datos+" -- ["+muestra.getDatos()+"]";
         }
         String codigoEstacion="Estacion Sismologica:"+this.obtenerEstacionSismologica(sismografos);
@@ -38,7 +38,7 @@ public class SerieTemporal {
         return null;
     }
 
-    public ArrayList<MuestraSismica> getMuestrasSismicas() {
-        return muestrasSismicas;
+    public ArrayList<MuestraSismica> getMuestraSismica() {
+        return muestraSismica;
     }
 }
