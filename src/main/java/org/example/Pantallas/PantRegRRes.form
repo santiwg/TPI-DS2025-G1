@@ -4,7 +4,9 @@
     <constraints>
       <xy x="22" y="33" width="694" height="521"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-1249039"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="3d7a6" class="javax.swing.JComboBox" binding="eventosComboBox">
@@ -47,6 +49,8 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-13330213"/>
+          <foreground color="-1"/>
           <text value="Seleccionar Evento"/>
         </properties>
       </component>
@@ -56,7 +60,9 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-1618884"/>
           <enabled value="false"/>
+          <foreground color="-1"/>
           <text value="Rechazar Evento"/>
         </properties>
       </component>
@@ -66,7 +72,9 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-13710223"/>
           <enabled value="false"/>
+          <foreground color="-1"/>
           <text value="Confirmar Evento"/>
         </properties>
       </component>
@@ -76,7 +84,9 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-932849"/>
           <enabled value="false"/>
+          <foreground color="-1"/>
           <text value="Solicitar Revision a Experto"/>
         </properties>
       </component>
@@ -86,7 +96,9 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-13330213"/>
           <enabled value="false"/>
+          <foreground color="-1"/>
           <text value="Ver Mapa"/>
         </properties>
       </component>
@@ -96,7 +108,9 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-13330213"/>
           <enabled value="false"/>
+          <foreground color="-1"/>
           <text value="Modificar Datos ES"/>
         </properties>
       </component>
@@ -187,7 +201,7 @@
           <enabled value="false"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="Seleccione  el resultado:"/>
+          <text value="Seleccione el resultado"/>
         </properties>
       </component>
       <vspacer id="214ae">
@@ -241,7 +255,7 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
-          <text value="Clasificacion"/>
+          <text value="Clasificación"/>
         </properties>
       </component>
       <component id="f7d06" class="javax.swing.JLabel" binding="origenDeGeneracionLabel">
@@ -250,7 +264,7 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
-          <text value="OrigenDeGeneracion"/>
+          <text value="Origen de generación"/>
         </properties>
       </component>
       <component id="cb03f" class="javax.swing.JButton" binding="opcRegRRevision">
@@ -261,6 +275,8 @@
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <background color="-13330213"/>
+          <foreground color="-1"/>
           <text value="Registrar Resultado de Revision"/>
         </properties>
       </component>
