@@ -11,7 +11,6 @@ public class SerieTemporal {
     private Estado estado;
     private ArrayList<MuestraSismica> muestraSismica;
 
-    public SerieTemporal(){}
 
     public SerieTemporal(boolean condicionAlarma, LocalDateTime fechaHoraInicioRegistroMuestras, LocalDateTime fechaHoraRegistro, String frecuenciaMuestreo, Estado estado, ArrayList<MuestraSismica> muestrasSismicas) {
         this.condicionAlarma = condicionAlarma;
