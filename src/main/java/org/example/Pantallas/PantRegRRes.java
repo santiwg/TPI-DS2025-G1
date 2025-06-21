@@ -12,12 +12,12 @@ public class PantRegRRes extends JFrame {
     private JButton opcRegRRevision;
     private JComboBox eventosComboBox;
     private JTextField origentxt;
-    private JTextField Alcancetxt;
+    private JTextField alcancetxt;
     private JTextField clasificaciontxt;
     private JButton seleccionarButton;
-    private JLabel AlcanceLabel;
-    private JLabel ClasificacionLabel;
-    private JLabel OrigenDeGeneracionLabel;
+    private JLabel alcanceLabel;
+    private JLabel clasificacionLabel;
+    private JLabel origenDeGeneracionLabel;
     private JButton rechazarButton;
     private JButton confirmarButton;
     private JButton delegarAExpertoButton;
@@ -40,12 +40,12 @@ public class PantRegRRes extends JFrame {
 
         eventosComboBox.setVisible(false);
         origentxt.setVisible(false);
-        Alcancetxt.setVisible(false);
+        alcancetxt.setVisible(false);
         clasificaciontxt.setVisible(false);
         seleccionarButton.setVisible(false);
-        AlcanceLabel.setVisible(false);
-        ClasificacionLabel.setVisible(false);
-        OrigenDeGeneracionLabel.setVisible(false);
+        alcanceLabel.setVisible(false);
+        clasificacionLabel.setVisible(false);
+        origenDeGeneracionLabel.setVisible(false);
         rechazarButton.setVisible(false);
         confirmarButton.setVisible(false);
         delegarAExpertoButton.setVisible(false);
@@ -114,12 +114,12 @@ public class PantRegRRes extends JFrame {
         opcRegRRevision.setVisible(false);
         eventosComboBox.setVisible(true);
         origentxt.setVisible(true);
-        Alcancetxt.setVisible(true);
+        alcancetxt.setVisible(true);
         clasificaciontxt.setVisible(true);
         seleccionarButton.setVisible(true);
-        AlcanceLabel.setVisible(true);
-        ClasificacionLabel.setVisible(true);
-        OrigenDeGeneracionLabel.setVisible(true);
+        alcanceLabel.setVisible(true);
+        clasificacionLabel.setVisible(true);
+        origenDeGeneracionLabel.setVisible(true);
     }
     public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
 
@@ -134,7 +134,7 @@ public class PantRegRRes extends JFrame {
     }
 
     public void mostrarDatosEventoSismico(String nombreAlcance, String nombreOrigenGeneracion, String nombreClasificacion){
-        this.Alcancetxt.setText(nombreAlcance);
+        this.alcancetxt.setText(nombreAlcance);
         this.origentxt.setText(nombreOrigenGeneracion);
         this.clasificaciontxt.setText(nombreClasificacion);
     }
@@ -169,5 +169,9 @@ public class PantRegRRes extends JFrame {
     }
     public void tomarSolicitudVerMapa(){
         JOptionPane.showMessageDialog(this,"Cargando mapa...");
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
