@@ -110,7 +110,7 @@ group loop Series Temporales [Mientras haya series temporales]
         end
     end
     ST ->> ST: obtenerEstacionSismologica
-    group loop Buscar sismografo [Mientras haya sismografos]
+    group loop Buscar Sismografo [Mientras haya sismografos]
     entity "__:Sismografo__" as S #Red
     ST -> S: esSismografoDeSerieTemporal()
     ST -> S: getCodigoEstacion()
@@ -136,7 +136,7 @@ GR -> GR: validarDatosMinimos()
 GR ->> GR: tomarFechaHoraActual()
 GR -> GR: buscarEstadoRechazado()
 
-group loop Eventos sismicos [Mientras haya estados]
+group loop Eventos Sismicos [Mientras haya estados]
     GR ->> allE: esAmbitoEventoSismico()
     GR ->> allE: esRechazado()
 end
