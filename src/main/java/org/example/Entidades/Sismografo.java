@@ -10,7 +10,7 @@ public class Sismografo {
     private ArrayList<SerieTemporal> serieTemporal;
     private EstacionSismologica estacionSismologica;
     private Estado estadoActual;
-    private ArrayList<CambioEstado> cambioDeEstado;
+    private ArrayList<CambioEstado> cambioEstado;
 
     public Sismografo(){}
 
@@ -27,7 +27,7 @@ public class Sismografo {
         this.serieTemporal = serieTemporal;
         this.estacionSismologica = estacionSismologica;
         this.estadoActual = estadoActual;
-        this.cambioDeEstado = cambiosDeEstado;
+        this.cambioEstado = cambiosDeEstado;
     }
     public boolean esSismografoDeSerieTemporal(SerieTemporal serie){
         return this.serieTemporal.contains(serie);

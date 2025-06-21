@@ -13,9 +13,6 @@ public class TipoDeDato {
         this.valorUmbral = valorUmbral;
     }
 
-    public boolean esTuDenominacion(String denominacion){
-        return this.denominacion.equals(denominacion);
-    }
 
     public String getDenominacion() {
         return denominacion;

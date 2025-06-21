@@ -34,7 +34,4 @@ public class EstacionSismologica {
         return codigoEstacion;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 }

@@ -38,7 +38,4 @@ public class SerieTemporal {
         return null;
     }
 
-    public ArrayList<MuestraSismica> getMuestraSismica() {
-        return muestraSismica;
-    }
 }

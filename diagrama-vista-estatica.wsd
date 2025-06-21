@@ -145,6 +145,7 @@ class EventoSismico{
     -origenGeneracion :OrigenDeGeneracion
     -alcanceSismo :AlcanceSismo
     -serieTemporal :SerieTemporal
+    -analistaSuperior: Empleado
 
     +esAutoDetectado()
     +esPendienteDeRevision()
@@ -260,6 +261,7 @@ EventoSismico -->"1" OrigenDeGeneracion
 EventoSismico -->"1..*" SerieTemporal
 
 EventoSismico -->"1..*"CambioEstado
+EventoSismico -->"0..1"Empleado
 
 SerieTemporal *-->"1..*" MuestraSismica
 
