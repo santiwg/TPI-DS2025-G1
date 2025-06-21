@@ -116,15 +116,21 @@ public class PantRegRRes extends JFrame {
     }
 
     public void abrirPantalla(){
-        opcRegRRevision.setVisible(false);
-        eventosComboBox.setVisible(true);
-        origentxt.setVisible(true);
-        alcancetxt.setVisible(true);
-        clasificaciontxt.setVisible(true);
-        seleccionarButton.setVisible(true);
-        alcanceLabel.setVisible(true);
-        clasificacionLabel.setVisible(true);
-        origenDeGeneracionLabel.setVisible(true);
+        this.opcRegRRevision.setVisible(false);
+        this.eventosComboBox.setVisible(true);
+        this.origentxt.setVisible(true);
+        this.alcancetxt.setVisible(true);
+        this.clasificaciontxt.setVisible(true);
+        this.seleccionarButton.setVisible(true);
+        this.alcanceLabel.setVisible(true);
+        this.clasificacionLabel.setVisible(true);
+        this.origenDeGeneracionLabel.setVisible(true);
+        this.verMapaButton.setVisible(true);
+        this.modificarDatosButton.setVisible(true);
+        this.confirmarButton.setVisible(true);
+        this.rechazarButton.setVisible(true);
+        this.delegarAExpertoButton.setVisible(true);
+        this.seleccioneResultadoLabel.setVisible(true);
     }
 
     public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
@@ -147,18 +153,18 @@ public class PantRegRRes extends JFrame {
     }
 
     public void habilitarOpcVerMapa(){
-        this.verMapaButton.setVisible(true);
+        this.verMapaButton.setEnabled(true);
     }
 
     public void habilitarOpcModificarDatosES(){
-        this.modificarDatosButton.setVisible(true);
+        this.modificarDatosButton.setEnabled(true);
     }
 
     public void pedirSeleccionResultadoEvento(){
-        this.confirmarButton.setVisible(true);
-        this.rechazarButton.setVisible(true);
-        this.delegarAExpertoButton.setVisible(true);
-        this.seleccioneResultadoLabel.setVisible(true);
+        this.seleccioneResultadoLabel.setEnabled(true);
+        this.rechazarButton.setEnabled(true);
+        this.confirmarButton.setEnabled(true);
+        this.delegarAExpertoButton.setEnabled(true);
     }
 
     public void tomarCancelacion(){
@@ -185,7 +191,4 @@ public class PantRegRRes extends JFrame {
         JOptionPane.showMessageDialog(this,"Cargando mapa...");
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

@@ -18,7 +18,7 @@ public class GestorRegRRes {
     private EventoSismico eventoSismicoSeleccionado;
     private Estado estadoRechazado;
     private Estado estadoConfirmado;
-    private ArrayList<String> listaDatosSeriesTemporales=new ArrayList<>(); //revisar el tipo
+    private ArrayList<String> listaDatosSeriesTemporales=new ArrayList<>();
     private Sesion sesion;
     private Empleado empleadoLogueado;
     private ArrayList<Estado> listaEstados;
