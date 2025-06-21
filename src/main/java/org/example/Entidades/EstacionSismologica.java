@@ -32,6 +32,6 @@ public class EstacionSismologica {
 
     public String getCodigoEstacion() {
         return codigoEstacion;
-    }
+    } // Obtiene el codigo de la estacion
 
 }

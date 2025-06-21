@@ -14,12 +14,11 @@ public class MuestraSismica {
         this.detalleMuestraSismica = detalleMuestraSismica;
     }
 
-
-    public String getDatos() { // Ver cómo implementar
-        String datos="Fecha/Hora muestra: "+fechaHoraMuestra;
-        for (DetalleMuestraSismica detalle:detalleMuestraSismica){
-            datos=datos+","+detalle.getDatos();
+    public String getDatos() {
+        String datos = "Fecha/Hora muestra: " + fechaHoraMuestra; // Inicializa un string con la fecha y hora de la muestra
+        for (DetalleMuestraSismica detalle:detalleMuestraSismica){ // Itera los detalles de la muestra sismica
+            datos = datos + "," + detalle.getDatos(); // Agrega los datos de cada detalle sismico al string
         }
-        return datos;
+        return datos; // Devuelve el string completo con los datos concatenados
     }
 }

@@ -42,11 +42,11 @@ public class EventoSismico {
 
     public boolean esAutoDetectado(){
         return this.estadoActual.esAutoDetectado();
-    }
+    } // Metodo que nos comunica si el estado actual es AutoDetectado
 
-    public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); }
+    public boolean esPendienteDeRevision() { return this.estadoActual.esPendienteDeRevision(); } // Metodo que nos comunica si el estado actual es PendienteDeRevision
 
-    public Map<String, Object> getDatosPrincipales() { // Traigo los datos principales acomodados dentro de un HashMap
+    public Map<String, Object> getDatosPrincipales() { // Obtiene los datos principales del evento ordenados dentro de un HashMap
         LocalDateTime fechaHoraOcurrencia = this.getFechaHoraOcurrencia();
         float latitudEpicentro = this.getLatitudEpicentro();
         float latitudHipocentro = this.getLatitudHipocentro();
@@ -89,50 +89,50 @@ public class EventoSismico {
         return valorMagnitud;
     }
 
-    public CambioEstado revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { //Pongo fin al ultimo cambio de estado y creo uno nuevo
-        this.buscarUltimoEstado(fechaHoraInicio);
-        CambioEstado nuevoEstado=this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.setEstadoActual(estado); //Asigno el nuevo estado acutal
+    public CambioEstado revisar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Pone fin al ultimo cambio de estado y crea uno nuevo
+        this.buscarUltimoEstado(fechaHoraInicio); // Busca el ultimo CambioEstado
+        CambioEstado nuevoEstado = this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado); // Crea una nueva instancia de CambioEstado
+        this.setEstadoActual(estado); // Asigna el nuevo estado actual
 
-        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
-        return nuevoEstado;
+        return nuevoEstado; // Devuelve el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
     }
 
-    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) { //Pongo fin al ultimo cambio de estado y creo uno nuevo
-        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado); //Set fechaFin ultimoEstado
-        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado); //Creo un nuevo cambio de estado
-        this.setEstadoActual(estado); //Asigno el nuevo estado acutal
+    public void rechazar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) { // Pone fin al ultimo cambio de estado y crea uno
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado); // Setea fechaFin al ultimo estado
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado); // Crea un nuevo cambio de estado
+        this.setEstadoActual(estado); // Asigna el nuevo estado acutal
     }
 
     public void confirmar(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado, CambioEstado ultimoEstado) {
-        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado);
-        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.setEstadoActual(estado);
+        this.actualizarUltimoEstado(fechaHoraInicio, ultimoEstado); // Setea fechaFin al ultimo estado
+        this.crearCambioEstado(fechaHoraInicio, estado, empleadoLogueado); // Crea un nuevo cambio de estado
+        this.setEstadoActual(estado); // Asigna el nuevo estado acutal
     }
 
-    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ //Obtengo los datos de todas las series temporales de una lista de sismografos
-        ArrayList<String> datosSeries=new ArrayList<>();
-        for (SerieTemporal serie: serieTemporal){
-            datosSeries.add(serie.getDatos(sismografos));
+    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ // Obtiene los datos de todas las series temporales de una lista de sismografos
+        ArrayList<String> datosSeries = new ArrayList<>();
+        for (SerieTemporal serie: serieTemporal){ // Itera las series temporales
+            datosSeries.add(serie.getDatos(sismografos)); // Obtiene los datos de las series temporales y los guarda en el array datosSeries
         }
-        this.clasificarDatosPorEstacionSismologica(datosSeries);
+        this.clasificarDatosPorEstacionSismologica(datosSeries); // Clasifica los elementos del array datosSeries por estacion sismologica
         return datosSeries;
     }
-    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Creo un nuevo cambio de estado
-        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado);
-        this.cambioEstado.add(nuevoCambio);
-        //Devuelvo el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
-        return nuevoCambio;
+    public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Crea un nuevo cambio de estado
+        CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado); // Crea una instancia de CambioEstado
+        this.cambioEstado.add(nuevoCambio); // Añade la nueva instancia al array cambioEstado
+
+        return nuevoCambio; // Devuelve el cambio de estado para que el gestor lo almacene y posteriormente no se tenga que buscar.
     }
 
-    public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) { // Busca el ultimo estado y le asigna una fechaHoraFin
-        for(CambioEstado cambioEstado: cambioEstado){
+    public void buscarUltimoEstado(LocalDateTime fechaHoraDeFin) { // Busca el ultimo cambio de estado y le asigna una fechaHoraFin
+        for(CambioEstado cambioEstado: cambioEstado){ // Itera los cambios de estado
             if(cambioEstado.esActual()){
-                cambioEstado.setFechaHoraFin(fechaHoraDeFin);
+                cambioEstado.setFechaHoraFin(fechaHoraDeFin); // Setea fechaHoraFin al cambio de estado actual
             }
         }
     }
-    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) { //Pone fecha fin a un cambio de estado
+
+    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) { // Setea fechaHoraFin a un cambio de estado
         ultimoEstado.setFechaHoraFin(fechaHoraDeFin);
     }
 
@@ -152,16 +152,15 @@ public class EventoSismico {
         return this.origenGeneracion.getNombre();
     }
 
-    public void clasificarDatosPorEstacionSismologica(ArrayList<String> datosSeries) {
+    public void clasificarDatosPorEstacionSismologica(ArrayList<String> datosSeries) { // Ordena la lista de datos de las series sismologicas por estacion sismologica
         datosSeries.sort(Comparator.comparing(dato -> {
-            // Extraer el código de estación
-            /*Hacerlo de esta forma evitará la necesidad de modificar el código si la
-            estación sismológica ya no se pone al frente*/
+            // Extrae el código de estación
+            /* Hacerlo de esta forma evitará la necesidad de modificar el código si la
+            estación sismológica ya no se pone al frente */
             int inicio = dato.indexOf("Estacion Sismologica:") + "Estacion Sismologica:".length();
             int fin = dato.indexOf("-", inicio);
             return dato.substring(inicio, fin);
         }));
-
     }
 
     @Override
@@ -172,5 +171,5 @@ public class EventoSismico {
                 ", estadoActual=" + estadoActual +
                 ", cambioEstado=" + cambioEstado +
                 '}';
-    }
+    } // Muestra el valor de los atributos del objeto EventoSismico
 }

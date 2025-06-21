@@ -13,7 +13,6 @@ public class TipoDeDato {
         this.valorUmbral = valorUmbral;
     }
 
-
     public String getDenominacion() {
         return denominacion;
     }

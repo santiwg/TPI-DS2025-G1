@@ -28,13 +28,13 @@ public class PantRegRRes extends JFrame {
 
     public PantRegRRes(GestorRegRRes gestor) {
         this.gestor = gestor;
-        setContentPane(panelPrincipal); //este linea va si o si, sino no podemos trabajar con el panel armado
-        setTitle("Registrar Resultado de Revisión");  //configurar el título de la ventana
-        setSize(1000,600); //configurar el tamaño de la ventana
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //define el comportamiento de cierre (lo que hace cuando se toca la cruz)
-        setLocationRelativeTo(null); //indicamos respecto a que se centre, al poner null es respecto al centro.
+        setContentPane(panelPrincipal); // Esta linea va si o si, sino no podemos trabajar con el panel armado
+        setTitle("Registrar Resultado de Revisión"); // Configura el título de la ventana
+        setSize(1000,600); // Configura el tamaño de la ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define el comportamiento de cierre (lo que hace cuando se toca la cruz)
+        setLocationRelativeTo(null); // Indica respecto a que se centre, al poner null es respecto al centro.
         setExtendedState(JFrame.NORMAL);
-        setVisible(true); //esto es lo más importante, sin esto no va a abrir la ventana
+        setVisible(true); // Esto es lo más importante, sin esto no va a abrir la ventana
 
 // Ocultar componentes acá
 
@@ -80,24 +80,28 @@ public class PantRegRRes extends JFrame {
                 tomarSeleccionResultado("Rechazado");
             }
         });
+
         confirmarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tomarSeleccionResultado("Confirmado");
             }
         });
+
         delegarAExpertoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tomarSeleccionResultado("Derivado a Experto");
             }
         });
+
         modificarDatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tomarSolicitudModificacionDatos();
             }
         });
+
         verMapaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,6 +114,7 @@ public class PantRegRRes extends JFrame {
         this.abrirPantalla();
         gestor.nuevaRevisionES(this);
     }
+
     public void abrirPantalla(){
         opcRegRRevision.setVisible(false);
         eventosComboBox.setVisible(true);
@@ -121,6 +126,7 @@ public class PantRegRRes extends JFrame {
         clasificacionLabel.setVisible(true);
         origenDeGeneracionLabel.setVisible(true);
     }
+
     public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
 
         DefaultComboBoxModel <String> eventos = new DefaultComboBoxModel<>();
@@ -129,6 +135,7 @@ public class PantRegRRes extends JFrame {
         }
         eventosComboBox.setModel(eventos);
     }
+
     public void tomarSeleccionES(String evento){
         gestor.tomarSeleccionES(evento);
     }
@@ -142,31 +149,38 @@ public class PantRegRRes extends JFrame {
     public void habilitarOpcVerMapa(){
         this.verMapaButton.setVisible(true);
     }
+
     public void habilitarOpcModificarDatosES(){
         this.modificarDatosButton.setVisible(true);
     }
+
     public void pedirSeleccionResultadoEvento(){
         this.confirmarButton.setVisible(true);
         this.rechazarButton.setVisible(true);
         this.delegarAExpertoButton.setVisible(true);
         this.seleccioneResultadoLabel.setVisible(true);
     }
+
     public void tomarCancelacion(){
         dispose();
         gestor.cancelarCU();
     }
+
     public void informarNoHayESNoRevisados(){
         JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados");
         this.dispose();
     }
+
     public void tomarSeleccionResultado(String seleccion){
         JOptionPane.showMessageDialog(this,"Resultado Registrado!");
         dispose();
         gestor.tomarSeleccionResultado(seleccion);
     }
+
     public void tomarSolicitudModificacionDatos(){
         JOptionPane.showMessageDialog(this,"Cargando...");
     }
+
     public void tomarSolicitudVerMapa(){
         JOptionPane.showMessageDialog(this,"Cargando mapa...");
     }

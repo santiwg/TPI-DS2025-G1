@@ -14,7 +14,7 @@ public class GestorRegRRes {
 
     private ArrayList<EventoSismico> listaEventosSismicos;
     private ArrayList<Map<String, Object>> listaESNoRevisados=new ArrayList<>();
-    //la lista de eventos será un array de diccionarios, cada uno de los cuales tendrá evento y datos
+    // La lista de eventos será un array de diccionarios, cada uno de los cuales tendrá evento y datos
     private EventoSismico eventoSismicoSeleccionado;
     private Estado estadoRechazado;
     private Estado estadoConfirmado;
@@ -70,6 +70,7 @@ public class GestorRegRRes {
         }
 
     }
+
     public void buscarESNoRevisados(){
         for (EventoSismico evento : listaEventosSismicos) { // Recorro todos los eventos sísmicos registrados
             if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){ // Chequeo el estado del evento
@@ -80,6 +81,7 @@ public class GestorRegRRes {
             }
         }
     }
+
     public void ordenarEventosSismicosPorFechaYHora() {
         this.listaESNoRevisados.sort((diccEvento1, diccEvento2) -> {
             //obtengo los datos del evento, que son un diccionario
@@ -95,9 +97,6 @@ public class GestorRegRRes {
             return fecha2.compareTo(fecha1);
         });
     }
-
-
-
 
     public void tomarSeleccionES(String eventoSelecc){
         for (Map<String, Object> diccEvento : listaESNoRevisados) {// Busco el evento correspondiente en la lista de eventos no revisados
@@ -177,6 +176,7 @@ public class GestorRegRRes {
             }
         }
     }
+
     public void buscarEstadoConfirmado(){
         for(Estado estado: listaEstados){
             if(estado.esAmbitoEventoSismico() & estado.esConfirmado()){
@@ -215,10 +215,12 @@ public class GestorRegRRes {
     public void rechazarEventoSismico(){
         this.eventoSismicoSeleccionado.rechazar(fechaHoraActual, estadoRechazado, empleadoLogueado,ultimoCambioDeEstado);
     }
+
     public void confirmarEventoSismico(){
         this.eventoSismicoSeleccionado.confirmar(fechaHoraActual, estadoConfirmado, empleadoLogueado,ultimoCambioDeEstado);
         this.notificarAInteresados();
     }
+
     public void notificarAInteresados(){
         //no se implementa
     }
@@ -241,6 +243,7 @@ public class GestorRegRRes {
         this.ultimoCambioDeEstado=null;
         this.sismografos=null;
     }
+
     public boolean validarDatosMinimos(){
         float magnitud = 0;
         for (Map<String, Object> diccEvento : listaESNoRevisados) {
@@ -254,12 +257,15 @@ public class GestorRegRRes {
         }
         return (magnitud != 0 & this.nombreAlcance != null & this.nombreOrigenGeneracion != null & this.seleccionResultado != null);
     }
+
     public void buscarDatosSeriesTemporales(){
         this.listaDatosSeriesTemporales=eventoSismicoSeleccionado.buscarDatosSeriesTemporales(sismografos);
     }
+
     public void llamarCUGenerarSismograma(){
         //no se implementa
     }
+
     public void finCU(){
         this.listaEventosSismicos=null;
         this.listaESNoRevisados=null;
@@ -281,7 +287,6 @@ public class GestorRegRRes {
 
     @Override
     public String toString() {
-        //BORRAR
         return "GestorRegRRes{" +
                 "listaEventosSismicos=" + listaEventosSismicos +
                 ", listaESNoRevisados=" + listaESNoRevisados +
