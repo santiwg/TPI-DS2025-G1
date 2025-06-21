@@ -1,18 +1,14 @@
 @startuml vista-estatica
 
 class GestorRegRRes{
-    -listaEventosSismicos :EventoSismico
     -listaESNoRevisados
     -eventoSismicoSeleccionado :EventoSismico
     -estadoRechazado :Estado
     -estadoConfirmado :Estado
     -listaDatosSeriesTemporales
-    -sesion :Sesion
     -empleadoLogueado :Empleado
-    -listaEstados :Estado
     -estadoBloqueadoEnRevision :Estado
     -fechaHoraActual
-    -pantalla :PanRegRRes
     -nombreAlcance
     -nombreOrigenGeneracion
     -nombreClasificacion
@@ -39,7 +35,6 @@ class GestorRegRRes{
 }
 
 class PanRegRRes{
-    -gestor :GestorRegRRes
     -opcRegRRevision
     -eventosComboBox
     -origentxt
@@ -198,7 +193,7 @@ class SerieTemporal{
 class Sesion{
     -fechaHoraInicio
     -fechaHoraCierre
-    -usuario
+    -usuario:Usuario
 
     +obtenerEmpleadoLogueado()
 }
@@ -266,6 +261,7 @@ EventoSismico -->"0..1"Empleado
 SerieTemporal *-->"1..*" MuestraSismica
 
 SerieTemporal -->"1"Estado
+SerieTemporal ..> Sismografo
 
 MuestraSismica *-->"1..*" DetalleMuestraSismica
 
