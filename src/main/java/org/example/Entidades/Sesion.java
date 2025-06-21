@@ -14,5 +14,5 @@ public class Sesion {
 
     public Empleado obtenerEmpleadoLogueado() {
         return this.usuario.getEmpleado();
-    }
+    } // Obtiene el empleado logueado asociado al usuario de la sesion actual
 }

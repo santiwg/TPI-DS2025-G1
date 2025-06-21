@@ -13,8 +13,7 @@ public class DetalleMuestraSismica {
         this.tipoDeDato = tipoDeDato;
     }
 
-
     public String getDatos() {
-        return this.tipoDeDato.getDenominacion()+":"+valor; // Ejemplo de salida 'Longitud:20
-    }
+        return this.tipoDeDato.getDenominacion()+":"+valor;
+    } // Devuelve la denominación del tipo de dato y su valor. Ejemplo: 'Longitud : 20'
 }

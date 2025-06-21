@@ -29,20 +29,13 @@ public class Sismografo {
         this.estadoActual = estadoActual;
         this.cambioEstado = cambiosDeEstado;
     }
+
     public boolean esSismografoDeSerieTemporal(SerieTemporal serie){
         return this.serieTemporal.contains(serie);
-    }
+    } // Metodo que devuelve true si el sismografo es de la serie temporal o false si no lo es
+
     public String getCodigoEstacion(){
         return this.estacionSismologica.getCodigoEstacion();
     }
 
-    public int getIdentificadorSismografo() {
-        return identificadorSismografo;
-    }
-
-    public void setEstadoActual(Estado estadoActual) {
-        this.estadoActual = estadoActual;
-    }
-
-    public void solicitarCertificacion(){}
 }

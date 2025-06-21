@@ -17,10 +17,9 @@ public class Empleado {
 
     @Override
     public String toString() {
-        //BORRAR
         return "Empleado{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 '}';
-    }
+    } // Muestra el valor de los atributos del objeto Empleado
 }

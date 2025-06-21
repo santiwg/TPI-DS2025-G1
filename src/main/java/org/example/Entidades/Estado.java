@@ -13,7 +13,6 @@ public class Estado {
         this.nombreEstado = nombreEstado;
     }
 
-
     /*
     Los siguentes metodos hacen una comparacion de strings, para informar los valores de la clase
      */
@@ -38,10 +37,9 @@ public class Estado {
 
     @Override
     public String toString() {
-        //Borrar
         return "Estado{" +
                 "ambito='" + ambito + '\'' +
                 ", nombreEstado='" + nombreEstado + '\'' +
                 '}';
-    }
+    } // Muestra el valor de los atributos del objeto Estado
 }
