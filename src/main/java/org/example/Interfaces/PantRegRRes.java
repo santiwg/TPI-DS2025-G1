@@ -67,7 +67,6 @@ public class PantRegRRes extends JFrame {
         // Agrega ActionListener para tomar la selección de un evento
         seleccionarButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se invoca al presionar el botón de selección
             public void actionPerformed(ActionEvent e) {
                 String seleccionado = (String) eventosComboBox.getSelectedItem(); // Obtenemos el elemento seleccionado y lo casteamos a String
                 // Verifica que se haya seleccionado un elemento
