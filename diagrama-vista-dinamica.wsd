@@ -123,8 +123,12 @@ SES -> SES: clasificarDatosPorEstacionSismologica()
 
 GR -> GR: llamarCUGenerarSismograma()
 
-control "__CU:GenerarSismograma__" as CUSG
-GR --> CUSG: <<include>>
+skinparam participant {
+  RoundCorner 200
+}
+
+participant "CU:GenerarSismograma" as CUGS
+GR --> CUGS: <<include>>
 
 GR -> PRR: habilitarOpcVerMapa()
 GR -> PRR: habilitarOpcModificarDatosES()

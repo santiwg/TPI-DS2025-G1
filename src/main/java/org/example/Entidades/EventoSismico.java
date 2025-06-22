@@ -117,6 +117,7 @@ public class EventoSismico {
         this.clasificarDatosPorEstacionSismologica(datosSeries); // Clasifica los elementos del array datosSeries por estacion sismologica
         return datosSeries;
     }
+
     public CambioEstado crearCambioEstado(LocalDateTime fechaHoraInicio, Estado estado, Empleado empleadoLogueado) { // Crea un nuevo cambio de estado
         CambioEstado nuevoCambio = new CambioEstado(fechaHoraInicio, estado, empleadoLogueado); // Crea una instancia de CambioEstado
         this.cambioEstado.add(nuevoCambio); // Añade la nueva instancia al array cambioEstado
