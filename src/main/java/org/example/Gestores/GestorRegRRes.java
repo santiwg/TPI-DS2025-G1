@@ -205,7 +205,7 @@ public class GestorRegRRes {
                 default:
                     throw new IllegalArgumentException("Resultado inválido: " + seleccionResultado); // Si el resultado seleccionado es invalido, lo informa
             }
-            this.finCU(); // Finaliza el CU llamando al metodo finCU()
+            this.finCU(); // Finaliza el CU 
 
         }else{
             // No se implementa
@@ -242,6 +242,7 @@ public class GestorRegRRes {
         this.nombreClasificacion=null;
         this.ultimoCambioDeEstado=null;
         this.sismografos=null;
+
     }
 
     public boolean validarDatosMinimos(){ // Valida que exista magnitud, alcance y origen de generación del evento y que se haya seleccionado una accion
