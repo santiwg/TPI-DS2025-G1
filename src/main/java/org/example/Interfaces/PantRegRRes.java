@@ -1,4 +1,4 @@
-package org.example.Pantallas;
+package org.example.Interfaces;
 
 import org.example.Gestores.GestorRegRRes;
 
@@ -57,22 +57,21 @@ public class PantRegRRes extends JFrame {
             @Override
             // Sobrescribimos el método windowClosing que se ejecuta cuando el usuario cierra una ventana
             public void windowClosing(java.awt.event.WindowEvent e) {
-                tomarCancelacion(); // Al cerrar le ventana llama al método tomarCancelacion()
+                tomarCancelacion(); // Al cerrar le ventana se cancela la ejecución del CU
             }});
-        // Al presionar el botón de Registrar Resultado Revisión, se llama al método opcRegResultadoES()
+        // Al presionar el botón de Registrar Resultado Revisión, se ejecuta opcRegResultadoES() comenzando la ejecución del CU
         opcRegRRevision.addActionListener(e -> {
             opcRegResultadoES();
         });
 
-        // Agrega ActionListener para responder a eventos en el botón de seleccionar
+        // Agrega ActionListener para tomar la selección de un evento
         seleccionarButton.addActionListener(new ActionListener() {
             @Override
             // Método que se invoca al presionar el botón de selección
             public void actionPerformed(ActionEvent e) {
-                String seleccionado = (String) eventosComboBox.getSelectedItem(); // Obtenemos el elemento seleccionado y lo convertimos a String
+                String seleccionado = (String) eventosComboBox.getSelectedItem(); // Obtenemos el elemento seleccionado y lo casteamos a String
                 // Verifica que se haya seleccionado un elemento
                 if (seleccionado != null) {
-                    // Si se selecciono un elemento, llama al método tomarSeleccionES() pasando como parámetro el evento seleccionado
                     tomarSeleccionES(seleccionado);
                 } else {
                     // Si no se selecciono ningun evento, se muestra un mensaje
@@ -80,78 +79,67 @@ public class PantRegRRes extends JFrame {
             }
         });
 
-        // Agrega ActionListener para responder a eventos en el botón de rechazar
+        //ActionListeners para responder a la interacción con los botones que representan las distintas opciones
+
         rechazarButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se ejecuta al presionar el boton de rechazar
             public void actionPerformed(ActionEvent e) {
-                tomarSeleccionResultado("Rechazado"); // Se llama al método tomarSeleccionResultado() pasando "Rechazado" como parámetro
+                tomarSeleccionResultado("Rechazado");
             }
         });
-
-        // Agrega ActionListener para responder a eventos en el botón de confirmar
         confirmarButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se ejecuta al presionar el boton de confirmar
             public void actionPerformed(ActionEvent e) {
-                tomarSeleccionResultado("Confirmado"); // Se llama al método tomarSeleccionResultado() pasando "Confirmado" como parámetro
+                tomarSeleccionResultado("Confirmado");
             }
         });
-
-        // Agrega ActionListener para responder a eventos en el botón de delegar a experto
         delegarAExpertoButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se ejecuta al presionar el boton de delegar a experto
             public void actionPerformed(ActionEvent e) {
-                tomarSeleccionResultado("Derivado a Experto"); // Se llama al método tomarSeleccionResultado() pasando "Derivado a Experto" como parámetro
+                tomarSeleccionResultado("Derivado a Experto");
             }
         });
-
-        // Agrega ActionListener para responder a eventos en el botón de modificar datos
         modificarDatosButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se ejecuta al presionar el boton de modificar datos
             public void actionPerformed(ActionEvent e) {
-                tomarSolicitudModificacionDatos(); // Se llama al método que gestiona la solicitud para modificar los datos
+                tomarSolicitudModificacionDatos();
             }
         });
-
-        // Agrega ActionListener para responder a eventos en el botón de ver mapa
         verMapaButton.addActionListener(new ActionListener() {
             @Override
-            // Método que se ejecuta al presionar el boton de ver mapa
             public void actionPerformed(ActionEvent e) {
-                tomarSolicitudVerMapa(); // Se llama al método que gestiona la solicitud para ver mapa
+                tomarSolicitudVerMapa();
             }
         });
     }
 
-    // Método que se invoca al seleccionar la opción de registrar el resultado de la revisión
+    // Inicia el registro del resultado al seleccionarse la opción correspondiente
     public void opcRegResultadoES(){
-        this.abrirPantalla(); // Se abre la pantalla para registrar el resultado
-        gestor.nuevaRevisionES(this); // Se inicia al gestor pasandole la instancia de la pantalla actual
+        this.abrirPantalla();
+        gestor.nuevaRevisionES(this); // Se pasa así mismo como parámetro para que el gestor puede luego invocar su comportamiento
     }
 
-    // Método de abrir la pantalla para registrar el resultado de la revisión
+    // "Abre" la pantalla para registrar el resultado de la revisión
     public void abrirPantalla(){
-        this.opcRegRRevision.setVisible(false); // Oculta la opción de registrar resultado de revisión
-        this.eventosComboBox.setVisible(true); // Muestra la lista de eventos para selección
-        this.origentxt.setVisible(true); // Muestra el campo de texto de origen de generación
-        this.alcancetxt.setVisible(true); // Muestra el campo de texto de alcance
-        this.clasificaciontxt.setVisible(true); // Muestra el campo de texto de clasficicación
-        this.seleccionarButton.setVisible(true); // Muestra el botón de selección
-        this.alcanceLabel.setVisible(true); // Muestra la etiqueta de alcance
-        this.clasificacionLabel.setVisible(true); // Muestra la etiqueta de clasificación
-        this.origenDeGeneracionLabel.setVisible(true); // Muestra la etiqueta de origen de generación
-        this.verMapaButton.setVisible(true); // Muestra el botón de ver mapa
-        this.modificarDatosButton.setVisible(true); // Muestra el botón de modificar datos
-        this.confirmarButton.setVisible(true); // Muestra el botón de confirmar
-        this.rechazarButton.setVisible(true); // Muestra el botón de rechazar
-        this.delegarAExpertoButton.setVisible(true); // Muestra el botón de delegar a experto
-        this.seleccioneResultadoLabel.setVisible(true); // Muestra la etiqueta de seleccione el resultado
+        //se oculta el botón para iniciar el CU y se muestran los demás componentes
+        this.opcRegRRevision.setVisible(false);
+        this.eventosComboBox.setVisible(true);
+        this.origentxt.setVisible(true);
+        this.alcancetxt.setVisible(true);
+        this.clasificaciontxt.setVisible(true);
+        this.seleccionarButton.setVisible(true);
+        this.alcanceLabel.setVisible(true);
+        this.clasificacionLabel.setVisible(true);
+        this.origenDeGeneracionLabel.setVisible(true);
+        this.verMapaButton.setVisible(true);
+        this.modificarDatosButton.setVisible(true);
+        this.confirmarButton.setVisible(true);
+        this.rechazarButton.setVisible(true);
+        this.delegarAExpertoButton.setVisible(true);
+        this.seleccioneResultadoLabel.setVisible(true);
     }
 
-    // Método para cargar y mostrar en el comboBox los eventos sísmicos
+    // Carga y muestra en el comboBox los eventos sísmicos
     public void mostrarESParaSeleccion(ArrayList<String> eventosSismicos){
 
         // Crea un modelo para el comboBox
@@ -162,61 +150,61 @@ public class PantRegRRes extends JFrame {
         eventosComboBox.setModel(eventos); // Asigna el modelo al comboBox
     }
 
-    // Método que pasa el evento sísmico seleccionado al gestor
+    // Pasa el evento sísmico seleccionado al gestor
     public void tomarSeleccionES(String evento){
         gestor.tomarSeleccionES(evento);
     }
 
-    // Método para mostrar los datos del evento sismico
+    // Se muestran los datos principales del evento seleccionado
     public void mostrarDatosEventoSismico(String nombreAlcance, String nombreOrigenGeneracion, String nombreClasificacion){
-        this.alcancetxt.setText(nombreAlcance); // Muestra el alcance
-        this.origentxt.setText(nombreOrigenGeneracion); // Muestra el origen
-        this.clasificaciontxt.setText(nombreClasificacion); // Muestra la clasificación
+        this.alcancetxt.setText(nombreAlcance);
+        this.origentxt.setText(nombreOrigenGeneracion);
+        this.clasificaciontxt.setText(nombreClasificacion);
     }
 
-    // Método para habilitar la opción de ver mapa
+    // Habilita el botón que permite la opción de ver mapa
     public void habilitarOpcVerMapa(){
         this.verMapaButton.setEnabled(true);
     }
 
-    // Método para habilitar la opción de modificar datos
+    // Habilita el botón que permite la opción de modificar datos
     public void habilitarOpcModificarDatosES(){
         this.modificarDatosButton.setEnabled(true);
     }
 
-    // Método para pedir la selección del resultado del evento sísmico
+    // Habilita los botones para la selección del resultado
     public void pedirSeleccionResultadoEvento(){
-        this.seleccioneResultadoLabel.setEnabled(true); // Activa la etiqueta que indica se seleccione un resultado
-        this.rechazarButton.setEnabled(true); // Habilita el botón de rechazar
-        this.confirmarButton.setEnabled(true); // Habilita el botón de confirmar
-        this.delegarAExpertoButton.setEnabled(true); // Habilita el botón de delegar a experto
+        this.seleccioneResultadoLabel.setEnabled(true);
+        this.rechazarButton.setEnabled(true);
+        this.confirmarButton.setEnabled(true);
+        this.delegarAExpertoButton.setEnabled(true);
     }
 
-    // Método utilizado al cerrar una ventana
+    // Cierra la ventana y cancela la ejecución del CU
     public void tomarCancelacion(){
-        dispose(); // Cierra la ventana
-        gestor.cancelarCU(); // Cancela el CU en el gestor
+        dispose();
+        gestor.cancelarCU();
     }
 
-    // Método para informar que no hay eventos sísmicos no revisados
+    // Informa al usuario la situación con un mensaje en pantalla
     public void informarNoHayESNoRevisados(){
-        JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados"); // Muestra un mensaje
+        JOptionPane.showMessageDialog(this, "No hay sismos auto detectados que aún no han sido revisados");
         this.dispose(); // Cierra la ventana
     }
 
-    // Método para tomar la selección del resultado
+    // Toma la elección del resultado y la pasa al gestor
     public void tomarSeleccionResultado(String seleccion){
         JOptionPane.showMessageDialog(this,"Resultado Registrado!"); // Muestra un mensaje
         dispose(); // Cierra la ventana
-        gestor.tomarSeleccionResultado(seleccion); // Pasa al gestor la selección del resultado
+        gestor.tomarSeleccionResultado(seleccion);
     }
 
-    // Método para tomar la solicitud de moficación de datos
+    // Responde a la solicitud de moficación de datos
     public void tomarSolicitudModificacionDatos(){
         JOptionPane.showMessageDialog(this,"Cargando..."); // Muestra un mensaje
     }
 
-    // Método para tomar la solicitud de ver mapa
+    // Responde a la solicitud de ver mapa
     public void tomarSolicitudVerMapa(){
         JOptionPane.showMessageDialog(this,"Cargando mapa..."); // Muestra un mensaje
     }

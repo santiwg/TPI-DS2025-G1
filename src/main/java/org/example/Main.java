@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.Entidades.*;
 import org.example.Gestores.GestorRegRRes;
-import org.example.Pantallas.PantRegRRes;
+import org.example.Interfaces.PantRegRRes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -178,7 +178,7 @@ public class Main {
         EventoSismico evento6 = new EventoSismico(
                 LocalDateTime.of(2025,6,19,15,58,20),
                 -21.5f,-34.5f,-21.7f,-34.6f,7,
-                rechazadoAmbitoIncorrecto,listaCambioRechazadoAmbitoIncorrecto,
+                rechazado,listaCambioRechazado,
                 intermedio,explosionesMinas,regional,
                 seriesTemporales);
 

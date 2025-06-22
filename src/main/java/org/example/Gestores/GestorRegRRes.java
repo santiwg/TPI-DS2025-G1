@@ -1,7 +1,7 @@
 package org.example.Gestores;
 
 import org.example.Entidades.*;
-import org.example.Pantallas.PantRegRRes;
+import org.example.Interfaces.PantRegRRes;
 
 import java.time.LocalDateTime;
 
