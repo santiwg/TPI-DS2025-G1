@@ -16,7 +16,7 @@ public class MuestraSismica {
     public String getDatos() {
         String datos = "Fecha/Hora muestra: " + fechaHoraMuestra; // Inicializa un string con la fecha y hora de la muestra
         for (DetalleMuestraSismica detalle:detalleMuestraSismica){ // Itera los detalles de la muestra sismica
-            datos = datos + "," + detalle.getDatos(); // Agrega los datos de cada detalle sismico al string
+            datos = datos + "," + detalle.getDatos(); // Agrega los datos de cada detalle de muestra al string
         }
         return datos; // Devuelve el string completo con los datos concatenados
     }

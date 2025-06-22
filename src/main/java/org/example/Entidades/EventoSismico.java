@@ -109,7 +109,7 @@ public class EventoSismico {
         this.setEstadoActual(estado); // Asigna el nuevo estado acutal
     }
 
-    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ // Obtiene los datos de todas las series temporales de una lista de sismografos
+    public ArrayList<String> buscarDatosSeriesTemporales(ArrayList<Sismografo> sismografos){ // Obtiene los datos de todas las series temporales del evento
         ArrayList<String> datosSeries = new ArrayList<>();
         for (SerieTemporal serie: serieTemporal){ // Itera las series temporales
             datosSeries.add(serie.getDatos(sismografos)); // Obtiene los datos de las series temporales y los guarda en el array datosSeries
@@ -133,7 +133,7 @@ public class EventoSismico {
         }
     }
 
-    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) { // Setea fechaHoraFin a un cambio de estado
+    public void actualizarUltimoEstado(LocalDateTime fechaHoraDeFin,CambioEstado ultimoEstado) { // Setea fechaHoraFin al ultimo cambio de estado
         ultimoEstado.setFechaHoraFin(fechaHoraDeFin);
     }
 

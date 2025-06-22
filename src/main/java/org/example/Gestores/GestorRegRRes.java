@@ -137,7 +137,7 @@ public class GestorRegRRes {
             pantalla.pedirSeleccionResultadoEvento();
     }
 
-    public void buscarEstadoBloqueadoEnRev(){ // Metodo para buscar el estado 'Rechazado'
+    public void buscarEstadoBloqueadoEnRev(){ // Metodo para buscar el estado 'Bloqueado en Revision'
         for(Estado estado: listaEstados){ // Itera los estados
             // Verifica que el estado pertenezca al ámbito de eventos sísmicos y que su tipo sea 'BloqueadoEnRevision'
             if(estado.esAmbitoEventoSismico() & estado.esBloqueadoEnRevision()){
@@ -188,8 +188,8 @@ public class GestorRegRRes {
 
     public void tomarSeleccionResultado(String seleccion){ // Metodo para tomar la seleccion del resultado del evento sismico
         this.seleccionResultado = seleccion;
-        if (this.validarDatosMinimos()){ // Llama al metodo validarDatosMinimos()
-            this.tomarFechaHoraActual(); // Llama al metodo tomarFechaHoraActual()
+        if (this.validarDatosMinimos()){ //valida que se tengan los datos mínimos para poder registrar el resultado
+            this.tomarFechaHoraActual();
             switch (seleccionResultado) {
                 case "Rechazado": // Si se rechaza, busca al estado 'Rechazado' y rechaza al evento sismico, llamando a los metodos correspondientes
                     this.buscarEstadoRechazado();
@@ -218,14 +218,14 @@ public class GestorRegRRes {
 
     public void confirmarEventoSismico(){ // Confirma el evento sismico seleccionado
         this.eventoSismicoSeleccionado.confirmar(fechaHoraActual, estadoConfirmado, empleadoLogueado,ultimoCambioDeEstado); // Llama al metodo confirmar()
-        this.notificarAInteresados(); // Llama al metodo notificarAInteresados(), funcion que no se implementa
+        this.notificarConfirmacionAInteresados(); // se notifica a los interesados de la confirmación de un evento sísmico
     }
 
-    public void notificarAInteresados(){
+    public void notificarConfirmacionAInteresados(){
         // No se implementa
     }
 
-    public void cancelarCU(){ // Metodo para cancelar el CU
+    public void cancelarCU(){ // Se "destruye" el gestor dando valor nulo a todos sus atributos
         this.listaEventosSismicos=null;
         this.listaESNoRevisados=null;
         this.eventoSismicoSeleccionado=null;
@@ -261,13 +261,13 @@ public class GestorRegRRes {
 
     public void buscarDatosSeriesTemporales(){
         this.listaDatosSeriesTemporales=eventoSismicoSeleccionado.buscarDatosSeriesTemporales(sismografos);
-    } // Llama al metodo buscarDatosSeriesTemporales() de la clase Evento Sismico
+    } // solicita y almacena los datos de las series temporales del evento
 
     public void llamarCUGenerarSismograma(){
         // No se implementa
     }
 
-    public void finCU(){ // Metodo para finalizar el CU
+    public void finCU(){ // Se "destruye" el gestor dando valor nulo a todos sus atributos
         this.listaEventosSismicos=null;
         this.listaESNoRevisados=null;
         this.eventoSismicoSeleccionado=null;

@@ -32,7 +32,7 @@ public class Sismografo {
 
     public boolean esSismografoDeSerieTemporal(SerieTemporal serie){
         return this.serieTemporal.contains(serie);
-    } // Metodo que devuelve true si el sismografo es de la serie temporal o false si no lo es
+    } // Metodo que indica si una serie temporal es del sismografo
 
     public String getCodigoEstacion(){
         return this.estacionSismologica.getCodigoEstacion();

@@ -31,7 +31,7 @@ public class SerieTemporal {
     public String obtenerEstacionSismologica(ArrayList<Sismografo> sismografos){ // Obtiene el codigo de la estacion sismologica
         for(Sismografo sismografo : sismografos){ // Itera los sismografos
             if (sismografo.esSismografoDeSerieTemporal(this)){
-                return sismografo.getCodigoEstacion(); // Cuando encuentra la estacion sismologica a la que pertenece el sismografo, obtiene su codigo
+                return sismografo.getCodigoEstacion(); // Cuando encuentra el sismógrafo al que pertence la serie, obtiene el código de la estación
             }
         }
         return null; // En caso de que no se encuentre una estacion a la que pertenezca el sismografo, devuelve un null
