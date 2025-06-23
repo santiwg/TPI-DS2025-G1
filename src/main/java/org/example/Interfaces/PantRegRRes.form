@@ -277,7 +277,7 @@
         <properties>
           <background color="-13330213"/>
           <foreground color="-1"/>
-          <text value="Registrar Resultado de Revision"/>
+          <text value="Registrar Resultado de Revision Manual"/>
         </properties>
       </component>
     </children>
