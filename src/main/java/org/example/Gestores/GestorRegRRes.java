@@ -41,7 +41,7 @@ public class GestorRegRRes {
 
     public void nuevaRevisionES(PantRegRRes pantalla){
         this.pantalla=pantalla;
-        this.buscarESNoRevisados(); // Llama al metodo para buscar los ES no revisados
+        this.buscarESNoRevisados();
 
         if (!listaESNoRevisados.isEmpty()){ // Verifica que haya eventos para revisar
             this.ordenarEventosSismicosPorFechaYHora(); // Ordena los eventos por fecha y hora
@@ -65,24 +65,24 @@ public class GestorRegRRes {
 
             pantalla.mostrarESParaSeleccion(datosEventos); // Muestra los ES en pantalla para que el usuario seleccione uno
         }else { // Si no hay ES no revisados
-            pantalla.informarNoHayESNoRevisados(); // Informa en pantalla que no hay ES no revisados
-            this.cancelarCU(); // Cancela el CU
+            pantalla.informarNoHayESNoRevisados();
+            this.cancelarCU();
         }
 
     }
 
-    public void buscarESNoRevisados(){ // Metodo para buscar los ES auto detectados que aun no han sido revisados
+    public void buscarESNoRevisados(){ // Metodo para buscar los ES auto detectados que están pendientes de revisión
         for (EventoSismico evento : listaEventosSismicos) { // Recorre todos los eventos sísmicos registrados
             if (evento.esAutoDetectado() || evento.esPendienteDeRevision()){ // Chequea el estado del evento
                 Map<String, Object> diccionarioEvento = new HashMap<>(); // Nuevo diccionario que va a tener los eventos y sus datos
                 diccionarioEvento.put("evento", evento);
                 diccionarioEvento.put("datos", evento.getDatosPrincipales()); // Se espera que esto devuelva un Map
-                listaESNoRevisados.add(diccionarioEvento); // Se agrega el diccionario a la lista de los ES no revisados
+                listaESNoRevisados.add(diccionarioEvento);
             }
         }
     }
 
-    public void ordenarEventosSismicosPorFechaYHora() { // Metodo para ordenar los eventos sismicos por fecha y hora
+    public void ordenarEventosSismicosPorFechaYHora() {
         this.listaESNoRevisados.sort((diccEvento1, diccEvento2) -> {
             // Obtiene los datos del evento, que son un diccionario
             // Se debe hacer casteo porque estan definidos con tipo Object
@@ -97,7 +97,7 @@ public class GestorRegRRes {
         });
     }
 
-    public void tomarSeleccionES(String eventoSelecc){ // Metodo para tomar la seleccion de un evento sismico
+    public void tomarSeleccionES(String eventoSelecc){
         for (Map<String, Object> diccEvento : listaESNoRevisados) { // Busca el evento correspondiente en la lista de eventos no revisados
             Map<String, Object> datos = (Map<String, Object>) diccEvento.get("datos");
             String datosStr = String.format( // Arma el texto del evento tal como se muestra en pantalla
@@ -115,7 +115,7 @@ public class GestorRegRRes {
                 break;
             }
         }
-            this.buscarEstadoBloqueadoEnRev(); // Busca el estado correspondiente a 'bloqueadoEnRevisión'
+            this.buscarEstadoBloqueadoEnRev(); // Busca el estado a asignar
 
             this.tomarFechaHoraActual(); // Guarda la fecha y hora actual para registrar el cambio de estado
 
@@ -130,18 +130,18 @@ public class GestorRegRRes {
 
             this.buscarDatosSeriesTemporales(); // Busca los datos necesarios para generar la gráfica del sismograma
 
-            this.llamarCUGenerarSismograma(); // Llama al caso de uso que genera el sismograma (CU GenerarSismograma)
+            this.llamarCUGenerarSismograma(); // instancia al caso de uso que genera el sismograma (CU GenerarSismograma)
 
             pantalla.habilitarOpcVerMapa();
             pantalla.habilitarOpcModificarDatosES();
             pantalla.pedirSeleccionResultadoEvento();
     }
 
-    public void buscarEstadoBloqueadoEnRev(){ // Metodo para buscar el estado 'Bloqueado en Revision'
+    public void buscarEstadoBloqueadoEnRev(){
         for(Estado estado: listaEstados){ // Itera los estados
-            // Verifica que el estado pertenezca al ámbito de eventos sísmicos y que su tipo sea 'BloqueadoEnRevision'
+            // Verifica ámbito y nombre de los estados
             if(estado.esAmbitoEventoSismico() & estado.esBloqueadoEnRevision()){
-                this.estadoBloqueadoEnRevision = estado; // Si es asi, lo guarda en una variable estadoBloqueadoEnRevision
+                this.estadoBloqueadoEnRevision = estado; // Almacena el estado para asignarlo posteriormente
                 break;
             }
         }
@@ -154,39 +154,39 @@ public class GestorRegRRes {
 
     public void tomarFechaHoraActual(){
         this.fechaHoraActual = LocalDateTime.now();
-    } // Toma la fecha y hora actual
+    }
 
     public void buscarEmpleadoLogueado() {
         this.empleadoLogueado = this.sesion.obtenerEmpleadoLogueado();
     } // Obtiene el empleado logueado asociado a la sesion actual
 
-    public void buscarDatosEventoSismico(){ // Obtiene y muestra los datos del evento sismico seleccionado
+    public void buscarDatosEventoSismico(){ // Obtiene los datos del evento sismico seleccionado para poder mostrarlos
         this.nombreAlcance = this.eventoSismicoSeleccionado.mostrarAlcance();
         this.nombreClasificacion = this.eventoSismicoSeleccionado.mostrarClasificacion();
         this.nombreOrigenGeneracion= this.eventoSismicoSeleccionado.mostrarOrigenGeneracion();
     }
 
-    public void buscarEstadoRechazado(){ // Metodo para buscar el estado 'Rechazado'
+    public void buscarEstadoRechazado(){
         for(Estado estado: listaEstados){ // Itera los estados
-            // Verifica que el estado pertenezca al ámbito de eventos sísmicos y que su tipo sea 'Rechazado'
+            // Verifica ámbito y nombre de los estados
             if(estado.esAmbitoEventoSismico() & estado.esRechazado()){
-                this.estadoRechazado = estado; // Si es asi, lo guarda en una variable estadoRechazado
+                this.estadoRechazado = estado;
                 break;
             }
         }
     }
 
-    public void buscarEstadoConfirmado(){ // Metodo para buscar el estado 'Confirmado'
+    public void buscarEstadoConfirmado(){
         for(Estado estado: listaEstados){ // Itera los estados
-            // Verifica que el estado pertenezca al ámbito de eventos sísmicos y que su tipo sea 'Confirmado'
+            // Verifica ámbito y nombre de los estados
             if(estado.esAmbitoEventoSismico() & estado.esConfirmado()){
-                this.estadoConfirmado = estado; // Si es asi, lo guarda en una variable estadoConfirmado
+                this.estadoConfirmado = estado; // Almacena el estado para asignarlo posteriormente
                 break;
             }
         }
     }
 
-    public void tomarSeleccionResultado(String seleccion){ // Metodo para tomar la seleccion del resultado del evento sismico
+    public void tomarSeleccionResultado(String seleccion){ //toma la acción a realizar y lleva a cabo el flujo correspondiente
         this.seleccionResultado = seleccion;
         if (this.validarDatosMinimos()){ //valida que se tengan los datos mínimos para poder registrar el resultado
             this.tomarFechaHoraActual();
@@ -205,7 +205,7 @@ public class GestorRegRRes {
                 default:
                     throw new IllegalArgumentException("Resultado inválido: " + seleccionResultado); // Si el resultado seleccionado es invalido, lo informa
             }
-            this.finCU(); // Finaliza el CU 
+            this.finCU();
 
         }else{
             // No se implementa
