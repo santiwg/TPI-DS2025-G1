@@ -205,6 +205,7 @@ public class GestorRegRRes {
                 default:
                     throw new IllegalArgumentException("Resultado inválido: " + seleccionResultado); // Si el resultado seleccionado es invalido, lo informa
             }
+            System.out.println(eventoSismicoSeleccionado);
             this.finCU();
 
         }else{
