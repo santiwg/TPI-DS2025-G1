@@ -29,7 +29,7 @@ public class PantRegRRes extends JFrame {
     public PantRegRRes(GestorRegRRes gestor) {
         this.gestor = gestor;
         setContentPane(panelPrincipal); // Establece el panel principal como el contenido de la ventana
-        setTitle("Registrar Resultado de Revisión"); // Asigna el título a la ventana
+        setTitle("Registrar Resultado de manual"); // Asigna el título a la ventana
         setSize(1000,600); // Configura el tamaño de la ventana
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define el comportamiento de cierre
         setLocationRelativeTo(null); // Indica respecto a que se centre, al poner null es respecto al centro.
